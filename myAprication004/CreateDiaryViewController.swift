@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class FirstViewController: UIViewController {
+class createDiaryViewController: UIViewController {
     @IBOutlet weak var deleteBtn: UIButton!
     @IBOutlet weak var nyCreateBtn: UIButton!
     

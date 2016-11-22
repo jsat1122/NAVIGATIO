@@ -1,0 +1,72 @@
+
+/* Class = "UIButton"; normalTitle = "切替"; ObjectID = "00g-D1-N2F"; */
+"00g-D1-N2F.normalTitle" = "切替";
+
+/* Class = "UITextView"; text = "日記"; ObjectID = "2Sd-to-JKE"; */
+"2Sd-to-JKE.text" = "日記";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "2it-Tg-2Ea"; */
+"2it-Tg-2Ea.title" = "Item";
+
+/* Class = "UITextView"; text = "日記"; ObjectID = "2kb-U4-rHw"; */
+"2kb-U4-rHw.text" = "日記";
+
+/* Class = "UINavigationItem"; title = "トップ画"; ObjectID = "3dM-KH-wA7"; */
+"3dM-KH-wA7.title" = "トップ画";
+
+/* Class = "UITextField"; text = "日付"; ObjectID = "4UM-2r-aDn"; */
+"4UM-2r-aDn.text" = "日付";
+
+/* Class = "UINavigationItem"; title = "日記作成画面"; ObjectID = "4bp-IA-Kud"; */
+"4bp-IA-Kud.title" = "日記作成画面";
+
+/* Class = "UITextField"; text = "カテゴリー"; ObjectID = "Jtb-0o-9fo"; */
+"Jtb-0o-9fo.text" = "カテゴリー";
+
+/* Class = "UINavigationItem"; title = "日記一覧画面"; ObjectID = "K5Y-h8-iuY"; */
+"K5Y-h8-iuY.title" = "日記一覧画面";
+
+/* Class = "UIButton"; normalTitle = "保存"; ObjectID = "LI1-oR-wyO"; */
+"LI1-oR-wyO.normalTitle" = "保存";
+
+/* Class = "UITabBarItem"; title = "First"; ObjectID = "Tpe-hM-O9D"; */
+"Tpe-hM-O9D.title" = "First";
+
+/* Class = "UIButton"; normalTitle = "一覧"; ObjectID = "Vo4-qp-Kdz"; */
+"Vo4-qp-Kdz.normalTitle" = "一覧";
+
+/* Class = "UILabel"; text = "今日のお祭り"; ObjectID = "WNU-5u-iLm"; */
+"WNU-5u-iLm.text" = "今日のお祭り";
+
+/* Class = "UITextField"; text = "タイトル"; ObjectID = "Ygd-ju-5md"; */
+"Ygd-ju-5md.text" = "タイトル";
+
+/* Class = "UITabBarItem"; title = "First"; ObjectID = "acW-dT-cKf"; */
+"acW-dT-cKf.title" = "First";
+
+/* Class = "UILabel"; text = "(国名・地域名)"; ObjectID = "fOS-cG-wMv"; */
+"fOS-cG-wMv.text" = "(国名・地域名)";
+
+/* Class = "UIButton"; normalTitle = "削除"; ObjectID = "n2a-xe-t4B"; */
+"n2a-xe-t4B.normalTitle" = "削除";
+
+/* Class = "UITextField"; text = "日付"; ObjectID = "r4a-Xd-Jim"; */
+"r4a-Xd-Jim.text" = "日付";
+
+/* Class = "UIButton"; normalTitle = "作成画面"; ObjectID = "rQw-nS-2QQ"; */
+"rQw-nS-2QQ.normalTitle" = "作成画面";
+
+/* Class = "UITextField"; text = "カテゴリー"; ObjectID = "uGi-Cm-fc2"; */
+"uGi-Cm-fc2.text" = "カテゴリー";
+
+/* Class = "UITextField"; text = "タイトル"; ObjectID = "wMb-lT-7iy"; */
+"wMb-lT-7iy.text" = "タイトル";
+
+/* Class = "UINavigationItem"; title = "メイン画面"; ObjectID = "wWC-HB-Pl1"; */
+"wWC-HB-Pl1.title" = "メイン画面";
+
+/* Class = "UIButton"; normalTitle = "share"; ObjectID = "yAf-Aa-pbm"; */
+"yAf-Aa-pbm.normalTitle" = "share";
+
+/* Class = "UILabel"; text = "お祭り名"; ObjectID = "yKD-S6-grJ"; */
+"yKD-S6-grJ.text" = "お祭り名";
