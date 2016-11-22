@@ -15,6 +15,12 @@
 		1856D6881DDEACA400CA1B8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1856D6861DDEACA400CA1B8B /* LaunchScreen.storyboard */; };
 		1856D6931DDEACA400CA1B8B /* myAprication004Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1856D6921DDEACA400CA1B8B /* myAprication004Tests.swift */; };
 		1856D69E1DDEACA400CA1B8B /* myAprication004UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1856D69D1DDEACA400CA1B8B /* myAprication004UITests.swift */; };
+		1856D6B01DDEBF9200CA1B8B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1856D6AF1DDEBF9200CA1B8B /* MainViewController.swift */; };
+		1856D6B21DDEC0D200CA1B8B /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1856D6B11DDEC0D200CA1B8B /* TopViewController.swift */; };
+		1856D6B41DDEC15C00CA1B8B /* earth.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1856D6B31DDEC15C00CA1B8B /* earth.jpeg */; };
+		188915151DE07FD0007C7745 /* Diary+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188915131DE07FD0007C7745 /* Diary+CoreDataClass.swift */; };
+		188915161DE07FD0007C7745 /* Diary+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188915141DE07FD0007C7745 /* Diary+CoreDataProperties.swift */; };
+		18FD3C241DE07E5300F6E03E /* NavigadioModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18FD3C221DE07E5300F6E03E /* NavigadioModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +55,12 @@
 		1856D6991DDEACA400CA1B8B /* myAprication004UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = myAprication004UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1856D69D1DDEACA400CA1B8B /* myAprication004UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myAprication004UITests.swift; sourceTree = "<group>"; };
 		1856D69F1DDEACA400CA1B8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1856D6AF1DDEBF9200CA1B8B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		1856D6B11DDEC0D200CA1B8B /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
+		1856D6B31DDEC15C00CA1B8B /* earth.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = earth.jpeg; sourceTree = "<group>"; };
+		188915131DE07FD0007C7745 /* Diary+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Diary+CoreDataClass.swift"; sourceTree = "<group>"; };
+		188915141DE07FD0007C7745 /* Diary+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Diary+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		18FD3C231DE07E5300F6E03E /* NavigadioModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NavigadioModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +91,9 @@
 		1856D66F1DDEACA400CA1B8B = {
 			isa = PBXGroup;
 			children = (
+				188915131DE07FD0007C7745 /* Diary+CoreDataClass.swift */,
+				188915141DE07FD0007C7745 /* Diary+CoreDataProperties.swift */,
+				18FD3C221DE07E5300F6E03E /* NavigadioModel.xcdatamodeld */,
 				1856D67A1DDEACA400CA1B8B /* myAprication004 */,
 				1856D6911DDEACA400CA1B8B /* myAprication004Tests */,
 				1856D69C1DDEACA400CA1B8B /* myAprication004UITests */,
@@ -100,11 +115,14 @@
 			isa = PBXGroup;
 			children = (
 				1856D67B1DDEACA400CA1B8B /* AppDelegate.swift */,
+				1856D6B11DDEC0D200CA1B8B /* TopViewController.swift */,
+				1856D6AF1DDEBF9200CA1B8B /* MainViewController.swift */,
 				1856D67D1DDEACA400CA1B8B /* FirstViewController.swift */,
 				1856D67F1DDEACA400CA1B8B /* SecondViewController.swift */,
 				1856D6811DDEACA400CA1B8B /* Main.storyboard */,
 				1856D6841DDEACA400CA1B8B /* Assets.xcassets */,
 				1856D6861DDEACA400CA1B8B /* LaunchScreen.storyboard */,
+				1856D6B31DDEC15C00CA1B8B /* earth.jpeg */,
 				1856D6891DDEACA400CA1B8B /* Info.plist */,
 			);
 			path = myAprication004;
@@ -237,6 +255,7 @@
 			files = (
 				1856D6881DDEACA400CA1B8B /* LaunchScreen.storyboard in Resources */,
 				1856D6851DDEACA400CA1B8B /* Assets.xcassets in Resources */,
+				1856D6B41DDEC15C00CA1B8B /* earth.jpeg in Resources */,
 				1856D6831DDEACA400CA1B8B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,9 +281,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18FD3C241DE07E5300F6E03E /* NavigadioModel.xcdatamodeld in Sources */,
 				1856D6801DDEACA400CA1B8B /* SecondViewController.swift in Sources */,
+				188915151DE07FD0007C7745 /* Diary+CoreDataClass.swift in Sources */,
 				1856D67C1DDEACA400CA1B8B /* AppDelegate.swift in Sources */,
 				1856D67E1DDEACA400CA1B8B /* FirstViewController.swift in Sources */,
+				188915161DE07FD0007C7745 /* Diary+CoreDataProperties.swift in Sources */,
+				1856D6B01DDEBF9200CA1B8B /* MainViewController.swift in Sources */,
+				1856D6B21DDEC0D200CA1B8B /* TopViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +533,7 @@
 				1856D6A41DDEACA400CA1B8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1856D6A51DDEACA400CA1B8B /* Build configuration list for PBXNativeTarget "myAprication004Tests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +542,7 @@
 				1856D6A71DDEACA400CA1B8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1856D6A81DDEACA400CA1B8B /* Build configuration list for PBXNativeTarget "myAprication004UITests" */ = {
 			isa = XCConfigurationList;
@@ -525,8 +551,22 @@
 				1856D6AA1DDEACA400CA1B8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		18FD3C221DE07E5300F6E03E /* NavigadioModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				18FD3C231DE07E5300F6E03E /* NavigadioModel.xcdatamodel */,
+			);
+			currentVersion = 18FD3C231DE07E5300F6E03E /* NavigadioModel.xcdatamodel */;
+			path = NavigadioModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1856D6701DDEACA400CA1B8B /* Project object */;
 }
