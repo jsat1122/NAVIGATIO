@@ -9,12 +9,19 @@
 import UIKit
 import Social //追加
 import Accounts //追加
+import FontAwesome_swift //追加
 
 
-class SecondViewController: UIViewController {
-    @IBOutlet weak var myWebView: UIWebView!
 
-    @IBOutlet weak var myReloadBtn: UIBarButtonItem!
+class ReadDiaryViewController: UIViewController {
+//    @IBOutlet weak var myWebView: UIWebView!
+    @IBOutlet weak var editBtn: UIButton!
+//    @IBOutlet weak var myReloadBtn: UIToolbar!
+    @IBOutlet weak var deleateDiaryBtn: UIButton!
+    @IBOutlet weak var shareDiaryBtn: UIButton!
+    @IBOutlet weak var likeDiaryBtn: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -24,16 +31,30 @@ class SecondViewController: UIViewController {
         //表示データを配列で用意する
 //        objects = [""]
         
+        
+        
+        
+        //fontAwesome
+        editBtn.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
+        editBtn.setTitle(String.fontAwesomeIcon(name: .pencil), for: .normal)
+        
+        deleateDiaryBtn.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
+        deleateDiaryBtn.setTitle(String.fontAwesomeIcon(name: .trashO), for: .normal)
+        
+        shareDiaryBtn.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
+        shareDiaryBtn.setTitle(String.fontAwesomeIcon(name: .share), for: .normal)
+        
+        likeDiaryBtn.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
+        likeDiaryBtn.setTitle(String.fontAwesomeIcon(name: .starO), for: .normal)
+        
         // string -> NSURL -> NSURLRequest -> webView.loadRequest
-        let startUrl = "http://dotinstall.com"
-        if let url = NSURL(string: startUrl){
-            let urlRequest = NSURLRequest(url:url as URL)
-            self.myWebView.loadRequest(urlRequest as URLRequest)
-        }
+//        let startUrl = "http://dotinstall.com"
+//        if let url = NSURL(string: startUrl){
+//            let urlRequest = NSURLRequest(url:url as URL)
+//            self.myWebView.loadRequest(urlRequest as URLRequest)
+//        }
     }
-    @IBAction func reloadBtn(_ sender: UIBarButtonItem) {
-            self.myWebView.reload()
-    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -66,7 +87,11 @@ class SecondViewController: UIViewController {
 //        facebookVC?.setInitialText("投稿するよ")
 //        present(facebookVC!, animated: true, completion: nil)
 //    }
-
+    
+    
+//    @IBAction func reloadBtn(_ sender: UIBarButtonItem) {
+//        self.myWebView.reload()
+//    }
 
 }
 
