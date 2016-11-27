@@ -7,16 +7,24 @@
 //
 
 import UIKit
+import FontAwesome_swift //追加
+
 //import SceneKit
+
 
 class TopViewController: UIViewController {
     @IBOutlet weak var topImage: UIImageView!
+    @IBOutlet weak var swipeRight: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         topImage.image = UIImage(named: "earth.jpeg")
 
         // Do any additional setup after loading the view.
+        
+        //fontAwesome
+        swipeRight.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
+        swipeRight.setTitle(String.fontAwesomeIcon(name: .angleDoubleRight), for: .normal)
     }
 //    
 //    boxObj = "earth.jpeg"
