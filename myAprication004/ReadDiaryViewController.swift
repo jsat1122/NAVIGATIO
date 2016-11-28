@@ -11,7 +11,7 @@ import Social //追加
 import Accounts //追加
 
 
-class SecondViewController: UIViewController {
+class ReadDiaryViewController: UIViewController {
     @IBOutlet weak var myWebView: UIWebView!
 
     @IBOutlet weak var myReloadBtn: UIBarButtonItem!

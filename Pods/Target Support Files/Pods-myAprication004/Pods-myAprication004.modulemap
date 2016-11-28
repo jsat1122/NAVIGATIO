@@ -1,0 +1,6 @@
+framework module Pods_myAprication004 {
+  umbrella header "Pods-myAprication004-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -21,7 +21,9 @@ class createDiaryViewController: UIViewController {
     }
     @IBAction func deleteAction(_ sender: UIButton) {
         //アラートを作る
-        var alertController = UIAlertController(title:"削除しますか？", message:"保存されていない日記は削除されます", preferredStyle: .alert)
+        let alertController = UIAlertController(title:"削除しますか？", message:"保存されていない日記は削除されます", preferredStyle: .alert)
+        
+        
         
         //キャンセルボタンを追加
         alertController.addAction(UIAlertAction(

@@ -12,7 +12,7 @@
         <!--日記作成画面-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="FirstViewController" customModule="myAprication004" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateDiaryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9pv-A4-QxB" customClass="createDiaryViewController" customModule="myAprication004" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -53,7 +53,6 @@
                                 <state key="normal" title="削除"/>
                                 <connections>
                                     <action selector="deleteAction:" destination="9pv-A4-QxB" eventType="touchUpInside" id="oSl-lU-gcD"/>
-                                    <segue destination="vHn-D3-QXo" kind="unwind" unwindAction="returnMenue_deleteWithSague:" id="t3C-8U-fL2"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LI1-oR-wyO">
@@ -169,32 +168,36 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rQw-nS-2QQ">
-                                <rect key="frame" x="196" y="433" width="62" height="30"/>
+                                <rect key="frame" x="0.0" y="83" width="62" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="作成画面"/>
                                 <connections>
                                     <segue destination="9pv-A4-QxB" kind="show" identifier="makeNikki" id="9b1-Me-mpK"/>
                                 </connections>
                             </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8XL-de-Y1I">
+                                <rect key="frame" x="-17" y="152" width="392" height="538"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dqp-QS-aYS">
+                                <rect key="frame" x="0.0" y="108" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vo4-qp-Kdz">
-                                <rect key="frame" x="297" y="433" width="31" height="30"/>
+                                <rect key="frame" x="100" y="83" width="31" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="一覧"/>
                                 <connections>
                                     <segue destination="zF5-6c-3Dn" kind="show" identifier="showNikki" id="FoU-yQ-Q9C"/>
                                 </connections>
                             </button>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pn3-OB-euu">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="259"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="メイン画面" id="wWC-HB-Pl1"/>
                     <connections>
-                        <outlet property="myWebView" destination="pn3-OB-euu" id="hYn-am-pZb"/>
+                        <outlet property="serchText" destination="dqp-QS-aYS" id="h8z-P4-nsr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DJd-ML-Df0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -207,7 +210,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QaG-SJ-VcU" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="2it-Tg-2Ea"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aXp-KV-wsi">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="aXp-KV-wsi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -223,7 +226,7 @@
         <!--日記一覧画面-->
         <scene sceneID="fIP-1V-ow7">
             <objects>
-                <viewController id="zF5-6c-3Dn" customClass="SecondViewController" customModule="myAprication004" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zF5-6c-3Dn" customClass="ReadDiaryViewController" customModule="myAprication004" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RjS-h1-mVG"/>
                         <viewControllerLayoutGuide type="bottom" id="94R-H9-3wp"/>
@@ -232,11 +235,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aA0-Gh-bOP">
-                                <rect key="frame" x="2" y="-8" width="373" height="1008"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="日付" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4UM-2r-aDn">
                                 <rect key="frame" x="35" y="194" width="309" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -266,13 +264,7 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FWd-oe-1KF">
                                 <rect key="frame" x="2" y="956" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem systemItem="refresh" id="bc3-LV-jI7">
-                                        <connections>
-                                            <action selector="reloadBtn:" destination="zF5-6c-3Dn" id="DJF-pZ-Fg2"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
+                                <items/>
                             </toolbar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="タイトル" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ygd-ju-5md">
                                 <rect key="frame" x="33" y="156" width="309" height="30"/>
@@ -296,10 +288,6 @@
                     <navigationItem key="navigationItem" title="日記一覧画面" id="K5Y-h8-iuY"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="1000"/>
-                    <connections>
-                        <outlet property="myReloadBtn" destination="bc3-LV-jI7" id="LmB-LP-pq5"/>
-                        <outlet property="myWebView" destination="aA0-Gh-bOP" id="X93-Xv-xhJ"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Li-CK-j8H" sceneMemberID="firstResponder"/>
             </objects>
