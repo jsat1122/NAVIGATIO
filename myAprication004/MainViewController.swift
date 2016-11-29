@@ -36,7 +36,7 @@ class MainViewController: UIViewController ,UITextFieldDelegate ,MKMapViewDelega
         listDiaryBtn.setTitle(String.fontAwesomeIcon(name: .listUL), for: .normal)
         
         // MapViewを生成.
-        dispMap = MKMapView()
+//        dispMap = MKMapView()
         dispMap.frame = self.view.frame
         
         // デリゲートを設定.
@@ -77,15 +77,15 @@ class MainViewController: UIViewController ,UITextFieldDelegate ,MKMapViewDelega
         // 長押しした地点の座標を取得.
         let location = sender.location(in: dispMap)
         
-        // locationをCLLocationCoordinate2Dに変換.
-//        let myCoordinate: CLLocationCoordinate2D = dispMap.convert(location, toCoordinateFrom: dispMap)
-//        
+         //locationをCLLocationCoordinate2Dに変換.
+        let myCoordinate: CLLocationCoordinate2D = dispMap.convert(location, toCoordinateFrom: dispMap)
+        
         // ピンを生成.
         let myPin: MKPointAnnotation = MKPointAnnotation()
         
         // 座標を設定.
-//        myPin.coordinate = myCoordinate
-//        
+        myPin.coordinate = myCoordinate
+        
         // タイトルを設定.
         myPin.title = "タイトル"
         
@@ -93,7 +93,7 @@ class MainViewController: UIViewController ,UITextFieldDelegate ,MKMapViewDelega
         myPin.subtitle = "サブタイトル"
         
         // MapViewにピンを追加.
-//        dispMap.addAnnotation(myPin)
+        dispMap.addAnnotation(myPin)
     }
     
         

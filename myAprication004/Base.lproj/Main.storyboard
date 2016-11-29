@@ -341,6 +341,9 @@
                                 <rect key="frame" x="105" y="76" width="51" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="deleate"/>
+                                <connections>
+                                    <action selector="deleteDiaryBtn:" destination="zF5-6c-3Dn" eventType="touchUpInside" id="ChB-ka-AM7"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pJF-3d-akU">
                                 <rect key="frame" x="216" y="76" width="30" height="30"/>

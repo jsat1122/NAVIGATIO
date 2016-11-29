@@ -55,6 +55,37 @@ class ReadDiaryViewController: UIViewController {
 //        }
     }
     
+    @IBAction func deleteDiaryBtn(_ sender: UIButton) {
+        //アラートを作る
+        var alertController = UIAlertController(title:"削除しますか？", message:"保存されていない日記は削除されます", preferredStyle: .alert)
+        
+        //キャンセルボタンを追加
+        alertController.addAction(UIAlertAction(
+            title: "キャンセル",
+            style: .default,
+            handler: {action in self.myCancel()}))
+        
+        //削除ボタンを追加
+        alertController.addAction(UIAlertAction(
+            title: "削除",
+            style: .destructive,
+            handler: {action in self.myDelete()}))
+        
+        //アラートを表示する（重要）
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    //キャンセルボタンが押された時に呼ばれるメソッド
+    func myCancel(){
+        print("キャンセル")
+    }
+    
+    //削除ボタンが押された時に呼ばれるメソッド
+    func myDelete(){
+        print("削除")
+//        var targetView: AnyObject = self.storyboard!.instantiateViewController(withIdentifier: "MainViewController")
+//        self.present(targetView as! UIViewController, animated: true, completion: nil)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
