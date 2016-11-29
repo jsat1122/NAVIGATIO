@@ -26,7 +26,7 @@ class MainViewController: UIViewController ,UITextFieldDelegate ,MKMapViewDelega
         serchText.placeholder = "国・地域の名前を入力してください"
         
 //        //Text FIeldのdelegate通知先を設定
-//        inputText.delegate = self
+        //inputText.delegate = self
         
         //fontAwesome
         createDiaryBtn.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
@@ -52,13 +52,34 @@ class MainViewController: UIViewController ,UITextFieldDelegate ,MKMapViewDelega
         // MapViewに中心点を設定.
         dispMap.setCenter(center, animated: true)
         
-//        // 長押しのUIGestureRecognizerを生成.
-//        let myLongPress: UILongPressGestureRecognizer = UILongPressGestureRecognizer()
-//        myLongPress.addTarget(self, action: #selector(MainViewController.recognizeLongPress(sender:)))
+//        // 縮尺(表示領域)を指定.
+//        let mySpan: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+//        let myRegion: MKCoordinateRegion = MKCoordinateRegionMake(center, mySpan)
 //        
-//        // MapViewにUIGestureRecognizerを追加.
-//        dispMap.addGestureRecognizer(myLongPress)
+//        // MapViewにregionを追加.
+//        dispMap.region = myRegion
 //        
+//        // viewにMapViewを追加.
+//        self.view.addSubview(dispMap)
+//        
+//        // 直線を引く座標を作成.
+//        let coordinate_1 = CLLocationCoordinate2D(latitude: 37.301741, longitude: -122.050333)
+//        let coordinate_2 = CLLocationCoordinate2D(latitude: 37.351951, longitude: -122.020314)
+//        let coordinate_3 = CLLocationCoordinate2D(latitude: 37.301741, longitude: -122.020314)
+//        let coordinate_4 = CLLocationCoordinate2D(latitude: 37.351951, longitude: -122.050333)
+//        
+//        // 座標を配列に格納.
+//        var coordinates_1 = [coordinate_1, coordinate_2]
+//        var coordinates_2 = [coordinate_3, coordinate_4]
+//        
+//        // polyline作成.
+//        let myPolyLine_1: MKPolyline = MKPolyline(coordinates: &coordinates_1, count: coordinates_1.count)
+//        let myPolyLine_2: MKPolyline = MKPolyline(coordinates: &coordinates_2, count: coordinates_2.count)
+//        
+//        // mapViewにcircleを追加.
+//        dispMap.add(myPolyLine_1)
+//        dispMap.add(myPolyLine_2)
+
         
         }
     /*
@@ -142,14 +163,14 @@ class MainViewController: UIViewController ,UITextFieldDelegate ,MKMapViewDelega
         print(serchKeyword)
         
         //ピンを表示する
-//        let annotation = MKPointAnnotation()
-//        annotation.coordinate = CLLocationCoordinate2DMake(9.56304, 123.415926)
-//        self.dispMap.addAnnotation(annotation)
-//        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2DMake(9.56304, 123.415926)
+        self.dispMap.addAnnotation(annotation)
+        
 
 //        //緯度・経度を設定
-//        let location:CLLocationCoordinate2D
-//        = CLLocationCoordinate2DMake(9.56304, 123.415926)
+        let location:CLLocationCoordinate2D
+        = CLLocationCoordinate2DMake(9.56304, 123.415926)
         
         
         //⑤CLGeocoderインスタンスを取得

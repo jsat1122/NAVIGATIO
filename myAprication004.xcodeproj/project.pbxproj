@@ -19,6 +19,17 @@
 		1856D6B01DDEBF9200CA1B8B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1856D6AF1DDEBF9200CA1B8B /* MainViewController.swift */; };
 		1856D6B21DDEC0D200CA1B8B /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1856D6B11DDEC0D200CA1B8B /* TopViewController.swift */; };
 		1856D6B41DDEC15C00CA1B8B /* earth.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1856D6B31DDEC15C00CA1B8B /* earth.jpeg */; };
+		188451641DED8A20000BEEF8 /* cat1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 188451601DED8A20000BEEF8 /* cat1.jpg */; };
+		188451651DED8A20000BEEF8 /* cat2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 188451611DED8A20000BEEF8 /* cat2.jpg */; };
+		188451661DED8A20000BEEF8 /* dog1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 188451621DED8A20000BEEF8 /* dog1.jpg */; };
+		188451671DED8A20000BEEF8 /* dog2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 188451631DED8A20000BEEF8 /* dog2.jpg */; };
+		1884516B1DEDC3CE000BEEF8 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1884516A1DEDC3CE000BEEF8 /* ListTableViewCell.swift */; };
+		1884516D1DEDC40F000BEEF8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1884516C1DEDC40F000BEEF8 /* ViewController.swift */; };
+		188451731DEDD20B000BEEF8 /* japan.png in Resources */ = {isa = PBXBuildFile; fileRef = 1884516E1DEDD20B000BEEF8 /* japan.png */; };
+		188451741DEDD20B000BEEF8 /* Africa.png in Resources */ = {isa = PBXBuildFile; fileRef = 1884516F1DEDD20B000BEEF8 /* Africa.png */; };
+		188451751DEDD20B000BEEF8 /* midleEast.png in Resources */ = {isa = PBXBuildFile; fileRef = 188451701DEDD20B000BEEF8 /* midleEast.png */; };
+		188451761DEDD20B000BEEF8 /* southAmerica.png in Resources */ = {isa = PBXBuildFile; fileRef = 188451711DEDD20B000BEEF8 /* southAmerica.png */; };
+		188451771DEDD20B000BEEF8 /* sea.png in Resources */ = {isa = PBXBuildFile; fileRef = 188451721DEDD20B000BEEF8 /* sea.png */; };
 		1885117B1DEBC9390005CF5E /* FontAwesome_swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1885117A1DEBC9390005CF5E /* FontAwesome_swift.framework */; };
 		188915151DE07FD0007C7745 /* Diary+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188915131DE07FD0007C7745 /* Diary+CoreDataClass.swift */; };
 		188915161DE07FD0007C7745 /* Diary+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188915141DE07FD0007C7745 /* Diary+CoreDataProperties.swift */; };
@@ -62,6 +73,17 @@
 		1856D6AF1DDEBF9200CA1B8B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		1856D6B11DDEC0D200CA1B8B /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		1856D6B31DDEC15C00CA1B8B /* earth.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = earth.jpeg; sourceTree = "<group>"; };
+		188451601DED8A20000BEEF8 /* cat1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat1.jpg; sourceTree = "<group>"; };
+		188451611DED8A20000BEEF8 /* cat2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat2.jpg; sourceTree = "<group>"; };
+		188451621DED8A20000BEEF8 /* dog1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dog1.jpg; sourceTree = "<group>"; };
+		188451631DED8A20000BEEF8 /* dog2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dog2.jpg; sourceTree = "<group>"; };
+		1884516A1DEDC3CE000BEEF8 /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		1884516C1DEDC40F000BEEF8 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1884516E1DEDD20B000BEEF8 /* japan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = japan.png; sourceTree = "<group>"; };
+		1884516F1DEDD20B000BEEF8 /* Africa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Africa.png; sourceTree = "<group>"; };
+		188451701DEDD20B000BEEF8 /* midleEast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = midleEast.png; sourceTree = "<group>"; };
+		188451711DEDD20B000BEEF8 /* southAmerica.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = southAmerica.png; sourceTree = "<group>"; };
+		188451721DEDD20B000BEEF8 /* sea.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sea.png; sourceTree = "<group>"; };
 		1885117A1DEBC9390005CF5E /* FontAwesome_swift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FontAwesome_swift.framework; path = "Pods/../build/Debug-iphoneos/FontAwesome.swift/FontAwesome_swift.framework"; sourceTree = "<group>"; };
 		188915131DE07FD0007C7745 /* Diary+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Diary+CoreDataClass.swift"; sourceTree = "<group>"; };
 		188915141DE07FD0007C7745 /* Diary+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Diary+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -140,10 +162,21 @@
 				1832CB391DEBC361004AE3A8 /* ReadDiaryViewController.swift */,
 				1856D67B1DDEACA400CA1B8B /* AppDelegate.swift */,
 				1856D6811DDEACA400CA1B8B /* Main.storyboard */,
+				1884516A1DEDC3CE000BEEF8 /* ListTableViewCell.swift */,
+				1884516C1DEDC40F000BEEF8 /* ViewController.swift */,
+				1884516E1DEDD20B000BEEF8 /* japan.png */,
+				1884516F1DEDD20B000BEEF8 /* Africa.png */,
+				188451701DEDD20B000BEEF8 /* midleEast.png */,
+				188451711DEDD20B000BEEF8 /* southAmerica.png */,
+				188451721DEDD20B000BEEF8 /* sea.png */,
 				1856D6841DDEACA400CA1B8B /* Assets.xcassets */,
 				1856D6861DDEACA400CA1B8B /* LaunchScreen.storyboard */,
 				1856D6B31DDEC15C00CA1B8B /* earth.jpeg */,
 				1856D6891DDEACA400CA1B8B /* Info.plist */,
+				188451601DED8A20000BEEF8 /* cat1.jpg */,
+				188451611DED8A20000BEEF8 /* cat2.jpg */,
+				188451621DED8A20000BEEF8 /* dog1.jpg */,
+				188451631DED8A20000BEEF8 /* dog2.jpg */,
 			);
 			path = myAprication004;
 			sourceTree = "<group>";
@@ -307,9 +340,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				1856D6881DDEACA400CA1B8B /* LaunchScreen.storyboard in Resources */,
+				188451651DED8A20000BEEF8 /* cat2.jpg in Resources */,
+				188451641DED8A20000BEEF8 /* cat1.jpg in Resources */,
+				188451671DED8A20000BEEF8 /* dog2.jpg in Resources */,
+				188451761DEDD20B000BEEF8 /* southAmerica.png in Resources */,
 				1856D6851DDEACA400CA1B8B /* Assets.xcassets in Resources */,
+				188451751DEDD20B000BEEF8 /* midleEast.png in Resources */,
+				188451741DEDD20B000BEEF8 /* Africa.png in Resources */,
 				1856D6B41DDEC15C00CA1B8B /* earth.jpeg in Resources */,
+				188451731DEDD20B000BEEF8 /* japan.png in Resources */,
+				188451661DED8A20000BEEF8 /* dog1.jpg in Resources */,
 				1856D6831DDEACA400CA1B8B /* Main.storyboard in Resources */,
+				188451771DEDD20B000BEEF8 /* sea.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,11 +514,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1884516D1DEDC40F000BEEF8 /* ViewController.swift in Sources */,
 				18FD3C241DE07E5300F6E03E /* NavigadioModel.xcdatamodeld in Sources */,
 				1832CB3A1DEBC361004AE3A8 /* CreateDiaryViewController.swift in Sources */,
 				188915151DE07FD0007C7745 /* Diary+CoreDataClass.swift in Sources */,
 				1856D67C1DDEACA400CA1B8B /* AppDelegate.swift in Sources */,
 				1832CB3B1DEBC361004AE3A8 /* ReadDiaryViewController.swift in Sources */,
+				1884516B1DEDC3CE000BEEF8 /* ListTableViewCell.swift in Sources */,
 				188915161DE07FD0007C7745 /* Diary+CoreDataProperties.swift in Sources */,
 				1856D6B01DDEBF9200CA1B8B /* MainViewController.swift in Sources */,
 				1856D6B21DDEC0D200CA1B8B /* TopViewController.swift in Sources */,

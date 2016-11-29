@@ -18,14 +18,63 @@ class TopViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        topImage.image = UIImage(named: "earth.jpeg")
+        //topImage.image = UIImage(named: "earth.jpeg")
 
         // Do any additional setup after loading the view.
         
         //fontAwesome
         swipeRight.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
         swipeRight.setTitle(String.fontAwesomeIcon(name: .angleDoubleRight), for: .normal)
+        
     }
+    
+    @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
+    
+    // アニメーション用の画像
+        let image1 = UIImage(named:"japan.png")!
+        let image2 = UIImage(named:"Africa.png")!
+        let image3 = UIImage(named:"midleEast.png")!
+        let image4 = UIImage(named:"southAmerica.png")!
+        let image5 = UIImage(named:"sea.png")!
+        
+        // UIImage の配列を作る
+        var imageListArray :Array<UIImage> = []
+        // UIImage 各要素を追加、ちょっと冗長的ですが...
+        imageListArray.append(image1)
+        imageListArray.append(image2)
+        imageListArray.append(image3)
+        imageListArray.append(image4)
+        imageListArray.append(image5)
+        
+        // 画像サイズ
+        let rect = CGRect(x:0, y:0, width:image1.size.width, height:image1.size.height)
+        
+        // UIImageView のインスタンス生成,ダミーでimage1を指定
+        let topImage:UIImageView = UIImageView(image:image1)
+        topImage.frame = rect
+        
+//        // 画像が画面中央にくるように位置合わせ
+//        let screenWidth = self.view.bounds.width
+//        let screenHeight = self.view.bounds.height
+//        topImage.center = CGPoint(x:screenWidth/2, y:screenHeight/2)
+        
+        // view に追加する
+        self.view.addSubview(topImage)
+        
+        // 画像の配列をアニメーションにセット
+        topImage.animationImages = imageListArray
+        
+        // 1.5秒間隔
+        topImage.animationDuration = 1.5
+        // 3回繰り返し
+        topImage.animationRepeatCount = 3
+        // アニメーションを開始
+        topImage.startAnimating()
+        
+        // アニメーションを終了
+        //imageView.stopAnimating()
+    }
+    
 //    
 //    boxObj = "earth.jpeg"
 //    //角をめんどりした立方体を作る
