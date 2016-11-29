@@ -7,23 +7,40 @@
 //
 
 import UIKit
-import CoreData
+import CoreData //追加
+import FontAwesome_swift //追加
 
-class createDiaryViewController: UIViewController {
+
+class CreateDiaryViewController: UIViewController {
     @IBOutlet weak var deleteBtn: UIButton!
     @IBOutlet weak var nyCreateBtn: UIButton!
+    @IBOutlet weak var titleTxt: UITextField!
+    @IBOutlet weak var dateTxt: UITextField!
+    @IBOutlet weak var categoryTxt: UITextField!
+    
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        //入力のヒントになる、プレースホルダーを設定
+        titleTxt.placeholder = "タイトルを入力してください"
+        dateTxt.placeholder = "日付を入力してください"
+        categoryTxt.placeholder = "カテゴリーを入力してください"
+        
+        
+        //fontAwesome
+        nyCreateBtn.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
+        nyCreateBtn.setTitle(String.fontAwesomeIcon(name: .floppyO), for: .normal)
+        
+        deleteBtn.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
+        deleteBtn.setTitle(String.fontAwesomeIcon(name: .trashO), for: .normal)
+        
     }
     @IBAction func deleteAction(_ sender: UIButton) {
         //アラートを作る
-        let alertController = UIAlertController(title:"削除しますか？", message:"保存されていない日記は削除されます", preferredStyle: .alert)
-        
-        
+        var alertController = UIAlertController(title:"削除しますか？", message:"保存されていない日記は削除されます", preferredStyle: .alert)
         
         //キャンセルボタンを追加
         alertController.addAction(UIAlertAction(
@@ -37,6 +54,10 @@ class createDiaryViewController: UIViewController {
             style: .destructive,
             handler: {action in self.myDelete()}))
         
+//        var viewControllers = navigationController?.viewControllers
+//        viewControllers?.removeLast(2) //views to pop
+//        navigationController?.setViewControllers(viewControllers!, animated: true)
+        
         //アラートを表示する（重要）
         present(alertController, animated: true, completion: nil)
     }
@@ -49,6 +70,12 @@ class createDiaryViewController: UIViewController {
     //削除ボタンが押された時に呼ばれるメソッド
     func myDelete(){
         print("削除")
+        var targetView: AnyObject = self.storyboard!.instantiateViewController(withIdentifier: "MainViewController")
+        self.present(targetView as! UIViewController, animated: true, completion: nil)
+//        navigationController?.viewControllers
+//                viewControllers?.removeLast(2) //views to pop
+//                navigationController?.setViewControllers(MainViewController!, animated: true)
+
     }
     
     @IBAction func diaryCreate(_ sender: UIButton) {

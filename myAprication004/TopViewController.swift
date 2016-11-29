@@ -23,10 +23,8 @@ class TopViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         //fontAwesome
-        swipeRight?.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
-        swipeRight?.setTitle(String.fontAwesomeIcon(name: .angleDoubleRight), for: .normal)
-        
-        
+        swipeRight.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
+        swipeRight.setTitle(String.fontAwesomeIcon(name: .angleDoubleRight), for: .normal)
     }
 //    
 //    boxObj = "earth.jpeg"

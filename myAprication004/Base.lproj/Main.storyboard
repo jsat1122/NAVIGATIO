@@ -6,13 +6,14 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--日記作成画面-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController storyboardIdentifier="CreateDiaryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9pv-A4-QxB" customClass="createDiaryViewController" customModule="myAprication004" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateDiaryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9pv-A4-QxB" customClass="CreateDiaryViewController" customModule="myAprication004" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -21,20 +22,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="タイトル" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="wMb-lT-7iy">
-                                <rect key="frame" x="35" y="108" width="309" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="日付" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="r4a-Xd-Jim">
-                                <rect key="frame" x="35" y="146" width="309" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="日記" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2kb-U4-rHw">
                                 <rect key="frame" x="33" y="251" width="311" height="185"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -47,27 +34,41 @@
                                 <rect key="frame" x="35" y="463" width="307" height="187"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n2a-xe-t4B">
-                                <rect key="frame" x="306" y="70" width="31" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="削除"/>
-                                <connections>
-                                    <action selector="deleteAction:" destination="9pv-A4-QxB" eventType="touchUpInside" id="oSl-lU-gcD"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LI1-oR-wyO">
-                                <rect key="frame" x="230" y="70" width="31" height="30"/>
+                                <rect key="frame" x="276" y="70" width="32" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="保存"/>
+                                <state key="normal" title="save"/>
                                 <connections>
                                     <action selector="diaryCreate:" destination="9pv-A4-QxB" eventType="touchUpInside" id="7PN-bG-5tc"/>
                                     <segue destination="vHn-D3-QXo" kind="unwind" unwindAction="returnMenueWithSague:" id="UoE-YQ-A9v"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="カテゴリー" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="uGi-Cm-fc2">
-                                <rect key="frame" x="35" y="184" width="309" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n2a-xe-t4B">
+                                <rect key="frame" x="316" y="70" width="43" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="delete"/>
+                                <connections>
+                                    <action selector="deleteAction:" destination="9pv-A4-QxB" eventType="touchUpInside" id="BoY-am-ldb"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aIq-Ot-2MP">
+                                <rect key="frame" x="35" y="148" width="311" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y6Z-ox-Lpi">
+                                <rect key="frame" x="35" y="186" width="311" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A5n-Z6-GeS">
+                                <rect key="frame" x="33" y="108" width="311" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -79,19 +80,22 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
-                        <outlet property="deleteBtn" destination="n2a-xe-t4B" id="7YZ-5S-CNO"/>
+                        <outlet property="categoryTxt" destination="Y6Z-ox-Lpi" id="3Wq-Mo-xpJ"/>
+                        <outlet property="dateTxt" destination="aIq-Ot-2MP" id="PXM-Ln-HYU"/>
+                        <outlet property="deleteBtn" destination="n2a-xe-t4B" id="lPE-Pa-YS1"/>
                         <outlet property="nyCreateBtn" destination="LI1-oR-wyO" id="d1e-2j-QP8"/>
+                        <outlet property="titleTxt" destination="A5n-Z6-GeS" id="EEL-9B-axm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
                 <exit id="vHn-D3-QXo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1887" y="862"/>
+            <point key="canvasLocation" x="1885.5999999999999" y="861.76911544227892"/>
         </scene>
         <!--トップ画-->
         <scene sceneID="0ra-e6-g26">
             <objects>
-                <viewController id="4I3-nI-TZh" customClass="TopViewController" customModule="myAprication004" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TopViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4I3-nI-TZh" customClass="TopViewController" customModule="myAprication004" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yPb-rF-hlc"/>
                         <viewControllerLayoutGuide type="bottom" id="laP-kd-rUp"/>
@@ -129,6 +133,18 @@
                                     <outletCollection property="gestureRecognizers" destination="xzk-DX-QtD" appends="YES" id="StK-Gy-YXg"/>
                                 </connections>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UkZ-Ml-hGC">
+                                <rect key="frame" x="229" y="48" width="32" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="right"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="swipe your earth " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ev6-hX-rwc">
+                                <rect key="frame" x="99" y="53" width="132" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -143,6 +159,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="トップ画" id="3dM-KH-wA7"/>
                     <connections>
+                        <outlet property="swipeRight" destination="UkZ-Ml-hGC" id="91o-qO-hEl"/>
                         <outlet property="topImage" destination="USe-Od-nEH" id="ou6-eS-iwf"/>
                     </connections>
                 </viewController>
@@ -158,7 +175,7 @@
         <!--メイン画面-->
         <scene sceneID="MfL-iU-jB0">
             <objects>
-                <viewController id="4RM-EF-6IY" customClass="MainViewController" customModule="myAprication004" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4RM-EF-6IY" customClass="MainViewController" customModule="myAprication004" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OZe-Pe-wey"/>
                         <viewControllerLayoutGuide type="bottom" id="T9a-Vh-nqZ"/>
@@ -168,41 +185,75 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rQw-nS-2QQ">
-                                <rect key="frame" x="0.0" y="83" width="62" height="30"/>
+                                <rect key="frame" x="16" y="74" width="36" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="作成画面"/>
+                                <state key="normal" title="creat"/>
                                 <connections>
                                     <segue destination="9pv-A4-QxB" kind="show" identifier="makeNikki" id="9b1-Me-mpK"/>
                                 </connections>
                             </button>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8XL-de-Y1I">
-                                <rect key="frame" x="-17" y="152" width="392" height="538"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="d6H-gA-gym">
+                                <rect key="frame" x="0.0" y="180" width="375" height="479"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="479" id="LIe-M2-bKY"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="5X1-Hm-gSB" appends="YES" id="v4j-kZ-SCz"/>
+                                </connections>
                             </mapView>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dqp-QS-aYS">
-                                <rect key="frame" x="0.0" y="108" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="00g-D1-N2F">
+                                <rect key="frame" x="338" y="627" width="31" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="切替"/>
+                                <connections>
+                                    <action selector="changeMapButtonAction:" destination="4RM-EF-6IY" eventType="touchUpInside" id="1Cy-3q-tHj"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vo4-qp-Kdz">
-                                <rect key="frame" x="100" y="83" width="31" height="30"/>
+                                <rect key="frame" x="60" y="74" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="一覧"/>
+                                <state key="normal" title="list"/>
                                 <connections>
                                     <segue destination="zF5-6c-3Dn" kind="show" identifier="showNikki" id="FoU-yQ-Q9C"/>
                                 </connections>
                             </button>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2AN-FW-Qok">
+                                <rect key="frame" x="0.0" y="124" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="bWi-86-1oA">
+                                <rect key="frame" x="349" y="136" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="00g-D1-N2F" firstAttribute="trailing" secondItem="d5c-aV-p6f" secondAttribute="trailingMargin" constant="10" id="7t5-4q-HaP"/>
+                            <constraint firstItem="d6H-gA-gym" firstAttribute="centerX" secondItem="d5c-aV-p6f" secondAttribute="centerX" id="VhG-hc-w0d"/>
+                            <constraint firstItem="T9a-Vh-nqZ" firstAttribute="top" secondItem="00g-D1-N2F" secondAttribute="bottom" constant="10" id="cm8-De-mvG"/>
+                            <constraint firstItem="T9a-Vh-nqZ" firstAttribute="top" secondItem="d6H-gA-gym" secondAttribute="bottom" constant="8" symbolic="YES" id="gWp-oI-4Uw"/>
+                            <constraint firstItem="d6H-gA-gym" firstAttribute="leading" secondItem="d5c-aV-p6f" secondAttribute="leading" id="ujJ-ES-bFw"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="メイン画面" id="wWC-HB-Pl1"/>
                     <connections>
-                        <outlet property="serchText" destination="dqp-QS-aYS" id="h8z-P4-nsr"/>
+                        <outlet property="activityIndicator" destination="bWi-86-1oA" id="ubK-3v-rJY"/>
+                        <outlet property="createDiaryBtn" destination="rQw-nS-2QQ" id="fBP-oQ-2WI"/>
+                        <outlet property="dispMap" destination="d6H-gA-gym" id="I7Y-aw-bwE"/>
+                        <outlet property="listDiaryBtn" destination="Vo4-qp-Kdz" id="y6o-P2-BZx"/>
+                        <outlet property="serchText" destination="2AN-FW-Qok" id="8vA-ri-J6b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DJd-ML-Df0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="5X1-Hm-gSB">
+                    <connections>
+                        <action selector="mapLongPress:" destination="4RM-EF-6IY" id="pVX-Tc-zST"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1800.8" y="-0.44977511244377816"/>
+            <point key="canvasLocation" x="1638" y="-96"/>
         </scene>
         <!--Item-->
         <scene sceneID="k4B-Ks-gPc">
@@ -226,7 +277,7 @@
         <!--日記一覧画面-->
         <scene sceneID="fIP-1V-ow7">
             <objects>
-                <viewController id="zF5-6c-3Dn" customClass="ReadDiaryViewController" customModule="myAprication004" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReadDiaryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zF5-6c-3Dn" customClass="ReadDiaryViewController" customModule="myAprication004" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RjS-h1-mVG"/>
                         <viewControllerLayoutGuide type="bottom" id="94R-H9-3wp"/>
@@ -274,12 +325,27 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAf-Aa-pbm">
-                                <rect key="frame" x="304" y="65" width="38" height="95"/>
+                                <rect key="frame" x="304" y="76" width="38" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="share"/>
                                 <connections>
                                     <action selector="tapBtnTwiter:" destination="zF5-6c-3Dn" eventType="touchUpInside" id="jk1-cL-weh"/>
                                 </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dBg-CN-Fuy">
+                                <rect key="frame" x="35" y="76" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="edit"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LKX-Bp-8HL">
+                                <rect key="frame" x="105" y="76" width="51" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="deleate"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pJF-3d-akU">
+                                <rect key="frame" x="216" y="76" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="like"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -288,10 +354,16 @@
                     <navigationItem key="navigationItem" title="日記一覧画面" id="K5Y-h8-iuY"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="1000"/>
+                    <connections>
+                        <outlet property="deleateDiaryBtn" destination="LKX-Bp-8HL" id="1Ho-ER-Ojk"/>
+                        <outlet property="editBtn" destination="dBg-CN-Fuy" id="Suk-iN-pI7"/>
+                        <outlet property="likeDiaryBtn" destination="pJF-3d-akU" id="clq-X1-ofk"/>
+                        <outlet property="shareDiaryBtn" destination="yAf-Aa-pbm" id="A3S-G1-3Is"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Li-CK-j8H" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2549.5999999999999" y="148.42578710644679"/>
+            <point key="canvasLocation" x="2670" y="139"/>
         </scene>
     </scenes>
     <resources>

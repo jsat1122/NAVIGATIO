@@ -1,4 +1,3 @@
-
 //
 //  MainViewController.swift
 //  myAprication004
@@ -9,31 +8,128 @@
 
 import UIKit
 import MapKit //追加
+import FontAwesome_swift //追加
 
-class MainViewController: UIViewController ,UITextFieldDelegate ,UISearchBarDelegate{
+
+class MainViewController: UIViewController ,UITextFieldDelegate ,MKMapViewDelegate{
+    @IBOutlet weak var createDiaryBtn: UIButton!
+    @IBOutlet weak var listDiaryBtn: UIButton!
+    @IBOutlet weak var serchText: UISearchBar!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
         
-        //Text FIeldのdelegate通知先を設定
-        inputText?.delegate = self
-        
-        //Search Barのdelegate通知先の設定
-        serchText.delegate = self
         //入力のヒントになる、プレースホルダーを設定
-        serchText.placeholder = "国名・地域名を入力してください"
+        serchText.placeholder = "国・地域の名前を入力してください"
+        
+//        //Text FIeldのdelegate通知先を設定
+//        inputText.delegate = self
+        
+        //fontAwesome
+        createDiaryBtn.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
+        createDiaryBtn.setTitle(String.fontAwesomeIcon(name: .plus), for: .normal)
+        
+        listDiaryBtn.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
+        listDiaryBtn.setTitle(String.fontAwesomeIcon(name: .listUL), for: .normal)
+        
+        // MapViewを生成.
+        dispMap = MKMapView()
+        dispMap.frame = self.view.frame
+        
+        // デリゲートを設定.
+        dispMap.delegate = self
+
+        // 経度、緯度を生成.
+        let myLatitude: CLLocationDegrees = 37.331741
+        let myLongitude: CLLocationDegrees = -122.030333
+        
+        // 中心点を指定.
+        let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(myLatitude, myLongitude)
+        
+        // MapViewに中心点を設定.
+        dispMap.setCenter(center, animated: true)
+        
+//        // 長押しのUIGestureRecognizerを生成.
+//        let myLongPress: UILongPressGestureRecognizer = UILongPressGestureRecognizer()
+//        myLongPress.addTarget(self, action: #selector(MainViewController.recognizeLongPress(sender:)))
+//        
+//        // MapViewにUIGestureRecognizerを追加.
+//        dispMap.addGestureRecognizer(myLongPress)
+//        
+        
+        }
+    /*
+     長押しを感知した際に呼ばれるメソッド.
+     */
+    
+    @IBAction func mapLongPress(_ sender: UILongPressGestureRecognizer) {
+        
+        print("LongPress")
+        
+        // 長押しの最中に何度もピンを生成しないようにする.
+        if sender.state != UIGestureRecognizerState.began {
+            return
+        }
+        
+        // 長押しした地点の座標を取得.
+        let location = sender.location(in: dispMap)
+        
+        // locationをCLLocationCoordinate2Dに変換.
+//        let myCoordinate: CLLocationCoordinate2D = dispMap.convert(location, toCoordinateFrom: dispMap)
+//        
+        // ピンを生成.
+        let myPin: MKPointAnnotation = MKPointAnnotation()
+        
+        // 座標を設定.
+//        myPin.coordinate = myCoordinate
+//        
+        // タイトルを設定.
+        myPin.title = "タイトル"
+        
+        // サブタイトルを設定.
+        myPin.subtitle = "サブタイトル"
+        
+        // MapViewにピンを追加.
+//        dispMap.addAnnotation(myPin)
     }
     
+        
+        /*
+         addAnnotationした際に呼ばれるデリゲートメソッド.
+         */
+        func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+            
+            let myPinIdentifier = "PinAnnotationIdentifier"
+            
+            // ピンを生成.
+            let myPinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: myPinIdentifier)
+            
+            // アニメーションをつける.
+            myPinView.animatesDrop = true
+            
+            // コールアウトを表示する.
+            myPinView.canShowCallout = true
+            
+            // annotationを設定.
+            myPinView.annotation = annotation
+            
+            return myPinView
+        }
+
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        
+
     }
     
     @IBOutlet weak var inputText: UITextField!
     @IBOutlet weak var dispMap: MKMapView!
-    @IBOutlet weak var serchText: UISearchBar!
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         //①キーボードを閉じる
@@ -44,6 +140,17 @@ class MainViewController: UIViewController ,UITextFieldDelegate ,UISearchBarDele
         
         //③入力された文字をデバックエリアに表示
         print(serchKeyword)
+        
+        //ピンを表示する
+//        let annotation = MKPointAnnotation()
+//        annotation.coordinate = CLLocationCoordinate2DMake(9.56304, 123.415926)
+//        self.dispMap.addAnnotation(annotation)
+//        
+
+//        //緯度・経度を設定
+//        let location:CLLocationCoordinate2D
+//        = CLLocationCoordinate2DMake(9.56304, 123.415926)
+        
         
         //⑤CLGeocoderインスタンスを取得
         let geocoder = CLGeocoder()
@@ -96,7 +203,7 @@ class MainViewController: UIViewController ,UITextFieldDelegate ,UISearchBarDele
         }else{
             dispMap.mapType = .standard
         }
-        
+
     }
     
     
@@ -107,16 +214,16 @@ class MainViewController: UIViewController ,UITextFieldDelegate ,UISearchBarDele
     }
     
     
-    
+
     /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
     
 }
