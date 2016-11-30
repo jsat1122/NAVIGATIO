@@ -18,6 +18,12 @@ class CreateDiaryViewController: UIViewController {
     @IBOutlet weak var dateTxt: UITextField!
     @IBOutlet weak var categoryTxt: UITextField!
     
+    @IBAction func dateCreate(_ sender: UITextField) {
+        let now = Date()
+        let jaLocale = Locale(identifier: "ja_JP")
+        print(now.description(with: jaLocale))
+    }
+   
     
 
     override func viewDidLoad() {
@@ -38,6 +44,23 @@ class CreateDiaryViewController: UIViewController {
         deleteBtn.setTitle(String.fontAwesomeIcon(name: .trashO), for: .normal)
         
     }
+    //画面が切り替わる時
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        
+        //もしもセグエの名前がmySegueだったら
+        if(segue.identifier == "mySegue"){
+            
+            
+//            //myCountカウントアップして
+//            myCount += 1
+            
+//            //次の画面のtmpCountに、myCountの値を受け渡す
+//            var secondVC = segue.destination as! DataViewController
+//            secondVC.tmpCount = myCount
+       }
+        }
+
+    
     @IBAction func deleteAction(_ sender: UIButton) {
         //アラートを作る
         var alertController = UIAlertController(title:"削除しますか？", message:"保存されていない日記は削除されます", preferredStyle: .alert)

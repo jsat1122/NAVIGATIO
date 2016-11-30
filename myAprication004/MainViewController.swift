@@ -11,7 +11,7 @@ import MapKit //追加
 import FontAwesome_swift //追加
 
 
-class MainViewController: UIViewController ,UITextFieldDelegate ,MKMapViewDelegate{
+class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelegate{
     @IBOutlet weak var createDiaryBtn: UIButton!
     @IBOutlet weak var listDiaryBtn: UIButton!
     @IBOutlet weak var serchText: UISearchBar!
@@ -25,8 +25,8 @@ class MainViewController: UIViewController ,UITextFieldDelegate ,MKMapViewDelega
         //入力のヒントになる、プレースホルダーを設定
         serchText.placeholder = "国・地域の名前を入力してください"
         
-//        //Text FIeldのdelegate通知先を設定
-        //inputText.delegate = self
+        //Search Barのdelegate通知先の設定
+        serchText.delegate = self
         
         //fontAwesome
         createDiaryBtn.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
@@ -152,12 +152,12 @@ class MainViewController: UIViewController ,UITextFieldDelegate ,MKMapViewDelega
     @IBOutlet weak var dispMap: MKMapView!
     
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         //①キーボードを閉じる
-        textField.resignFirstResponder()
+        serchText.resignFirstResponder()
         
         //②入力された文字を取り出す
-        let serchKeyword = textField.text
+        let serchKeyword = serchText.text
         
         //③入力された文字をデバックエリアに表示
         print(serchKeyword)
@@ -206,8 +206,8 @@ class MainViewController: UIViewController ,UITextFieldDelegate ,MKMapViewDelega
             }
         })
         
-        //④デフォルト動作を行うのでtrueを返す
-        return true
+//        //④デフォルト動作を行うのでtrueを返す
+//        return true
     }
     @IBAction func changeMapButtonAction(_ sender: UIButton) {
         //mapTypeプロパティー値をトグル

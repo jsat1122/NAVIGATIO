@@ -57,6 +57,10 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="dateCreate:" destination="9pv-A4-QxB" eventType="editingDidEnd" id="yh6-JV-60O"/>
+                                    <segue destination="h9l-jD-0Uz" kind="show" id="1nL-Tk-yKg"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y6Z-ox-Lpi">
                                 <rect key="frame" x="35" y="186" width="311" height="30"/>
@@ -91,6 +95,41 @@
                 <exit id="vHn-D3-QXo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1885.5999999999999" y="861.76911544227892"/>
+        </scene>
+        <!--Date View Controller-->
+        <scene sceneID="DC3-Un-lvL">
+            <objects>
+                <viewController id="h9l-jD-0Uz" customClass="DateViewController" customModule="myAprication004" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DTJ-c7-D0x"/>
+                        <viewControllerLayoutGuide type="bottom" id="w1N-99-7bT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Kzq-2C-dNH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="G9q-Od-tgq">
+                                <rect key="frame" x="0.0" y="451" width="375" height="216"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <date key="date" timeIntervalSinceReferenceDate="502196973.07229298">
+                                    <!--2016-11-30 11:09:33 +0000-->
+                                </date>
+                                <connections>
+                                    <action selector="dateCreate:" destination="h9l-jD-0Uz" eventType="valueChanged" id="K2Q-0D-vhz"/>
+                                    <segue destination="awf-LW-dHA" kind="unwind" unwindAction="returnMenue_saveWithSague:" id="xMG-fb-N5U"/>
+                                </connections>
+                            </datePicker>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="myPickerView" destination="G9q-Od-tgq" id="ixj-p1-Ak2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jne-mE-ADI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="awf-LW-dHA" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2820" y="715"/>
         </scene>
         <!--トップ画-->
         <scene sceneID="0ra-e6-g26">
@@ -166,12 +205,11 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cQd-st-Khb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="right" id="xzk-DX-QtD">
                     <connections>
-                        <action selector="swipeRight:" destination="4I3-nI-TZh" id="oA4-kK-0Li"/>
-                        <segue destination="QaG-SJ-VcU" kind="show" id="qbU-wS-uMo"/>
+                        <action selector="swipeAction:" destination="4I3-nI-TZh" id="n7r-5h-xBH"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="14" y="0.0"/>
+            <point key="canvasLocation" x="-210" y="-61"/>
         </scene>
         <!--メイン画面-->
         <scene sceneID="MfL-iU-jB0">
