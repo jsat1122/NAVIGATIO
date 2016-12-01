@@ -26,8 +26,7 @@ class ReadDiaryViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         //タイトルをつける
-        
-        self.title = "日記一覧"
+        self.title = "日記詳細"
         //表示データを配列で用意する
 //        objects = [""]
         

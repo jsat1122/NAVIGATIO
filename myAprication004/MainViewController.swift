@@ -19,6 +19,9 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //NavigationBarを表示させ始める
+        self.navigationController?.isNavigationBarHidden = false
 
         // Do any additional setup after loading the view.
         
@@ -217,16 +220,16 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
             dispMap.mapType = .satellite
         }else if dispMap.mapType == .satellite{
             dispMap.mapType = .hybrid
-        }else if dispMap.mapType == .hybrid{
-            dispMap.mapType = .satelliteFlyover
-        }else if dispMap.mapType == .satelliteFlyover{
-            dispMap.mapType = .hybridFlyover
+//        }else if dispMap.mapType == .hybrid{
+//            dispMap.mapType = .satelliteFlyover
+//        }else if dispMap.mapType == .satelliteFlyover{
+//            dispMap.mapType = .hybridFlyover
         }else{
             dispMap.mapType = .standard
         }
 
     }
-    
+        
     
     @IBAction func returnMenue_save(sague: UIStoryboardSegue){
     }

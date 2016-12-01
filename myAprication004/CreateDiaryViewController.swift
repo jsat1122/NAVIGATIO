@@ -19,9 +19,11 @@ class CreateDiaryViewController: UIViewController {
     @IBOutlet weak var categoryTxt: UITextField!
     
     @IBAction func dateCreate(_ sender: UITextField) {
-        let now = Date()
-        let jaLocale = Locale(identifier: "ja_JP")
-        print(now.description(with: jaLocale))
+        // 遷移するViewを定義する.このas!はswift1.2では as?だったかと。
+        let dateViewController: DateViewController = self.storyboard?.instantiateViewController(withIdentifier: "DateViewController") as! DateViewController
+        // Viewの移動する.
+        self.present(dateViewController, animated: true, completion: nil)
+
     }
    
     
@@ -44,26 +46,13 @@ class CreateDiaryViewController: UIViewController {
         deleteBtn.setTitle(String.fontAwesomeIcon(name: .trashO), for: .normal)
         
     }
-    //画面が切り替わる時
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        
-        //もしもセグエの名前がmySegueだったら
-        if(segue.identifier == "mySegue"){
-            
-            
-//            //myCountカウントアップして
-//            myCount += 1
-            
-//            //次の画面のtmpCountに、myCountの値を受け渡す
-//            var secondVC = segue.destination as! DataViewController
-//            secondVC.tmpCount = myCount
-       }
-        }
+    
+
 
     
     @IBAction func deleteAction(_ sender: UIButton) {
         //アラートを作る
-        var alertController = UIAlertController(title:"削除しますか？", message:"保存されていない日記は削除されます", preferredStyle: .alert)
+        let alertController = UIAlertController(title:"削除しますか？", message:"保存されていない日記は削除されます", preferredStyle: .alert)
         
         //キャンセルボタンを追加
         alertController.addAction(UIAlertAction(
@@ -93,6 +82,14 @@ class CreateDiaryViewController: UIViewController {
     //削除ボタンが押された時に呼ばれるメソッド
     func myDelete(){
         print("削除")
+//        // 遷移するViewを定義する.このas!はswift1.2では as?だったかと。
+//        let secondViewController: MainViewController = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
+//        // アニメーションを設定する.
+//        //secondViewController.modalTransitionStyle = UIModalTransitionStyle.PartialCurl
+//        // 値渡ししたい時 hoge -> piyo
+//        //secondViewController.piyo = self.hoge
+//        // Viewの移動する.
+//        self.present(secondViewController, animated: true, completion: nil)
 //        var targetView: AnyObject = self.storyboard!.instantiateViewController(withIdentifier: "MainViewController")
 //        self.present(targetView as! UIViewController, animated: true, completion: nil)
         navigationController?.viewControllers.removeLast() //views to pop
@@ -115,6 +112,7 @@ class CreateDiaryViewController: UIViewController {
             try viewContext.save()
         } catch {
         }
+        navigationController?.viewControllers.removeLast() //views to pop
     }
 
     override func didReceiveMemoryWarning() {

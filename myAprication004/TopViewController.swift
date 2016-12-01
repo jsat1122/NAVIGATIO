@@ -17,7 +17,12 @@ class TopViewController: UIViewController {
     @IBOutlet weak var swipeRight: UIButton!
 
     override func viewDidLoad() {
+        
+        
         super.viewDidLoad()
+        //NavigationBarを表示しない(true) *表示させたい最初の画面でfalseに変更すればそこからは現れる
+        self.navigationController?.isNavigationBarHidden = true
+        
         //topImage.image = UIImage(named: "earth.jpeg")
 
         // Do any additional setup after loading the view.
@@ -63,7 +68,7 @@ class TopViewController: UIViewController {
         topImage.animationImages = imageListArray
         
         // 1.5秒間隔
-        topImage.animationDuration = 1.5
+        topImage.animationDuration = 1
                 // アニメーションを開始
         topImage.startAnimating()
         
@@ -74,11 +79,13 @@ class TopViewController: UIViewController {
     func afterAnimation() {
         topImage.stopAnimating()
         // 3回繰り返し
-        topImage.animationRepeatCount = 3
+        //topImage.animationRepeatCount = 3
 
         let storyboard: UIStoryboard = self.storyboard!
         let nextView = storyboard.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
-        self.present(nextView, animated: true, completion: nil)
+        self.navigationController?.pushViewController(nextView, animated: true)
+        
+        //self.push(nextView, animated: true, completion: nil)
     }
     
 //    self.performSelector("afterAnimation", withObject: nil, afterDelay: imageView1.animationDuration)
