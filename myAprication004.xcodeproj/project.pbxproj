@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		03FF40D4BF2F67364031D430 /* Pods_myAprication004Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274FC480438F56AA7A92B7DC /* Pods_myAprication004Tests.framework */; };
-		180C806E1DEEEBB500139A48 /* DateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C806D1DEEEBB500139A48 /* DateViewController.swift */; };
 		1832CB3A1DEBC361004AE3A8 /* CreateDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832CB381DEBC361004AE3A8 /* CreateDiaryViewController.swift */; };
 		1832CB3B1DEBC361004AE3A8 /* ReadDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832CB391DEBC361004AE3A8 /* ReadDiaryViewController.swift */; };
 		1856D67C1DDEACA400CA1B8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1856D67B1DDEACA400CA1B8B /* AppDelegate.swift */; };
@@ -57,7 +56,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		180C806D1DEEEBB500139A48 /* DateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateViewController.swift; sourceTree = "<group>"; };
 		1832CB381DEBC361004AE3A8 /* CreateDiaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateDiaryViewController.swift; sourceTree = "<group>"; };
 		1832CB391DEBC361004AE3A8 /* ReadDiaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadDiaryViewController.swift; sourceTree = "<group>"; };
 		1856D6781DDEACA400CA1B8B /* myAprication004.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myAprication004.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,7 +162,6 @@
 				1832CB391DEBC361004AE3A8 /* ReadDiaryViewController.swift */,
 				1856D67B1DDEACA400CA1B8B /* AppDelegate.swift */,
 				1856D6811DDEACA400CA1B8B /* Main.storyboard */,
-				180C806D1DEEEBB500139A48 /* DateViewController.swift */,
 				1884516A1DEDC3CE000BEEF8 /* ListTableViewCell.swift */,
 				1884516C1DEDC40F000BEEF8 /* ViewController.swift */,
 				1884516E1DEDD20B000BEEF8 /* japan.png */,
@@ -527,7 +524,6 @@
 				188915161DE07FD0007C7745 /* Diary+CoreDataProperties.swift in Sources */,
 				1856D6B01DDEBF9200CA1B8B /* MainViewController.swift in Sources */,
 				1856D6B21DDEC0D200CA1B8B /* TopViewController.swift in Sources */,
-				180C806E1DEEEBB500139A48 /* DateViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

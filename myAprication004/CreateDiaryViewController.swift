@@ -9,25 +9,34 @@
 import UIKit
 import CoreData //追加
 import FontAwesome_swift //追加
+import MobileCoreServices //追加
+import Photos //追加
 
 
-class CreateDiaryViewController: UIViewController {
+class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UITextFieldDelegate{
     @IBOutlet weak var deleteBtn: UIButton!
     @IBOutlet weak var nyCreateBtn: UIButton!
     @IBOutlet weak var titleTxt: UITextField!
     @IBOutlet weak var dateTxt: UITextField!
     @IBOutlet weak var categoryTxt: UITextField!
+    @IBOutlet weak var diaryTxt: UITextView!
+    @IBOutlet weak var ImagView: UIImageView!
     
-    @IBAction func dateCreate(_ sender: UITextField) {
-        // 遷移するViewを定義する.このas!はswift1.2では as?だったかと。
-        let dateViewController: DateViewController = self.storyboard?.instantiateViewController(withIdentifier: "DateViewController") as! DateViewController
-        // Viewの移動する.
-        self.present(dateViewController, animated: true, completion: nil)
-
-    }
-   
+//    @IBAction func dateCreate(_ sender: UITextField) {
+//        // 遷移するViewを定義する.このas!はswift1.2では as?だったかと。
+//        let dateViewController: DateViewController = self.storyboard?.instantiateViewController(withIdentifier: "DateViewController") as! DateViewController
+//        // Viewの移動する.
+//        self.present(dateViewController, animated: true, completion: nil)
+//
+//    }
+    var strURL: String = ""
+    let datepicker: UIDatePicker = UIDatePicker()
+    var selectedDate: NSDate = NSDate()
+    //下から出てくるviewの設定
+    var subView = UIView(frame: CGRect(x:0, y:0, width:100, height: 100))
+    let myBoundSize: CGSize = UIScreen.main.bounds.size
+    private var closeButton: UIButton!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -36,6 +45,9 @@ class CreateDiaryViewController: UIViewController {
         titleTxt.placeholder = "タイトルを入力してください"
         dateTxt.placeholder = "日付を入力してください"
         categoryTxt.placeholder = "カテゴリーを入力してください"
+//        diaryTxt.placeholder = "日記を入力してください"
+//        diaryTxt.placeHolderColor = UIColor(red: 255, green: 0, blue: 0, alpha: 0.5)
+
         
         
         //fontAwesome
@@ -45,9 +57,32 @@ class CreateDiaryViewController: UIViewController {
         deleteBtn.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
         deleteBtn.setTitle(String.fontAwesomeIcon(name: .trashO), for: .normal)
         
+        
+        //viewを見えない位置に追加
+        self.subView = UIView(frame: CGRect(x: 0, y: myBoundSize.height, width: myBoundSize.width, height: 220))
+        self.subView.backgroundColor = UIColor.white
+        dateTxt.inputView = subView
+        //subviewの中にボタンを作成する
+        closeButton = UIButton()
+        closeButton.frame = CGRect(x: myBoundSize.width - 45, y: 0, width: 45, height: 30)
+        closeButton.setTitle("close", for: .normal)
+        closeButton.setTitleColor(UIColor.blue, for: .normal)
+        closeButton.addTarget(self, action: #selector(self.onClickButton(sender:)), for: .touchUpInside)
+        self.subView.addSubview(closeButton)
+        //datepickerの設定
+        datepicker.frame = CGRect(x: 0, y: 30, width: myBoundSize.width, height: 190)
+        datepicker.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
+        datepicker.datePickerMode = UIDatePickerMode.date
+        datepicker.addTarget(self, action: #selector(self.onDidChangeDate(sender:)), for: .valueChanged)
+        // subviewににDatePickerを表示する
+        self.subView.addSubview(datepicker)
+        dateTxt.delegate = self
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        titleTxt.text = ""
+        dateTxt.text = ""
+    }
 
     
     @IBAction func deleteAction(_ sender: UIButton) {
@@ -100,8 +135,8 @@ class CreateDiaryViewController: UIViewController {
     @IBAction func diaryCreate(_ sender: UIButton) {
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let viewContext = appDelegate.persistentContainer.viewContext
-        let tweet = NSEntityDescription.entity(forEntityName: "Diary", in: viewContext)
-        let newRecord = NSManagedObject(entity: tweet!, insertInto: viewContext)
+        let diary = NSEntityDescription.entity(forEntityName: "Diary", in: viewContext)
+        let newRecord = NSManagedObject(entity: diary!, insertInto: viewContext)
         newRecord.setValue("値", forKey: "title") //値を代入
         newRecord.setValue(Date(), forKey: "date")//値を代入
         newRecord.setValue("値", forKey: "category")//値を代入
@@ -113,6 +148,10 @@ class CreateDiaryViewController: UIViewController {
         } catch {
         }
         navigationController?.viewControllers.removeLast() //views to pop
+         titleTxt.endEditing(true);
+        categoryTxt.endEditing(true);
+        diaryTxt.endEditing(true);
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -120,6 +159,17 @@ class CreateDiaryViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    
+    internal func onDidChangeDate(sender: UIDatePicker){
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd"
+        print(formatter)
+        dateTxt.text = formatter.string(from: sender.date)
+        selectedDate = sender.date as NSDate
+    }
+    
+    internal func onClickButton(sender: UIButton){
+        dateTxt.endEditing(true);
+    }
 }
 

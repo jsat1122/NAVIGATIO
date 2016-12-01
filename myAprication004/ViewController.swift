@@ -42,11 +42,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     /// セルに値を設定するデータソースメソッド（必須）
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // セルを取得
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell") as! ListTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell") as!
         
-        // セルに値を設定
+        ListTableViewCell
+        
+        // セルを設定
         cell.setCell(imageName: imageNames[indexPath.row], titleText: imageTitles[indexPath.row], descriptionText: imageDescriptions[indexPath.row])
         
-        return cell
+        return (cell)
     }
 }

@@ -9,6 +9,7 @@
 import UIKit
 import MapKit //追加
 import FontAwesome_swift //追加
+import CoreData //追加
 
 
 class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelegate{
@@ -226,6 +227,30 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
 //            dispMap.mapType = .hybridFlyover
         }else{
             dispMap.mapType = .standard
+        }
+
+    }
+    @IBAction func myListPushBtn(_ sender: UIButton) {
+        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        let viewContext = appDelegate.persistentContainer.viewContext
+        let query: NSFetchRequest<Diary> = Diary.fetchRequest()
+        
+        do {
+            let fetchResults = try viewContext.fetch(query)
+            for result: AnyObject in fetchResults {
+                let title: String? = result.value(forKey: "title") as? String
+                let date: Date? = result.value(forKey: "date") as? Date
+                let category: String? = result.value(forKey: "category") as? String
+                let diary: String? = result.value(forKey: "diary") as? String
+                let image: String? = result.value(forKey: "image") as? String
+
+                print("title:\(title)")
+                print("date:\(date)")
+                print("category:\(category)")
+                print("diary:\(diary)")
+                print("image:\(image)")
+            }
+        } catch {
         }
 
     }
