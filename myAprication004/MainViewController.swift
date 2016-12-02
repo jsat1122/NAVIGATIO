@@ -27,7 +27,7 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         // Do any additional setup after loading the view.
         
         //入力のヒントになる、プレースホルダーを設定
-        serchText.placeholder = "国・地域の名前を入力してください"
+        serchText.placeholder = "国名・地域名を入力してください"
         
         //Search Barのdelegate通知先の設定
         serchText.delegate = self
@@ -111,10 +111,10 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         // 座標を設定.
         myPin.coordinate = myCoordinate
         
-        // タイトルを設定.
+        // タイトルを設定.　*国名
         myPin.title = "タイトル"
         
-        // サブタイトルを設定.
+        // サブタイトルを設定.　*町名
         myPin.subtitle = "サブタイトル"
         
         // MapViewにピンを追加.

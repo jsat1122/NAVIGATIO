@@ -79,14 +79,14 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
 
         //datepickerの設定
         datepicker.frame = CGRect(x: 0, y: 30, width: myBoundSize.width, height: 190)
-        datepicker.backgroundColor = UIColor.clear.withAlphaComponent(0.1)
+        datepicker.backgroundColor = UIColor.white.withAlphaComponent(0.1)
         datepicker.datePickerMode = UIDatePickerMode.date
         datepicker.addTarget(self, action: #selector(self.onDidChangeDate(sender:)), for: .valueChanged)
         // subviewににDatePickerを表示する
         self.subView.addSubview(datepicker)
         dateTxt.delegate = self
         
-//        //AccessoryView
+//        //AccessoryView *今回は使わない
 //        let customView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 50))
 //        customView.backgroundColor = UIColor.red
 //        dateTxt.inputAccessoryView = customView
@@ -151,10 +151,10 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
         let viewContext = appDelegate.persistentContainer.viewContext
         let diary = NSEntityDescription.entity(forEntityName: "Diary", in: viewContext)
         let newRecord = NSManagedObject(entity: diary!, insertInto: viewContext)
-        let date = Date()
-        let formatter = DateFormatter()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
         newRecord.setValue("", forKey: "title") //値を代入
-        newRecord.setValue(formatter.date(from: String), forKey: "date")//値を代入
+        newRecord.setValue("dateFormatter", forKey: "date")//値を代入
         newRecord.setValue("", forKey: "category")//値を代入
         newRecord.setValue("", forKey: "diary")//値を代入
         newRecord.setValue("", forKey: "image")//値を代入
