@@ -11,7 +11,7 @@ import CoreData //追加
 import FontAwesome_swift //追加
 import MobileCoreServices //追加
 import Photos //追加
-
+import Foundation //追加
 
 class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UITextFieldDelegate{
     @IBOutlet weak var deleteBtn: UIButton!
@@ -22,13 +22,6 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
     @IBOutlet weak var diaryTxt: UITextView!
     @IBOutlet weak var ImagView: UIImageView!
     
-//    @IBAction func dateCreate(_ sender: UITextField) {
-//        // 遷移するViewを定義する.このas!はswift1.2では as?だったかと。
-//        let dateViewController: DateViewController = self.storyboard?.instantiateViewController(withIdentifier: "DateViewController") as! DateViewController
-//        // Viewの移動する.
-//        self.present(dateViewController, animated: true, completion: nil)
-//
-//    }
     var strURL: String = ""
     let datepicker: UIDatePicker = UIDatePicker()
     var selectedDate: NSDate = NSDate()
@@ -36,6 +29,7 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
     var subView = UIView(frame: CGRect(x:0, y:0, width:100, height: 100))
     let myBoundSize: CGSize = UIScreen.main.bounds.size
     private var closeButton: UIButton!
+    private var nowButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,26 +51,46 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
         deleteBtn.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
         deleteBtn.setTitle(String.fontAwesomeIcon(name: .trashO), for: .normal)
         
+//        closeButton.titleLabel?.font = UIFont.fontAwesome(ofSize: 15)
+//        closeButton.setTitle(String.fontAwesomeIcon(name: .times), for: .normal)
+        
         
         //viewを見えない位置に追加
         self.subView = UIView(frame: CGRect(x: 0, y: myBoundSize.height, width: myBoundSize.width, height: 220))
-        self.subView.backgroundColor = UIColor.white
+        self.subView.backgroundColor = UIColor.clear
         dateTxt.inputView = subView
+        
         //subviewの中にボタンを作成する
+        //close
         closeButton = UIButton()
         closeButton.frame = CGRect(x: myBoundSize.width - 45, y: 0, width: 45, height: 30)
         closeButton.setTitle("close", for: .normal)
         closeButton.setTitleColor(UIColor.blue, for: .normal)
         closeButton.addTarget(self, action: #selector(self.onClickButton(sender:)), for: .touchUpInside)
         self.subView.addSubview(closeButton)
+
+        //本日
+        nowButton = UIButton()
+        nowButton.frame = CGRect(x: myBoundSize.width - 230, y: 0, width: 45, height: 30)
+        nowButton.setTitle("本日", for: .normal)
+        nowButton.setTitleColor(UIColor.black, for: .normal)
+        nowButton.addTarget(self, action: #selector(self.onNowButton(sender:)), for: .touchUpInside)
+        self.subView.addSubview(nowButton)
+
         //datepickerの設定
         datepicker.frame = CGRect(x: 0, y: 30, width: myBoundSize.width, height: 190)
-        datepicker.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
+        datepicker.backgroundColor = UIColor.clear.withAlphaComponent(0.1)
         datepicker.datePickerMode = UIDatePickerMode.date
         datepicker.addTarget(self, action: #selector(self.onDidChangeDate(sender:)), for: .valueChanged)
         // subviewににDatePickerを表示する
         self.subView.addSubview(datepicker)
         dateTxt.delegate = self
+        
+//        //AccessoryView
+//        let customView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 50))
+//        customView.backgroundColor = UIColor.red
+//        dateTxt.inputAccessoryView = customView
+//        self.dateTxt.text = "現在時刻"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -148,10 +162,9 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
         } catch {
         }
         navigationController?.viewControllers.removeLast() //views to pop
-         titleTxt.endEditing(true);
+        titleTxt.endEditing(true);
         categoryTxt.endEditing(true);
-        diaryTxt.endEditing(true);
-
+        diaryTxt.resignFirstResponder();
     }
 
     override func didReceiveMemoryWarning() {
@@ -163,12 +176,30 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
     internal func onDidChangeDate(sender: UIDatePicker){
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd"
+        
         print(formatter)
         dateTxt.text = formatter.string(from: sender.date)
         selectedDate = sender.date as NSDate
+        
+//        //キーボード上部に表示
+//        UIView *inputAccessoryView = UIDatePicker
+//        self.dateTxt.inputAccessoryView = inputAccessoryView;
     }
     
     internal func onClickButton(sender: UIButton){
+        dateTxt.endEditing(true);
+    }
+    
+    //本日の日付を表示する
+    internal func onNowButton(sender: UIButton){
+        let now = Date()
+        let jaLocale = Locale(identifier: "ja_JP")
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd"
+        dateTxt.text = formatter.string(from: now)
+        //dateTxt.text = now.description(with: jaLocale)
+        print(now.description(with: jaLocale))
+        //dateTxt.now.description(with: jaLocale) = self
         dateTxt.endEditing(true);
     }
 }

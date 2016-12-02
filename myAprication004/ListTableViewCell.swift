@@ -14,6 +14,10 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet weak var myImageView: UIImageView!
     /// タイトルを表示するLabel
     @IBOutlet weak var myTitleLabel: UILabel!
+    ///日付を表示する
+    @IBOutlet weak var myDateLabel: UILabel!
+    ///カテゴリーを表示する
+    @IBOutlet weak var myCategoryLabel: UIView!
     /// 説明を表示するLabel
     @IBOutlet weak var myDescriptionLabel: UILabel!
     
