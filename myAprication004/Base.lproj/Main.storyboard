@@ -259,7 +259,7 @@
             </objects>
             <point key="canvasLocation" x="2175.1999999999998" y="-62.518740629685162"/>
         </scene>
-        <!--View Controller-->
+        <!--日記一覧リスト-->
         <scene sceneID="5go-OO-3Bv">
             <objects>
                 <viewController id="ftE-6W-PyW" customClass="ViewController" customModule="myAprication004" customModuleProvider="target" sceneMemberID="viewController">
@@ -341,6 +341,7 @@
                             <constraint firstItem="68q-Le-YYt" firstAttribute="top" secondItem="FNm-gu-kRe" secondAttribute="bottom" id="pjw-S2-tXh"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="日記一覧リスト" id="9dK-WV-h9V"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>

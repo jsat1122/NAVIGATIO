@@ -151,11 +151,13 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
         let viewContext = appDelegate.persistentContainer.viewContext
         let diary = NSEntityDescription.entity(forEntityName: "Diary", in: viewContext)
         let newRecord = NSManagedObject(entity: diary!, insertInto: viewContext)
-        newRecord.setValue("値", forKey: "title") //値を代入
-        newRecord.setValue(Date(), forKey: "date")//値を代入
-        newRecord.setValue("値", forKey: "category")//値を代入
-        newRecord.setValue("値", forKey: "diary")//値を代入
-        newRecord.setValue("値", forKey: "image")//値を代入
+        let date = Date()
+        let formatter = DateFormatter()
+        newRecord.setValue("", forKey: "title") //値を代入
+        newRecord.setValue(formatter.date(from: String), forKey: "date")//値を代入
+        newRecord.setValue("", forKey: "category")//値を代入
+        newRecord.setValue("", forKey: "diary")//値を代入
+        newRecord.setValue("", forKey: "image")//値を代入
         
         do {
             try viewContext.save()
@@ -192,14 +194,20 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
     
     //本日の日付を表示する
     internal func onNowButton(sender: UIButton){
+        //本日の日付を表示
         let now = Date()
+        //日本標準日付を表示
         let jaLocale = Locale(identifier: "ja_JP")
+        //DateFormatterを宣言
         let formatter = DateFormatter()
+        //dateのformatを指定
         formatter.dateFormat = "yyyy/MM/dd"
+        //nowからtext型で持ってくる
         dateTxt.text = formatter.string(from: now)
+        //now.description(with: jaLocale)をdateTxt.textに代入
         //dateTxt.text = now.description(with: jaLocale)
         print(now.description(with: jaLocale))
-        //dateTxt.now.description(with: jaLocale) = self
+        //dateTxtを入力したらdatePickerを閉じる
         dateTxt.endEditing(true);
     }
 }
