@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData //追加
 
 class ListTableViewCell: UITableViewCell {
     
@@ -19,7 +20,8 @@ class ListTableViewCell: UITableViewCell {
     ///カテゴリーを表示する
     @IBOutlet weak var myCategoryLabel: UIView!
     /// 説明を表示するLabel
-    @IBOutlet weak var myDescriptionLabel: UILabel!
+    @IBOutlet weak var myDiaryLabel: UILabel!
+    
     
     
     
@@ -35,9 +37,11 @@ class ListTableViewCell: UITableViewCell {
     }
     
     /// 画像・タイトル・説明文を設定するメソッド
-    func setCell(imageName: String, titleText: String, descriptionText: String) {
+    func setCell(imageName: String, titleText: String, dateText: Date, categoryText: String, diaryText: String) {
         myImageView.image = UIImage(named: imageName)
         myTitleLabel.text = titleText
-        myDescriptionLabel.text = descriptionText
+        myDateLabel.text = date
+        myCategoryLabel.hitTest(<#T##point: CGPoint##CGPoint#>, with: nil)= categoryText
+        myDiaryLabel.text = diaryText
     }
 }

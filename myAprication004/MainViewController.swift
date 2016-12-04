@@ -251,6 +251,7 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
                 print("image:\(image)")
             }
         } catch {
+            fatalError("Failed to fetch diary: \(error)")
         }
 
     }

@@ -6,6 +6,7 @@
 //  Copyright © 2016年 Takahiro Ono. All rights reserved.
 //
 import UIKit
+import CoreData //追加
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -47,7 +48,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         ListTableViewCell
         
         // セルを設定
-        cell.setCell(imageName: imageNames[indexPath.row], titleText: imageTitles[indexPath.row], descriptionText: imageDescriptions[indexPath.row])
+        cell.setCell(imageName: imageNames[indexPath.row], titleText: imageTitles[indexPath.row], dateText: imageDates[indexPath.row], categoryText: imageCategorys[indexPath.row], diaryText: imageDescriptions[indexPath.row])
         
         return (cell)
     }

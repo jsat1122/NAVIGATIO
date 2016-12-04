@@ -308,7 +308,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yeU-cV-Km5">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="diary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yeU-cV-Km5">
                                                     <rect key="frame" x="166" y="90" width="200" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -321,7 +321,7 @@
                                         <connections>
                                             <outlet property="myCategoryLabel" destination="vcq-d6-inx" id="oDc-lm-yJf"/>
                                             <outlet property="myDateLabel" destination="Wtb-n2-lNr" id="vsc-zg-euF"/>
-                                            <outlet property="myDescriptionLabel" destination="yeU-cV-Km5" id="D5f-2O-mu8"/>
+                                            <outlet property="myDiaryLabel" destination="yeU-cV-Km5" id="zDS-w5-MGF"/>
                                             <outlet property="myImageView" destination="dF1-te-bUT" id="Hdg-ht-sKu"/>
                                             <outlet property="myTitleLabel" destination="lhz-K6-GDQ" id="e4l-b7-e8k"/>
                                         </connections>

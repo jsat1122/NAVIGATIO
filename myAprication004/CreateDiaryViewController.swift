@@ -149,7 +149,7 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
     @IBAction func diaryCreate(_ sender: UIButton) {
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let viewContext = appDelegate.persistentContainer.viewContext
-        let diary = NSEntityDescription.entity(forEntityName: "Diary", in: viewContext)
+        let diary = NSEntityDescription.entity(forEntityName: "Diary", in: viewContext) //全ての日記を取得
         let newRecord = NSManagedObject(entity: diary!, insertInto: viewContext)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
