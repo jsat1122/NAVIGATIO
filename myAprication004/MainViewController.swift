@@ -12,7 +12,7 @@ import FontAwesome_swift //追加
 import CoreData //追加
 
 
-class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelegate{
+class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelegate , UIApplicationDelegate{
     @IBOutlet weak var createDiaryBtn: UIButton!
     @IBOutlet weak var listDiaryBtn: UIButton!
     @IBOutlet weak var serchText: UISearchBar!

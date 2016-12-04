@@ -93,10 +93,7 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
 //        self.dateTxt.text = "現在時刻"
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        titleTxt.text = ""
-        dateTxt.text = ""
-    }
+    
 
     
     @IBAction func deleteAction(_ sender: UIButton) {
@@ -164,15 +161,35 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
         } catch {
         }
         navigationController?.viewControllers.removeLast() //views to pop
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        titleTxt.text = ""
+        dateTxt.text = ""
+        
+//        // 並び順をdateの、昇順としてみる
+//        diary.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
+//        diary.returnsObjectsAsFaults = false
+//        var results = viewContext.executeFetchRequest(toDoRequest, error: nil) as [Diary]!
+//        memos = []
+//        for data in results {
+//            memos.append(data.memo)
+//        }
+//        
+//        // テーブル情報を更新する
+//        self.cell.reloadData()
+        
         titleTxt.endEditing(true);
         categoryTxt.endEditing(true);
         diaryTxt.resignFirstResponder();
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
 
     
     internal func onDidChangeDate(sender: UIDatePicker){

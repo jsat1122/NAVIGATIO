@@ -41,7 +41,7 @@ class ListTableViewCell: UITableViewCell {
         myImageView.image = UIImage(named: imageName)
         myTitleLabel.text = titleText
         myDateLabel.text = date
-        myCategoryLabel.hitTest(<#T##point: CGPoint##CGPoint#>, with: nil)= categoryText
+        myCategoryLabel.hitTest(<#T##point: CGPoint##CGPoint#>, with: nil) = categoryText
         myDiaryLabel.text = diaryText
     }
 }

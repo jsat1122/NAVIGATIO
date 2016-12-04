@@ -10,6 +10,7 @@ import UIKit
 import Social //追加
 import Accounts //追加
 import FontAwesome_swift //追加
+import CoreData //追加
 
 
 

@@ -7,16 +7,28 @@
 //
 
 import UIKit
-import CoreData
+import CoreData //追加
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
+    /*以下１行追加*/
+    var myNavigationController: UINavigationController?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        /*
+         以下５行追加
+         */
+        let first: ViewController = ViewController()
+        myNavigationController = UINavigationController(rootViewController: first)
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = myNavigationController
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 
