@@ -95,19 +95,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell = tableView.dequeueReusableCell(withIdentifier: "MyCell") as! ListTableViewCell
         
         // セルを設定
-        cell.setCell(imageName: imageNames[indexPath.row], titleText: imageTitles[indexPath.row], dateText: imageDates[indexPath.Int], categoryText: imageCategorys[indexPath.row], diaryText: imageDairys[indexPath.row])
-        
-        /// 画像・タイトル・説明文を設定するメソッド
-            setCell(imageName: String, titleText: String, dateText: Date, categoryText: String, diaryText: String) {
-            myImageView.image = UIImage(named: imageName)
-            myTitleLabel.text = titleText
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy/MM/dd"
-            myDateLabel.text = formatter.string(from: dateText)
-            myCategoryLabel.text = categoryText
-            myDiaryLabel.text = diaryText
-        }
-
+        cell.setCell(imageName: imageNames[indexPath.row], titleText: imageTitles[indexPath.row], dateText: imageDates[indexPath.row], categoryText: imageCategorys[indexPath.row], diaryText: imageDairys[indexPath.row])
         
         return cell
     }

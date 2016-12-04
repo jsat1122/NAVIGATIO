@@ -319,7 +319,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="myCategoryLabel" destination="vcq-d6-inx" id="oDc-lm-yJf"/>
+                                            <outlet property="myCategoryLabel" destination="96J-SW-mmx" id="Tsb-DK-ZKr"/>
                                             <outlet property="myDateLabel" destination="Wtb-n2-lNr" id="vsc-zg-euF"/>
                                             <outlet property="myDiaryLabel" destination="yeU-cV-Km5" id="zDS-w5-MGF"/>
                                             <outlet property="myImageView" destination="dF1-te-bUT" id="Hdg-ht-sKu"/>
@@ -449,7 +449,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8bb-6r-dBc" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DfB-Nr-p3R">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="DfB-Nr-p3R">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
