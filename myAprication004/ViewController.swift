@@ -95,6 +95,34 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell = tableView.dequeueReusableCell(withIdentifier: "MyCell") as! ListTableViewCell
         
         // セルを設定
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "yyyy/MM/dd"
+        //myDateLabel.text = formatter.string(from: dateText)
+        //dateTxt.text = formatter.string(from: sender.date)
+        
+//        var stringNumber:String = "1234"
+//        var numberFromString = stringNumber.toInt()
+        
+//        var stringImageDates:String = "yyyy/MM/dd"
+//        var imageDates = stringImageDates.toInt!()
+        
+//        let x : Int = 123
+//        var str = String(x)
+        
+//        let dateText : String = "yyyy/MM/dd"
+//        var imageDates = Date(dateText)
+        
+//        var stringNumb: String = "1357"
+//        var someNumb: Int = Int(stringNumb)
+//        var someNumbAlt: Int = myString.integerValue
+        
+//        var dateText: String = "yyyy/MM/dd"
+//        var imageDates: Date = Date(dateText)!
+//        var someNumbAlt: Date = myString.integerValue
+
+        
+        //imageDates.text = formatter.string(from: dateText)
+        
         cell.setCell(imageName: imageNames[indexPath.row], titleText: imageTitles[indexPath.row], dateText: imageDates[indexPath.row], categoryText: imageCategorys[indexPath.row], diaryText: imageDairys[indexPath.row])
         
         return cell

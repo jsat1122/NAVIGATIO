@@ -41,9 +41,11 @@ class ListTableViewCell: UITableViewCell {
     func setCell(imageName: String, titleText: String, dateText: Date, categoryText: String, diaryText: String) {
     myImageView.image = UIImage(named: imageName)
     myTitleLabel.text = titleText
+    //型変換
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy/MM/dd"
     myDateLabel.text = formatter.string(from: dateText)
+        
     myCategoryLabel.text = categoryText
     myDiaryLabel.text = diaryText
     

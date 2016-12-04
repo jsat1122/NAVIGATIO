@@ -194,6 +194,7 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
         formatter.dateFormat = "yyyy/MM/dd"
         
         print(formatter)
+        //型変換
         dateTxt.text = formatter.string(from: sender.date)
         selectedDate = sender.date as NSDate
         
