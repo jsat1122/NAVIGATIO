@@ -13,6 +13,11 @@ import CoreData //追加
 
 
 class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelegate , UIApplicationDelegate{
+    
+    //配列の定義
+    var diaryArray :[NSDictionary] = []
+    var dairyDic :NSDictionary! = [:]
+    
     @IBOutlet weak var createDiaryBtn: UIButton!
     @IBOutlet weak var listDiaryBtn: UIButton!
     @IBOutlet weak var serchText: UISearchBar!
@@ -239,7 +244,7 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
             let fetchResults = try viewContext.fetch(query)
             for result: AnyObject in fetchResults {
                 let title: String? = result.value(forKey: "title") as? String
-                let date: Date? = result.value(forKey: "date") as? Date
+                let date: Date = result.value(forKey: "date") as! Date
                 let category: String? = result.value(forKey: "category") as? String
                 let diary: String? = result.value(forKey: "diary") as? String
                 let image: String? = result.value(forKey: "image") as? String

@@ -10,6 +10,14 @@ import CoreData //追加
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    //配列の定義
+    var diaryArray :[NSDictionary] = []
+    var dairyDic :NSDictionary! = [:]
+    
+    
+    //customCell(ListTableViewCell)にアクセスできるようにした
+    var cell = ListTableViewCell()
+    
     // ナビバーの右上ボタンを用意
     var addBtn: UIBarButtonItem!
     
@@ -39,6 +47,35 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        let viewContext = appDelegate.persistentContainer.viewContext
+        let query: NSFetchRequest<Diary> = Diary.fetchRequest()
+        
+        do {
+            let fetchResults = try viewContext.fetch(query)
+            for result: AnyObject in fetchResults {
+                let title: String? = result.value(forKey: "title") as? String
+                let date: Date = result.value(forKey: "date") as! Date
+                let category: String? = result.value(forKey: "category") as? String
+                let diary: String? = result.value(forKey: "diary") as? String
+                let image: String? = result.value(forKey: "image") as? String
+                
+                //[辞書のkey:辞書のvalue(値)]
+                dairyDic = ["title":title,"date":date,"category":category,"diary":diary,"image":image]
+                //配列の一番最後にdiaryDic
+                diaryArray.append(dairyDic)
+                
+                print("title:\(title)")
+                print("date:\(date)")
+                print("category:\(category)")
+                print("diary:\(diary)")
+                print("image:\(image)")
+            }
+        } catch {
+            fatalError("Failed to fetch diary: \(error)")
+        }
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -55,13 +92,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     /// セルに値を設定するデータソースメソッド（必須）
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // セルを取得
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell") as!
-        
-        ListTableViewCell
+        cell = tableView.dequeueReusableCell(withIdentifier: "MyCell") as! ListTableViewCell
         
         // セルを設定
         cell.setCell(imageName: imageNames[indexPath.row], titleText: imageTitles[indexPath.row], dateText: imageDates[indexPath.Int], categoryText: imageCategorys[indexPath.row], diaryText: imageDairys[indexPath.row])
         
-        return (cell)
+        /// 画像・タイトル・説明文を設定するメソッド
+            setCell(imageName: String, titleText: String, dateText: Date, categoryText: String, diaryText: String) {
+            myImageView.image = UIImage(named: imageName)
+            myTitleLabel.text = titleText
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy/MM/dd"
+            myDateLabel.text = formatter.string(from: dateText)
+            myCategoryLabel.text = categoryText
+            myDiaryLabel.text = diaryText
+        }
+
+        
+        return cell
     }
 }

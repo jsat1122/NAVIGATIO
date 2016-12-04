@@ -189,9 +189,6 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
         // Dispose of any resources that can be recreated.
     }
     
-    
-
-    
     internal func onDidChangeDate(sender: UIDatePicker){
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd"

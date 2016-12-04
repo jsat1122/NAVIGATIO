@@ -11,6 +11,7 @@ import CoreData //追加
 
 class ListTableViewCell: UITableViewCell {
     
+    
     /// イメージを表示するImageView
     @IBOutlet weak var myImageView: UIImageView!
     /// タイトルを表示するLabel
@@ -36,12 +37,4 @@ class ListTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    /// 画像・タイトル・説明文を設定するメソッド
-    func setCell(imageName: String, titleText: String, dateText: Date, categoryText: String, diaryText: String) {
-        myImageView.image = UIImage(named: imageName)
-        myTitleLabel.text = titleText
-        myDateLabel.text = date
-        myCategoryLabel.hitTest(<#T##point: CGPoint##CGPoint#>, with: nil) = categoryText
-        myDiaryLabel.text = diaryText
     }
-}
