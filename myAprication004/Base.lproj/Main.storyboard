@@ -137,25 +137,25 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="USe-Od-nEH">
-                                <rect key="frame" x="66" y="90" width="243" height="195"/>
+                                <rect key="frame" x="66" y="119" width="243" height="195"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="xzk-DX-QtD" appends="YES" id="StK-Gy-YXg"/>
                                 </connections>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UkZ-Ml-hGC">
-                                <rect key="frame" x="229" y="48" width="32" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="right"/>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="swipe your earth " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ev6-hX-rwc">
-                                <rect key="frame" x="99" y="53" width="132" height="21"/>
+                                <rect key="frame" x="90" y="72" width="132" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UkZ-Ml-hGC">
+                                <rect key="frame" x="221" y="69" width="32" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="right"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -181,7 +181,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1374" y="-63"/>
+            <point key="canvasLocation" x="1373.5999999999999" y="-63.418290854572717"/>
         </scene>
         <!--メイン画面-->
         <scene sceneID="MfL-iU-jB0">
@@ -270,7 +270,7 @@
         <!--日記一覧リスト-->
         <scene sceneID="5go-OO-3Bv">
             <objects>
-                <viewController id="ftE-6W-PyW" customClass="ViewController" customModule="myAprication004" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ftE-6W-PyW" customClass="ViewController" customModule="myAprication004" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FNm-gu-kRe"/>
                         <viewControllerLayoutGuide type="bottom" id="wM0-hf-8yt"/>
@@ -303,14 +303,14 @@
                                                     <size key="shadowOffset" width="1" height="-1"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wtb-n2-lNr">
-                                                    <rect key="frame" x="166" y="38" width="35" height="21"/>
+                                                    <rect key="frame" x="166" y="38" width="200" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="96J-SW-mmx">
-                                                    <rect key="frame" x="167" y="61" width="68" height="21"/>
+                                                    <rect key="frame" x="167" y="61" width="199" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -412,28 +412,6 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="日記一覧画面" id="K5Y-h8-iuY">
-                        <leftBarButtonItems>
-                            <barButtonItem style="plain" id="kRC-7p-9sD">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dBg-CN-Fuy">
-                                    <rect key="frame" x="16" y="7" width="30" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="edit"/>
-                                </button>
-                                <connections>
-                                    <segue destination="9pv-A4-QxB" kind="show" id="xhb-xp-thS"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem style="plain" id="c5k-JC-yQV">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LKX-Bp-8HL">
-                                    <rect key="frame" x="54" y="7" width="51" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="deleate"/>
-                                    <connections>
-                                        <action selector="deleteDiaryBtn:" destination="zF5-6c-3Dn" eventType="touchUpInside" id="ChB-ka-AM7"/>
-                                    </connections>
-                                </button>
-                            </barButtonItem>
-                        </leftBarButtonItems>
                         <rightBarButtonItems>
                             <barButtonItem style="plain" id="JEa-mS-bN6">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yAf-Aa-pbm">
@@ -451,6 +429,27 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" title="like"/>
                                 </button>
+                            </barButtonItem>
+                            <barButtonItem style="plain" id="c5k-JC-yQV">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LKX-Bp-8HL">
+                                    <rect key="frame" x="224" y="7" width="51" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="deleate"/>
+                                    <connections>
+                                        <action selector="deleteDiaryBtn:" destination="zF5-6c-3Dn" eventType="touchUpInside" id="ChB-ka-AM7"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                            <barButtonItem style="plain" id="kRC-7p-9sD">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dBg-CN-Fuy">
+                                    <rect key="frame" x="186" y="7" width="30" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="edit"/>
+                                </button>
+                                <connections>
+                                    <action selector="editBtn:" destination="zF5-6c-3Dn" id="016-Gg-Ei8"/>
+                                    <segue destination="9pv-A4-QxB" kind="show" identifier="editSegur" id="xhb-xp-thS"/>
+                                </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
@@ -487,6 +486,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Bd5-U0-tJH"/>
+        <segue reference="xhb-xp-thS"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -83,8 +83,7 @@ class ReadDiaryViewController: UIViewController {
     //削除ボタンが押された時に呼ばれるメソッド
     func myDelete(){
         print("削除")
-//        var targetView: AnyObject = self.storyboard!.instantiateViewController(withIdentifier: "MainViewController")
-//        self.present(targetView as! UIViewController, animated: true, completion: nil)
+        navigationController?.viewControllers.removeLast() //views to pop
     }
 
     override func didReceiveMemoryWarning() {
@@ -124,5 +123,8 @@ class ReadDiaryViewController: UIViewController {
 //        self.myWebView.reload()
 //    }
 
+    @IBAction func editBtn(_ sender: UIBarButtonItem) {
+        
+    }
 }
 
