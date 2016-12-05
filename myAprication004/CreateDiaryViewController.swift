@@ -190,13 +190,26 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
     }
     
     internal func onDidChangeDate(sender: UIDatePicker){
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd"
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "yyyy/MM/dd"
+//        
+//        print(formatter)
+//        //型変換
+//        dateTxt.text = formatter.string(from: sender.date)
+//        selectedDate = sender.date as NSDate
         
-        print(formatter)
-        //型変換
-        dateTxt.text = formatter.string(from: sender.date)
-        selectedDate = sender.date as NSDate
+        let created2 = DateFormatter()
+        created2.dateFormat = "yyyy/MM/dd hh:mm:ss"
+        created2.timeZone = TimeZone.current
+        
+        var strDateTmp = created2.string(from: Date())
+        var changeDate = created2.date(from: strDateTmp)
+        
+        //coreDataに設定
+        created2.setValue(changeDate, forKey: "created2")
+        
+                dateTxt.text = created2.string(from: sender.date)
+                selectedDate = sender.date as NSDate
         
 //        //キーボード上部に表示
 //        UIView *inputAccessoryView = UIDatePicker

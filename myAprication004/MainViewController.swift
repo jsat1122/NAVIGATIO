@@ -58,13 +58,14 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         // 中心点を指定.
         let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(myLatitude, myLongitude)
         
+        //ToDo
         // MapViewに中心点を設定.
         dispMap.setCenter(center, animated: true)
         
-//        // 縮尺(表示領域)を指定.
-//        let mySpan: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-//        let myRegion: MKCoordinateRegion = MKCoordinateRegionMake(center, mySpan)
-//        
+        // 縮尺(表示領域)を指定.
+        let mySpan: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+        let myRegion: MKCoordinateRegion = MKCoordinateRegionMake(center, mySpan)
+//
 //        // MapViewにregionを追加.
 //        dispMap.region = myRegion
 //        
@@ -240,7 +241,19 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         let viewContext = appDelegate.persistentContainer.viewContext
         let query: NSFetchRequest<Diary> = Diary.fetchRequest()
         
+        //一件取得
+        var df = DateFormatter()
+        df.dateFormat = "yyyy/MM/dd hh:mm:ss +0000"
+        df.timeZone = TimeZone.current
+        //保存していた日付を文字列からDate型に変換
+        //var savedDateTime:NSDate = df.date(from: "\(myAp.myCount)") as! NSDate
+//        print(savedDateTime)
+//        //検索条件として指定
+//        let predicate = NSPredicate(format: "SELF.created_at = %@", savedDateTime )
+//        query.predicate = predicate
+        
         do {
+            
             let fetchResults = try viewContext.fetch(query)
             for result: AnyObject in fetchResults {
                 let title: String? = result.value(forKey: "title") as? String
@@ -256,7 +269,7 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
                 print("image:\(image)")
             }
         } catch {
-            fatalError("Failed to fetch diary: \(error)")
+            //fatalError("Failed to fetch diary: \(error)")
         }
 
     }

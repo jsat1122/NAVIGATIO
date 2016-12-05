@@ -97,6 +97,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // セルを設定
 //        let formatter = DateFormatter()
 //        formatter.dateFormat = "yyyy/MM/dd"
+        
         //myDateLabel.text = formatter.string(from: dateText)
         //dateTxt.text = formatter.string(from: sender.date)
         
@@ -109,9 +110,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        let x : Int = 123
 //        var str = String(x)
         
-//        let dateText : String = "yyyy/MM/dd"
-//        var imageDates = Date(dateText)
-        
 //        var stringNumb: String = "1357"
 //        var someNumb: Int = Int(stringNumb)
 //        var someNumbAlt: Int = myString.integerValue
@@ -120,6 +118,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        var imageDates: Date = Date(dateText)!
 //        var someNumbAlt: Date = myString.integerValue
 
+//        let dateText = DateFormatter()
+//        dateText.dateFormat = "yyyy/MM/dd"
+//        dateText.formattingContext = imageDates.string(from: dateText)
         
         //imageDates.text = formatter.string(from: dateText)
         

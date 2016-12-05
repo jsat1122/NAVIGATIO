@@ -38,13 +38,13 @@ class ListTableViewCell: UITableViewCell {
     }
     
     /// 画像・タイトル・説明文を設定するメソッド
-    func setCell(imageName: String, titleText: String, dateText: Date, categoryText: String, diaryText: String) {
+    func setCell(imageName: String, titleText: String, dateText: String, categoryText: String, diaryText: String) {
     myImageView.image = UIImage(named: imageName)
     myTitleLabel.text = titleText
     //型変換
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy/MM/dd"
-    myDateLabel.text = formatter.string(from: dateText)
+//    let formatter = DateFormatter()
+//    formatter.dateFormat = "yyyy/MM/dd"
+    myDateLabel.text = dateText //myDateLabel.text = formatter.string(from: dateText)
         
     myCategoryLabel.text = categoryText
     myDiaryLabel.text = diaryText
