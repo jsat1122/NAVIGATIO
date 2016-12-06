@@ -20,8 +20,11 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
     
     @IBOutlet weak var createDiaryBtn: UIButton!
     @IBOutlet weak var listDiaryBtn: UIButton!
-    @IBOutlet weak var serchText: UISearchBar!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    var myMapView: MKMapView = MKMapView()
+    var mySearchBar: UISearchBar!
+    var myRegion: MKCoordinateRegion!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +34,36 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
 
         // Do any additional setup after loading the view.
         
-        //入力のヒントになる、プレースホルダーを設定
-        serchText.placeholder = "国名・地域名を入力してください"
+//        //入力のヒントになる、プレースホルダーを設定
+//        serchText.placeholder = "国名・地域名を入力してください"
+       
+        // MapViewを生成.
+        let myMapView: MKMapView = MKMapView()
+        myMapView.frame = self.view.frame
         
-        //Search Barのdelegate通知先の設定
-        serchText.delegate = self
+        // MapViewのサイズを画面全体に.
+        myMapView.frame = self.view.bounds
+        
+        // Delegateを設定.
+        myMapView.delegate = self
+
+        
+        // searchBar生成.
+        mySearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 300, height: 80))
+        mySearchBar.layer.position = CGPoint(x: self.view.frame.width/2, y: 80)
+        mySearchBar.delegate = self
+        mySearchBar.layer.shadowColor = UIColor.blue.cgColor
+        mySearchBar.layer.shadowOpacity = 0.5
+        mySearchBar.layer.masksToBounds = false
+        mySearchBar.showsCancelButton = true
+        mySearchBar.showsBookmarkButton = false
+        mySearchBar.prompt = "ローカル検索"
+        mySearchBar.placeholder = "ここに入力してください"
+        mySearchBar.tintColor = UIColor.red
+        mySearchBar.showsSearchResultsButton = false
+        
+        // searchBarをviewに追加.
+        self.view.addSubview(mySearchBar)
         
         //fontAwesome
         createDiaryBtn.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
@@ -45,7 +73,7 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         listDiaryBtn.setTitle(String.fontAwesomeIcon(name: .listUL), for: .normal)
         
         // MapViewを生成.
-//        dispMap = MKMapView()
+        dispMap = MKMapView()
         dispMap.frame = self.view.frame
         
         // デリゲートを設定.
@@ -55,22 +83,27 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         let myLatitude: CLLocationDegrees = 37.331741
         let myLongitude: CLLocationDegrees = -122.030333
         
-        // 中心点を指定.
-        let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(myLatitude, myLongitude)
+//        // MapViewに中心点を設定.
+//        dispMap.setCenter(center, animated: true)
         
-        //ToDo
-        // MapViewに中心点を設定.
-        dispMap.setCenter(center, animated: true)
+        //ルート検索
+        // 目的地の緯度、経度を設定.
+        let requestLatitude: CLLocationDegrees = 37.427474
+        let requestLongitude: CLLocationDegrees = -122.169719
         
+        // 目的地の座標を指定.
+        let requestCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2DMake(requestLatitude, requestLongitude)
+        let fromCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2DMake(myLatitude, myLongitude)
+
+        // 地図の中心を出発点と目的地の中間に設定する.
+        let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake((myLatitude + requestLatitude)/2, (myLongitude + requestLongitude)/2)
+//        
         // 縮尺(表示領域)を指定.
         let mySpan: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
         let myRegion: MKCoordinateRegion = MKCoordinateRegionMake(center, mySpan)
 
         // MapViewにregionを追加.
         dispMap.region = myRegion
-
-        // viewにMapViewを追加.
-        self.view.addSubview(dispMap)
 
         // 直線を引く座標を作成.
         let coordinate_1 = CLLocationCoordinate2D(latitude: 37.301741, longitude: -122.050333)
@@ -89,7 +122,81 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         // mapViewにcircleを追加.
         dispMap.add(myPolyLine_1)
         dispMap.add(myPolyLine_2)
+        
+        
+        // PlaceMarkを生成して出発点、目的地の座標をセット.
+        let fromPlace: MKPlacemark = MKPlacemark(coordinate: fromCoordinate, addressDictionary: nil)
+        let toPlace: MKPlacemark = MKPlacemark(coordinate: requestCoordinate, addressDictionary: nil)
+        
+        
+        // Itemを生成してPlaceMarkをセット.
+        let fromItem: MKMapItem = MKMapItem(placemark: fromPlace)
+        let toItem: MKMapItem = MKMapItem(placemark: toPlace)
+        
+        // MKDirectionsRequestを生成.
+        let myRequest: MKDirectionsRequest = MKDirectionsRequest()
+        
+        // 出発地のItemをセット.
+        myRequest.source = fromItem
+        
+        // 目的地のItemをセット.
+        myRequest.destination = toItem
+        
+        // 複数経路の検索を有効.
+        myRequest.requestsAlternateRoutes = true
+        
+        // 移動手段を車に設定.
+        myRequest.transportType = MKDirectionsTransportType.automobile
+        
+        // MKDirectionsを生成してRequestをセット.
+        let myDirections: MKDirections = MKDirections(request: myRequest)
+        
+        // 経路探索.
+        myDirections.calculate { (response, error) in
+            
+            // NSErrorを受け取ったか、ルートがない場合.
+            if error != nil || response!.routes.isEmpty {
+                return
+            }
+            
+            let route: MKRoute = response!.routes[0] as MKRoute
+            print("目的地まで \(route.distance)km")
+            print("所要時間 \(Int(route.expectedTravelTime/60))分")
+            
+            // mapViewにルートを描画.
+            self.dispMap.add(route.polyline)
+        }
+        
+        // ピンを生成.
+        let fromPin: MKPointAnnotation = MKPointAnnotation()
+        let toPin: MKPointAnnotation = MKPointAnnotation()
+        
+        // 座標をセット.
+        fromPin.coordinate = fromCoordinate
+        toPin.coordinate = requestCoordinate
+        
+        // titleをセット.
+        fromPin.title = "出発地点"
+        toPin.title = "目的地"
+        
+    
+    
+    // ルートの表示設定.
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        
+        let route: MKPolyline = overlay as! MKPolyline
+        let routeRenderer: MKPolylineRenderer = MKPolylineRenderer(polyline: route)
+        
+        // ルートの線の太さ.
+        routeRenderer.lineWidth = 3.0
+        
+        // ルートの線の色.
+        routeRenderer.strokeColor = UIColor.red
+        return routeRenderer
+        
+        
 
+    }
         
         }
     /*
@@ -128,7 +235,7 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         
 //        //ピンの色を指定
 //        myPin.pinTintColor = UIColor.purpleColor()
-//        
+        
 //        //バルーンにボタンをつける
 //        pinView?.canShowCallout = true
 //        let rightButton: AnyObject! = UIButton(type: UIButtonType.detailDisclosure)
@@ -158,6 +265,22 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
             return myPinView
         }
 
+    /*
+     addOverlayした際に呼ばれるデリゲートメソッド.
+     */
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        
+        // rendererを生成.
+        let myPolyLineRendere: MKPolylineRenderer = MKPolylineRenderer(overlay: overlay)
+        
+        // 線の太さを指定.
+        myPolyLineRendere.lineWidth = 3
+        
+        // 線の色を指定.
+        myPolyLineRendere.strokeColor = UIColor.red
+        
+        return myPolyLineRendere
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -172,10 +295,10 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         //①キーボードを閉じる
-        serchText.resignFirstResponder()
+        mySearchBar.resignFirstResponder()
         
         //②入力された文字を取り出す
-        let serchKeyword = serchText.text
+        let serchKeyword = mySearchBar.text
         
         //③入力された文字をデバックエリアに表示
         print(serchKeyword)

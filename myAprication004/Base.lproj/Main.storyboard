@@ -213,11 +213,6 @@
                                     <outletCollection property="gestureRecognizers" destination="5X1-Hm-gSB" appends="YES" id="v4j-kZ-SCz"/>
                                 </connections>
                             </mapView>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2AN-FW-Qok">
-                                <rect key="frame" x="0.0" y="124" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="bWi-86-1oA">
                                 <rect key="frame" x="349" y="136" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -255,7 +250,6 @@
                         <outlet property="createDiaryBtn" destination="rQw-nS-2QQ" id="fBP-oQ-2WI"/>
                         <outlet property="dispMap" destination="d6H-gA-gym" id="I7Y-aw-bwE"/>
                         <outlet property="listDiaryBtn" destination="Vo4-qp-Kdz" id="y6o-P2-BZx"/>
-                        <outlet property="serchText" destination="2AN-FW-Qok" id="8vA-ri-J6b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DJd-ML-Df0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -489,6 +483,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xhb-xp-thS"/>
+        <segue reference="Bd5-U0-tJH"/>
     </inferredMetricsTieBreakers>
 </document>
