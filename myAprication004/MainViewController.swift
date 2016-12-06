@@ -65,30 +65,30 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         // 縮尺(表示領域)を指定.
         let mySpan: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
         let myRegion: MKCoordinateRegion = MKCoordinateRegionMake(center, mySpan)
-//
-//        // MapViewにregionを追加.
-//        dispMap.region = myRegion
-//        
-//        // viewにMapViewを追加.
-//        self.view.addSubview(dispMap)
-//        
-//        // 直線を引く座標を作成.
-//        let coordinate_1 = CLLocationCoordinate2D(latitude: 37.301741, longitude: -122.050333)
-//        let coordinate_2 = CLLocationCoordinate2D(latitude: 37.351951, longitude: -122.020314)
-//        let coordinate_3 = CLLocationCoordinate2D(latitude: 37.301741, longitude: -122.020314)
-//        let coordinate_4 = CLLocationCoordinate2D(latitude: 37.351951, longitude: -122.050333)
-//        
-//        // 座標を配列に格納.
-//        var coordinates_1 = [coordinate_1, coordinate_2]
-//        var coordinates_2 = [coordinate_3, coordinate_4]
-//        
-//        // polyline作成.
-//        let myPolyLine_1: MKPolyline = MKPolyline(coordinates: &coordinates_1, count: coordinates_1.count)
-//        let myPolyLine_2: MKPolyline = MKPolyline(coordinates: &coordinates_2, count: coordinates_2.count)
-//        
-//        // mapViewにcircleを追加.
-//        dispMap.add(myPolyLine_1)
-//        dispMap.add(myPolyLine_2)
+
+        // MapViewにregionを追加.
+        dispMap.region = myRegion
+
+        // viewにMapViewを追加.
+        self.view.addSubview(dispMap)
+
+        // 直線を引く座標を作成.
+        let coordinate_1 = CLLocationCoordinate2D(latitude: 37.301741, longitude: -122.050333)
+        let coordinate_2 = CLLocationCoordinate2D(latitude: 37.351951, longitude: -122.020314)
+        let coordinate_3 = CLLocationCoordinate2D(latitude: 37.301741, longitude: -122.020314)
+        let coordinate_4 = CLLocationCoordinate2D(latitude: 37.351951, longitude: -122.050333)
+
+        // 座標を配列に格納.
+        var coordinates_1 = [coordinate_1, coordinate_2]
+        var coordinates_2 = [coordinate_3, coordinate_4]
+        
+        // polyline作成.
+        let myPolyLine_1: MKPolyline = MKPolyline(coordinates: &coordinates_1, count: coordinates_1.count)
+        let myPolyLine_2: MKPolyline = MKPolyline(coordinates: &coordinates_2, count: coordinates_2.count)
+        
+        // mapViewにcircleを追加.
+        dispMap.add(myPolyLine_1)
+        dispMap.add(myPolyLine_2)
 
         
         }
@@ -125,6 +125,14 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         
         // MapViewにピンを追加.
         dispMap.addAnnotation(myPin)
+        
+//        //ピンの色を指定
+//        myPin.pinTintColor = UIColor.purpleColor()
+//        
+//        //バルーンにボタンをつける
+//        pinView?.canShowCallout = true
+//        let rightButton: AnyObject! = UIButton(type: UIButtonType.detailDisclosure)
+//        pinView?.rightCalloutAccessoryView = rightButton as? UIView
     }
     
         
@@ -241,12 +249,12 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         let viewContext = appDelegate.persistentContainer.viewContext
         let query: NSFetchRequest<Diary> = Diary.fetchRequest()
         
-        //一件取得
-        var df = DateFormatter()
-        df.dateFormat = "yyyy/MM/dd hh:mm:ss +0000"
-        df.timeZone = TimeZone.current
-        //保存していた日付を文字列からDate型に変換
-        //var savedDateTime:NSDate = df.date(from: "\(myAp.myCount)") as! NSDate
+//        //一件取得
+//        var df = DateFormatter()
+//        df.dateFormat = "yyyy/MM/dd" //"yyyy/MM/dd hh:mm:ss +0000"
+//        df.timeZone = TimeZone.current
+//        //保存していた日付を文字列からDate型に変換
+//        var savedDateTime:NSDate = df.date(from: "\(myAp.myCount)") as! NSDate
 //        print(savedDateTime)
 //        //検索条件として指定
 //        let predicate = NSPredicate(format: "SELF.created_at = %@", savedDateTime )

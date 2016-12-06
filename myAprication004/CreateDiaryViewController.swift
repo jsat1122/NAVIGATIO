@@ -143,15 +143,19 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
 
     }
     
+    
     @IBAction func diaryCreate(_ sender: UIButton) {
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let viewContext = appDelegate.persistentContainer.viewContext
         let diary = NSEntityDescription.entity(forEntityName: "Diary", in: viewContext) //全ての日記を取得
         let newRecord = NSManagedObject(entity: diary!, insertInto: viewContext)
+        //型変換
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
+        var dateTextDate:Date = dateFormatter.date(from: "")!
+        
         newRecord.setValue("", forKey: "title") //値を代入
-        newRecord.setValue("dateFormatter", forKey: "date")//値を代入
+        newRecord.setValue(dateTextDate, forKey: "date?")//値を代入
         newRecord.setValue("", forKey: "category")//値を代入
         newRecord.setValue("", forKey: "diary")//値を代入
         newRecord.setValue("", forKey: "image")//値を代入
@@ -189,6 +193,17 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
         // Dispose of any resources that can be recreated.
     }
     
+    //文字が空の時にアラートを出す
+    func showAlert(){
+        let VERSION: Float = (UIDevice.current.systemVersion as NSString).floatValue
+        if VERSION>=8.0{
+            let alertController = UIAlertController(title: "Error", message: "Please enter your name", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title:"OK", style: .default, handler: nil)
+            alertController.addAction(defaultAction)
+            present(alertController, animated: true, completion: nil)
+        }
+    }
+    
     internal func onDidChangeDate(sender: UIDatePicker){
 //        let formatter = DateFormatter()
 //        formatter.dateFormat = "yyyy/MM/dd"
@@ -198,18 +213,22 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
 //        dateTxt.text = formatter.string(from: sender.date)
 //        selectedDate = sender.date as NSDate
         
-        let created2 = DateFormatter()
-        created2.dateFormat = "yyyy/MM/dd hh:mm:ss"
-        created2.timeZone = TimeZone.current
         
-        var strDateTmp = created2.string(from: Date())
-        var changeDate = created2.date(from: strDateTmp)
+//        
+//        let created2 = DateFormatter()
+//        created2.dateFormat = "yyyy/MM/dd" //"yyyy/MM/dd hh:mm:ss"
+//        created2.timeZone = TimeZone.current
+//        
+//        var strDateTmp = created2.string(from: Date())
+//        var changeDate = created2.date(from: strDateTmp)
+//        
+//        //coreDataに設定
+//        created2.setValue(changeDate, forKey: "created2")
+//        
+//                dateTxt.text = created2.string(from: sender.date)
+//                selectedDate = sender.date as NSDate
         
-        //coreDataに設定
-        created2.setValue(changeDate, forKey: "created2")
         
-                dateTxt.text = created2.string(from: sender.date)
-                selectedDate = sender.date as NSDate
         
 //        //キーボード上部に表示
 //        UIView *inputAccessoryView = UIDatePicker

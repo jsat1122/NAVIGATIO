@@ -16,12 +16,13 @@ import CoreData //追加
 
 class ReadDiaryViewController: UIViewController {
 //    @IBOutlet weak var myWebView: UIWebView!
-    @IBOutlet weak var editBtn: UIButton!
 //    @IBOutlet weak var myReloadBtn: UIToolbar!
+    @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var deleateDiaryBtn: UIButton!
     @IBOutlet weak var shareDiaryBtn: UIButton!
     @IBOutlet weak var likeDiaryBtn: UIButton!
     
+    var myName: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,6 +124,15 @@ class ReadDiaryViewController: UIViewController {
 //        self.myWebView.reload()
 //    }
 
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "showResult"{
+//            let createDiaryViewController:CreateDiaryViewController = segue.destination as! CreateDiaryViewController
+//            createDiaryViewController.myName = self.label.text!
+//            self.textField.resignFirstResponder()
+//        }
+//        
+//    }
+    
     @IBAction func editBtn(_ sender: UIBarButtonItem) {
         
     }

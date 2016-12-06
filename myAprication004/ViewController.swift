@@ -118,13 +118,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        var imageDates: Date = Date(dateText)!
 //        var someNumbAlt: Date = myString.integerValue
 
-//        let dateText = DateFormatter()
-//        dateText.dateFormat = "yyyy/MM/dd"
-//        dateText.formattingContext = imageDates.string(from: dateText)
+        let dateText = DateFormatter()
+        dateText.dateFormat = "yyyy/MM/dd"
+        var dateTextdate:Date = dateText.date(from: imageDates[indexPath.row])!
         
         //imageDates.text = formatter.string(from: dateText)
         
-        cell.setCell(imageName: imageNames[indexPath.row], titleText: imageTitles[indexPath.row], dateText: imageDates[indexPath.row], categoryText: imageCategorys[indexPath.row], diaryText: imageDairys[indexPath.row])
+        cell.setCell(imageName: imageNames[indexPath.row], titleText: imageTitles[indexPath.row], dateText: dateTextdate, categoryText: imageCategorys[indexPath.row], diaryText: imageDairys[indexPath.row])
         
         return cell
     }
