@@ -46,26 +46,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0B7DD4DF414058F45B03CFCBFABCF4C1 /* FontAwesome.swift.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FontAwesome.swift.bundle; path = FontAwesome.swift.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B7DD4DF414058F45B03CFCBFABCF4C1 /* FontAwesome.swift.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FontAwesome.swift.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		134706A4B31DFB5857DD7E1C92A4521F /* Pods-myAprication004-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-myAprication004-acknowledgements.markdown"; sourceTree = "<group>"; };
-		1A541C524AF874116E26AC3B3F2EBB22 /* Pods_myAprication004.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_myAprication004.framework; path = "Pods-myAprication004.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A541C524AF874116E26AC3B3F2EBB22 /* Pods_myAprication004.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myAprication004.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9C98F50E906053138DAD5CD0AB333F /* Pods-myAprication004UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-myAprication004UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1CB88546B17539E9552BBAE1D30FF268 /* FontAwesome.swift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FontAwesome.swift-prefix.pch"; sourceTree = "<group>"; };
-		1EBF37FBC9F4A1966DF39A1B412720EA /* FontAwesome_swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FontAwesome_swift.framework; path = FontAwesome.swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EBF37FBC9F4A1966DF39A1B412720EA /* FontAwesome_swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FontAwesome_swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2467CEBEFCAA0D1255221F83DFC075EA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		265779696DA2C4FBAE5C891E331FCCC4 /* Pods-myAprication004UITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-myAprication004UITests-resources.sh"; sourceTree = "<group>"; };
 		27C23E16390F6F5920E271EBFB6A30A8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		282E317D90744761F406E685BC46589A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
 		2A094DBF5949CD4ABEF37146F1D7463E /* Pods-myAprication004Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-myAprication004Tests.release.xcconfig"; sourceTree = "<group>"; };
-		3577B1FCECC6A9CE495B87F864B16912 /* FontAwesome.swift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = FontAwesome.swift.modulemap; sourceTree = "<group>"; };
-		3ADA809F3E2A1EC85461D03C8252099C /* Pods_myAprication004Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_myAprication004Tests.framework; path = "Pods-myAprication004Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3577B1FCECC6A9CE495B87F864B16912 /* FontAwesome.swift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = FontAwesome.swift.modulemap; sourceTree = "<group>"; };
+		3ADA809F3E2A1EC85461D03C8252099C /* Pods_myAprication004Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myAprication004Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CB8DF1487534236349AFF43A3A406F9 /* FontAwesome.swift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FontAwesome.swift-umbrella.h"; sourceTree = "<group>"; };
 		3CDB027C27ADB89B4CDAEAFAB121B329 /* Pods-myAprication004Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-myAprication004Tests-resources.sh"; sourceTree = "<group>"; };
 		4184554D61F2FA3FA20364271C01D37F /* Enum.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Enum.swift; path = FontAwesome/Enum.swift; sourceTree = "<group>"; };
 		42414CDF5BA3E0FC24DE8F022426742A /* Pods-myAprication004.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-myAprication004.debug.xcconfig"; sourceTree = "<group>"; };
 		47D8DE3D562F39500E3480552BB9AEE0 /* Pods-myAprication004Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-myAprication004Tests-frameworks.sh"; sourceTree = "<group>"; };
 		4F7176F7E7C63350015C491391FEA6DB /* Pods-myAprication004UITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-myAprication004UITests-umbrella.h"; sourceTree = "<group>"; };
-		585F3BE3E4025DDAB6CA30D207CC114A /* Pods_myAprication004UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_myAprication004UITests.framework; path = "Pods-myAprication004UITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		585F3BE3E4025DDAB6CA30D207CC114A /* Pods_myAprication004UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myAprication004UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A71C4873BC33C2A3D534AE91C34E3F0 /* Pods-myAprication004UITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-myAprication004UITests-frameworks.sh"; sourceTree = "<group>"; };
 		6FB021A724C35E51FE8C5818BCE66888 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84C5D6A47EF1DE4233F7188A79159BCF /* Pods-myAprication004Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-myAprication004Tests-dummy.m"; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 		8AE6669452D3B4D6D1FEC4C4C5D3001C /* Pods-myAprication004UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-myAprication004UITests.release.xcconfig"; sourceTree = "<group>"; };
 		8B0DE008358F88F9915E40132FC39012 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91F271F74D70350F46EA5346707A2474 /* FontAwesomeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesomeView.swift; path = FontAwesome/FontAwesomeView.swift; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		98B28321E70C90B8D24F7B39FE083E99 /* Pods-myAprication004Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-myAprication004Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		9B712054A6E86F6FD4424643A68AE833 /* Pods-myAprication004-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-myAprication004-dummy.m"; sourceTree = "<group>"; };
 		9CAFE2DD3540EB46E81B6B7DD33C918C /* Pods-myAprication004Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-myAprication004Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -87,12 +87,12 @@
 		CEBB6B5215D6FA17080885B7AAFB0B26 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D620B3758E51423C055C8C9AD9688B6E /* FontAwesome.swift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FontAwesome.swift-dummy.m"; sourceTree = "<group>"; };
 		E0E710F2473D1B2DE10D6F68FD156D32 /* Pods-myAprication004-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-myAprication004-frameworks.sh"; sourceTree = "<group>"; };
-		E1C76C3EFC7CAACAE3FE392E977601A6 /* Pods-myAprication004UITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-myAprication004UITests.modulemap"; sourceTree = "<group>"; };
+		E1C76C3EFC7CAACAE3FE392E977601A6 /* Pods-myAprication004UITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-myAprication004UITests.modulemap"; sourceTree = "<group>"; };
 		E5506562E62D8E5DE69A0B85595471B1 /* Pods-myAprication004-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-myAprication004-umbrella.h"; sourceTree = "<group>"; };
 		E751643369496E4CD4EDF66244DD1BD9 /* FontAwesome.swift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FontAwesome.swift.xcconfig; sourceTree = "<group>"; };
-		F1E51D4CBBD79E494D4490F9F16305D4 /* Pods-myAprication004.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-myAprication004.modulemap"; sourceTree = "<group>"; };
-		F2C9F5CB7DDE23C6187F56EA24FFA507 /* Pods-myAprication004Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-myAprication004Tests.modulemap"; sourceTree = "<group>"; };
-		F42506C7C75E4B10CFB210B4292DA4E3 /* FontAwesome.otf */ = {isa = PBXFileReference; includeInIndex = 1; name = FontAwesome.otf; path = FontAwesome/FontAwesome.otf; sourceTree = "<group>"; };
+		F1E51D4CBBD79E494D4490F9F16305D4 /* Pods-myAprication004.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-myAprication004.modulemap"; sourceTree = "<group>"; };
+		F2C9F5CB7DDE23C6187F56EA24FFA507 /* Pods-myAprication004Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-myAprication004Tests.modulemap"; sourceTree = "<group>"; };
+		F42506C7C75E4B10CFB210B4292DA4E3 /* FontAwesome.otf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = FontAwesome.otf; path = FontAwesome/FontAwesome.otf; sourceTree = "<group>"; };
 		FA3F2FA061E9CB1494F78F65E29ABBE8 /* Pods-myAprication004-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-myAprication004-acknowledgements.plist"; sourceTree = "<group>"; };
 		FEE7191F63F1FC45F8832437B72F870F /* Pods-myAprication004.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-myAprication004.release.xcconfig"; sourceTree = "<group>"; };
 		FF48D97C8E37D2A09DA9F19A730E0A85 /* Pods-myAprication004Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-myAprication004Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -242,7 +242,6 @@
 				B47A97F8EF9B33C309C9D42ADA6ED48C /* Resources */,
 				8C791BC092E15C47CDC150C4789396EA /* Support Files */,
 			);
-			name = FontAwesome.swift;
 			path = FontAwesome.swift;
 			sourceTree = "<group>";
 		};

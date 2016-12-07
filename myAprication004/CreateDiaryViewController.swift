@@ -152,7 +152,7 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
         //型変換
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
-        var dateTextDate:Date = dateFormatter.date(from: "date")!
+        var dateTextDate:Date = dateFormatter.date(from: dateTxt.text!)!
         
         newRecord.setValue("", forKey: "title") //値を代入
         newRecord.setValue(dateTextDate, forKey: "date")//値を代入

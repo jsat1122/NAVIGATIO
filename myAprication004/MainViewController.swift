@@ -14,6 +14,11 @@ import CoreData //追加
 
 class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelegate , UIApplicationDelegate{
     
+    let annotation1 = TestMKPointAnnotation()
+    let annotation2 = TestMKPointAnnotation()
+    var line = MKPolyline() //直線
+    
+    
     //配列の定義
     var diaryArray :[NSDictionary] = []
     var dairyDic :NSDictionary! = [:]
@@ -34,20 +39,46 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
 
         // Do any additional setup after loading the view.
         
-//        //入力のヒントになる、プレースホルダーを設定
-//        serchText.placeholder = "国名・地域名を入力してください"
-       
-        // MapViewを生成.
-        let myMapView: MKMapView = MKMapView()
-        myMapView.frame = self.view.frame
+        // ボタン作成
+        // barButtonSystemItemを変更すればいろいろなアイコンに変更できます
+        var composeButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.compose, target: self, action: "clickComposeButton")
+        var organizeButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.organize, target: self, action: "clickorganizeButton")
         
-        // MapViewのサイズを画面全体に.
-        myMapView.frame = self.view.bounds
+        //ナビゲーションバーの右側にボタン付与
+        self.navigationItem.setRightBarButtonItems([composeButton, organizeButton], animated: true)
+        
+        func clickSearchButton(){
+            //searchButtonを押した際の処理を記述
+        }
+        
+        func clickRefreshButton(){
+            //refreshButtonを押した際の処理を記述
+        }
+        
+
+//        // 経度緯度を設定.
+//        let myLan: CLLocationDegrees = 37.331741
+//        let myLon: CLLocationDegrees = -122.030333
+//        
+//        let x = 140.000000 //経度
+//        let y = 35.000000  //緯度
+//        
+//        //中心座標
+//        let center = CLLocationCoordinate2DMake(y, x)
+        
+//        //表示範囲
+//        let span = MKCoordinateSpanMake(1.0, 1.0)
+//        
+//        //中心座標と表示範囲をマップに登録する。
+//        let region = MKCoordinateRegionMake(center, span)
+//        myMapView.setRegion(region, animated:true)
+        
+//        // MapViewのサイズを画面全体に.
+//        myMapView.frame = self.view.bounds
         
         // Delegateを設定.
         myMapView.delegate = self
 
-        
         // searchBar生成.
         mySearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 300, height: 80))
         mySearchBar.layer.position = CGPoint(x: self.view.frame.width/2, y: 80)
@@ -73,7 +104,6 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         listDiaryBtn.setTitle(String.fontAwesomeIcon(name: .listUL), for: .normal)
         
         // MapViewを生成.
-        dispMap = MKMapView()
         dispMap.frame = self.view.frame
         
         // デリゲートを設定.
@@ -105,23 +135,23 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         // MapViewにregionを追加.
         dispMap.region = myRegion
 
-        // 直線を引く座標を作成.
-        let coordinate_1 = CLLocationCoordinate2D(latitude: 37.301741, longitude: -122.050333)
-        let coordinate_2 = CLLocationCoordinate2D(latitude: 37.351951, longitude: -122.020314)
-        let coordinate_3 = CLLocationCoordinate2D(latitude: 37.301741, longitude: -122.020314)
-        let coordinate_4 = CLLocationCoordinate2D(latitude: 37.351951, longitude: -122.050333)
-
-        // 座標を配列に格納.
-        var coordinates_1 = [coordinate_1, coordinate_2]
-        var coordinates_2 = [coordinate_3, coordinate_4]
-        
-        // polyline作成.
-        let myPolyLine_1: MKPolyline = MKPolyline(coordinates: &coordinates_1, count: coordinates_1.count)
-        let myPolyLine_2: MKPolyline = MKPolyline(coordinates: &coordinates_2, count: coordinates_2.count)
-        
-        // mapViewにcircleを追加.
-        dispMap.add(myPolyLine_1)
-        dispMap.add(myPolyLine_2)
+//        // 直線を引く座標を作成.
+//        let coordinate_1 = CLLocationCoordinate2D(latitude: 37.301741, longitude: -122.050333)
+//        let coordinate_2 = CLLocationCoordinate2D(latitude: 37.351951, longitude: -122.020314)
+//        let coordinate_3 = CLLocationCoordinate2D(latitude: 37.301741, longitude: -122.020314)
+//        let coordinate_4 = CLLocationCoordinate2D(latitude: 37.351951, longitude: -122.050333)
+//
+//        // 座標を配列に格納.
+//        var coordinates_1 = [coordinate_1, coordinate_2]
+//        var coordinates_2 = [coordinate_3, coordinate_4]
+//        
+//        // polyline作成.
+//        let myPolyLine_1: MKPolyline = MKPolyline(coordinates: &coordinates_1, count: coordinates_1.count)
+//        let myPolyLine_2: MKPolyline = MKPolyline(coordinates: &coordinates_2, count: coordinates_2.count)
+//        
+//        // mapViewにcircleを追加.
+//        dispMap.add(myPolyLine_1)
+//        dispMap.add(myPolyLine_2)
         
         
         // PlaceMarkを生成して出発点、目的地の座標をセット.
@@ -145,8 +175,8 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         // 複数経路の検索を有効.
         myRequest.requestsAlternateRoutes = true
         
-        // 移動手段を車に設定.
-        myRequest.transportType = MKDirectionsTransportType.automobile
+        // 移動手段を自由に設定.
+        myRequest.transportType = MKDirectionsTransportType.any
         
         // MKDirectionsを生成してRequestをセット.
         let myDirections: MKDirections = MKDirections(request: myRequest)
@@ -194,9 +224,22 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         routeRenderer.strokeColor = UIColor.red
         return routeRenderer
         
+        //左下のピン
+        annotation1.coordinate = CLLocationCoordinate2DMake(-1.0, -1.0)
+        annotation1.title = "ピン1"
+        annotation1.subtitle = "\(annotation1.coordinate.latitude), \(annotation1.coordinate.longitude)"
+        annotation1.pinColor = UIColor.orange
+        dispMap.addAnnotation(annotation1)
         
+        //右上のピン
+        annotation2.coordinate = CLLocationCoordinate2DMake(+1.0, +1.0)
+        annotation2.title = "ピン2"
+        annotation2.subtitle = "\(annotation2.coordinate.latitude), \(annotation2.coordinate.longitude)"
+        dispMap.addAnnotation(annotation2)
+        annotation2.pinColor = UIColor.green
 
     }
+        
         
         }
     /*
@@ -264,7 +307,61 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
             
             return myPinView
         }
-
+    //アノテーションビューを返すメソッド
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        let testView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
+        
+        //吹き出しを表示可能にする。
+        testView.canShowCallout = true
+        
+        //ドラッグ可能にする。
+        testView.isDraggable = true
+        
+        //ピンの色を設定する。
+        if let test = annotation as? TestMKPointAnnotation {
+            testView.pinTintColor = test.pinColor
+        }
+        
+        return testView
+    }
+    
+    //ドラッグ＆ドロップ時の呼び出しメソッド
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, didChangeDragState newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
+        
+        //ピンを離した場合
+        if(newState == .ending){
+            
+            if let test = view.annotation as? MKPointAnnotation {
+                //ピンのサブタイトルを最新の座標にする。
+                test.subtitle = "\(Double(test.coordinate.latitude)), \(Double(test.coordinate.longitude))"
+            }
+            
+            //前回の描画を削除する。
+            mapView.remove(line)
+            
+            //始点と終点の座標
+            var location:[CLLocationCoordinate2D] = [CLLocationCoordinate2D(latitude: annotation1.coordinate.latitude, longitude: annotation1.coordinate.longitude),
+                                                     CLLocationCoordinate2D(latitude: annotation2.coordinate.latitude, longitude: annotation2.coordinate.longitude)]
+            
+            //2点間に直線を描画する。
+            line = MKPolyline(coordinates: &location, count: 2)
+            mapView.add(line)
+        }
+    }
+    //描画メソッド実行時の呼び出しメソッド
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+        let testRender = MKPolylineRenderer(overlay: overlay)
+        
+        //直線の幅を設定する。
+        testRender.lineWidth = 3
+        
+        //直線の色を設定する。
+        testRender.strokeColor = UIColor.red
+        
+        return testRender
+    }
+    
     /*
      addOverlayした際に呼ばれるデリゲートメソッド.
      */
@@ -286,7 +383,6 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
         
-
     }
     
     @IBOutlet weak var inputText: UITextField!

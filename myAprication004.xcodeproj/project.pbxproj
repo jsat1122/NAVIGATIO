@@ -19,6 +19,7 @@
 		1856D6B01DDEBF9200CA1B8B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1856D6AF1DDEBF9200CA1B8B /* MainViewController.swift */; };
 		1856D6B21DDEC0D200CA1B8B /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1856D6B11DDEC0D200CA1B8B /* TopViewController.swift */; };
 		1856D6B41DDEC15C00CA1B8B /* earth.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1856D6B31DDEC15C00CA1B8B /* earth.jpeg */; };
+		187C406C1DF7AB8400921D48 /* TestMKPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187C406B1DF7AB8400921D48 /* TestMKPointAnnotation.swift */; };
 		188451641DED8A20000BEEF8 /* cat1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 188451601DED8A20000BEEF8 /* cat1.jpg */; };
 		188451651DED8A20000BEEF8 /* cat2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 188451611DED8A20000BEEF8 /* cat2.jpg */; };
 		188451661DED8A20000BEEF8 /* dog1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 188451621DED8A20000BEEF8 /* dog1.jpg */; };
@@ -74,6 +75,7 @@
 		1856D6AF1DDEBF9200CA1B8B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		1856D6B11DDEC0D200CA1B8B /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		1856D6B31DDEC15C00CA1B8B /* earth.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = earth.jpeg; sourceTree = "<group>"; };
+		187C406B1DF7AB8400921D48 /* TestMKPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestMKPointAnnotation.swift; sourceTree = "<group>"; };
 		188451601DED8A20000BEEF8 /* cat1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat1.jpg; sourceTree = "<group>"; };
 		188451611DED8A20000BEEF8 /* cat2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat2.jpg; sourceTree = "<group>"; };
 		188451621DED8A20000BEEF8 /* dog1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dog1.jpg; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				1884516C1DEDC40F000BEEF8 /* ViewController.swift */,
 				1832CB391DEBC361004AE3A8 /* ReadDiaryViewController.swift */,
 				1856D6811DDEACA400CA1B8B /* Main.storyboard */,
+				187C406B1DF7AB8400921D48 /* TestMKPointAnnotation.swift */,
 				1884516A1DEDC3CE000BEEF8 /* ListTableViewCell.swift */,
 				1856D67B1DDEACA400CA1B8B /* AppDelegate.swift */,
 				1884516E1DEDD20B000BEEF8 /* japan.png */,
@@ -524,6 +527,7 @@
 				188915151DE07FD0007C7745 /* Diary+CoreDataClass.swift in Sources */,
 				1856D67C1DDEACA400CA1B8B /* AppDelegate.swift in Sources */,
 				1832CB3B1DEBC361004AE3A8 /* ReadDiaryViewController.swift in Sources */,
+				187C406C1DF7AB8400921D48 /* TestMKPointAnnotation.swift in Sources */,
 				1884516B1DEDC3CE000BEEF8 /* ListTableViewCell.swift in Sources */,
 				188915161DE07FD0007C7745 /* Diary+CoreDataProperties.swift in Sources */,
 				1856D6B01DDEBF9200CA1B8B /* MainViewController.swift in Sources */,
