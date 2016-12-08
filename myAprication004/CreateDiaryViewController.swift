@@ -42,8 +42,7 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
 //        diaryTxt.placeholder = "日記を入力してください"
 //        diaryTxt.placeHolderColor = UIColor(red: 255, green: 0, blue: 0, alpha: 0.5)
 
-        
-        
+
         //fontAwesome
         nyCreateBtn.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
         nyCreateBtn.setTitle(String.fontAwesomeIcon(name: .floppyO), for: .normal)
@@ -93,9 +92,6 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
 //        self.dateTxt.text = "現在時刻"
     }
     
-    
-
-    
     @IBAction func deleteAction(_ sender: UIButton) {
         //アラートを作る
         let alertController = UIAlertController(title:"削除しますか？", message:"保存されていない日記は削除されます", preferredStyle: .alert)
@@ -143,16 +139,54 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
 
     }
     
+    //アラート表示
+    func showAlert(message:String){
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(defaultAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
     
     @IBAction func diaryCreate(_ sender: UIButton) {
+        
+//        //アラートを作る
+//        let alertNothing = UIAlertController()
+//        var titleString = self.titleTxt.text
+//        var dateString = self.dateTxt.text
+//        var categoryString = self.categoryTxt.text
+//        var diaryString = self.diaryTxt.text
+//        
+//        
+//        titleString = titleString?.trimmingCharacters(in: NSCharacterSet.whitespaces)
+//        if titleString == ""{
+//            //alert title
+//            self.showAlert(message: "Please enter title")
+//        }
+//        if dateString == ""{
+//            //alert date
+//            self.showAlert(message: "Please enter date")
+//        }
+//        if categoryString == ""{
+//            //alert category
+//            self.showAlert(message: "Please enter category")
+//        }
+//        if diaryString == ""{
+//            //alert diary
+//            self.showAlert(message: "Please enter diary")
+//        }
+//        
+//        //アラートを表示する（重要）
+//        present(alertNothing, animated: true, completion: nil)
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let viewContext = appDelegate.persistentContainer.viewContext
         let diary = NSEntityDescription.entity(forEntityName: "Diary", in: viewContext) //全ての日記を取得
         let newRecord = NSManagedObject(entity: diary!, insertInto: viewContext)
+        
+    
         //型変換
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
-        var dateTextDate:Date = dateFormatter.date(from: dateTxt.text!)!
+        let dateTextDate:Date = dateFormatter.date(from: dateTxt.text!)!
         
         newRecord.setValue("", forKey: "title") //値を代入
         newRecord.setValue(dateTextDate, forKey: "date")//値を代入
@@ -164,9 +198,57 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
             try viewContext.save()
         } catch {
         }
-        navigationController?.viewControllers.removeLast() //views to pop
         
+        テキストが空の時にアラート表示
+        var alertController: UIAlertController = textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            var titleString = self.titleTxt.text
+            var dateString = self.dateTxt.text
+            var categoryString = self.categoryTxt.text
+            var diaryString = self.diaryTxt.text
+            
+            
+            titleString = titleString?.trimmingCharacters(in: NSCharacterSet.whitespaces)
+            if titleString == ""{
+                //alert title
+                self.showAlert(message: "Please enter title")
+            }
+            if dateString == ""{
+                    //alert date
+                    self.showAlert(message: "Please enter date")
+                }
+            if categoryString == ""{
+                        //alert category
+                        self.showAlert(message: "Please enter category")
+                    }
+            if diaryString == ""{
+                            //alert diary
+                            self.showAlert(message: "Please enter diary")
+                        }
+                        
+                        //titleTxt からフォーカスを外すことによってキーボードを消す
+            self.titleTxt.resignFirstResponder(){
+                        return true
+                    }
+            self.categoryTxt.resignFirstResponder()
+                        return true
+                    }
+            self.diaryTxt.resignFirstResponder()
+                    default
+                    }
+        
+    //アラート表示
+    func showAlert(message:String){
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(defaultAction)
+        self.present(alertController, animated: true, completion: nil)
     }
+
+    navigationController?.viewControllers.removeLast() //views to pop
+        
+    
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         titleTxt.text = ""
         dateTxt.text = ""
@@ -193,27 +275,9 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
         // Dispose of any resources that can be recreated.
     }
     
-    //文字が空の時にアラートを出す
-    func showAlert(){
-        let VERSION: Float = (UIDevice.current.systemVersion as NSString).floatValue
-        if VERSION>=8.0{
-            let alertController = UIAlertController(title: "Error", message: "Please enter your name", preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title:"OK", style: .default, handler: nil)
-            alertController.addAction(defaultAction)
-            present(alertController, animated: true, completion: nil)
-        }
-    }
+    
     
     internal func onDidChangeDate(sender: UIDatePicker){
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "yyyy/MM/dd"
-//        
-//        print(formatter)
-//        //型変換
-//        dateTxt.text = formatter.string(from: sender.date)
-//        selectedDate = sender.date as NSDate
-        
-        
 //        
 //        let created2 = DateFormatter()
 //        created2.dateFormat = "yyyy/MM/dd" //"yyyy/MM/dd hh:mm:ss"
@@ -258,4 +322,3 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
         dateTxt.endEditing(true);
     }
 }
-

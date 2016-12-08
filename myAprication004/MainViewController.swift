@@ -31,6 +31,8 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
     var mySearchBar: UISearchBar!
     var myRegion: MKCoordinateRegion!
     
+    var composeButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,21 +41,15 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
 
         // Do any additional setup after loading the view.
         
-        // ボタン作成
+        // NavigationBarにボタン作成
         // barButtonSystemItemを変更すればいろいろなアイコンに変更できます
-        var composeButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.compose, target: self, action: "clickComposeButton")
+        composeButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.compose, target: self, action: "clickComposeButton")
+        
         var organizeButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.organize, target: self, action: "clickorganizeButton")
         
         //ナビゲーションバーの右側にボタン付与
         self.navigationItem.setRightBarButtonItems([composeButton, organizeButton], animated: true)
         
-        func clickSearchButton(){
-            //searchButtonを押した際の処理を記述
-        }
-        
-        func clickRefreshButton(){
-            //refreshButtonを押した際の処理を記述
-        }
         
 
 //        // 経度緯度を設定.
@@ -209,39 +205,51 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         fromPin.title = "出発地点"
         toPin.title = "目的地"
         
-    
-    
-    // ルートの表示設定.
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        
-        let route: MKPolyline = overlay as! MKPolyline
-        let routeRenderer: MKPolylineRenderer = MKPolylineRenderer(polyline: route)
-        
-        // ルートの線の太さ.
-        routeRenderer.lineWidth = 3.0
-        
-        // ルートの線の色.
-        routeRenderer.strokeColor = UIColor.red
-        return routeRenderer
-        
-        //左下のピン
-        annotation1.coordinate = CLLocationCoordinate2DMake(-1.0, -1.0)
-        annotation1.title = "ピン1"
-        annotation1.subtitle = "\(annotation1.coordinate.latitude), \(annotation1.coordinate.longitude)"
-        annotation1.pinColor = UIColor.orange
-        dispMap.addAnnotation(annotation1)
-        
-        //右上のピン
-        annotation2.coordinate = CLLocationCoordinate2DMake(+1.0, +1.0)
-        annotation2.title = "ピン2"
-        annotation2.subtitle = "\(annotation2.coordinate.latitude), \(annotation2.coordinate.longitude)"
-        dispMap.addAnnotation(annotation2)
-        annotation2.pinColor = UIColor.green
-
-    }
-        
         
         }
+    
+    func clickComposeButton(){
+        //composeButtonを押した際の処理を記述
+        let second = storyboard?.instantiateViewController(withIdentifier: "CreateDiaryViewController")
+        self.navigationController?.pushViewController(second!, animated: true)
+    }
+    
+    func clickorganizeButton(){
+        //organizeButtonを押した際の処理を記述
+        let storyboard: UIStoryboard = self.storyboard!
+        let nextView = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+//        self.present(nextView, animated: true, completion: nil)
+        self.navigationController?.pushViewController(nextView, animated: true)
+    }
+//    // ルートの表示設定.
+//    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+//        
+//        let route: MKPolyline = overlay as! MKPolyline
+//        let routeRenderer: MKPolylineRenderer = MKPolylineRenderer(polyline: route)
+//        
+//        // ルートの線の太さ.
+//        routeRenderer.lineWidth = 3.0
+//        
+//        // ルートの線の色.
+//        routeRenderer.strokeColor = UIColor.red
+//        return routeRenderer
+//        
+//        //左下のピン
+//        annotation1.coordinate = CLLocationCoordinate2DMake(-1.0, -1.0)
+//        annotation1.title = "ピン1"
+//        annotation1.subtitle = "\(annotation1.coordinate.latitude), \(annotation1.coordinate.longitude)"
+//        annotation1.pinColor = UIColor.orange
+//        dispMap.addAnnotation(annotation1)
+//        
+//        //右上のピン
+//        annotation2.coordinate = CLLocationCoordinate2DMake(+1.0, +1.0)
+//        annotation2.title = "ピン2"
+//        annotation2.subtitle = "\(annotation2.coordinate.latitude), \(annotation2.coordinate.longitude)"
+//        dispMap.addAnnotation(annotation2)
+//        annotation2.pinColor = UIColor.green
+//        
+//    }
+
     /*
      長押しを感知した際に呼ばれるメソッド.
      */
