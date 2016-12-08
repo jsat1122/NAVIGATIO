@@ -44,8 +44,9 @@ class ListTableViewCell: UITableViewCell {
     //型変換
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy/MM/dd"
-    myDateLabel.text = formatter.string(from: dateText) //myDateLabel.text = dateText
-        
+    myDateLabel.text = formatter.string(from: dateText)
+    
+//myDateLabel.text = dateText
     myCategoryLabel.text = categoryText
     myDiaryLabel.text = diaryText
     

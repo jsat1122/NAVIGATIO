@@ -125,29 +125,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         print("Edeintg: \(tableView.isEditing)")
     }
     
-    
-//    /*
-//     Cellの総数を返す
-//     (実装必須)
-//     */
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return diaryArray.count
-//    }
-//    
-//    /*
-//     Cellに値を設定する
-//     (実装必須)
-//     */
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath as IndexPath)
-//        
-//        // Cellに値を設定.
-//        cell.textLabel?.text = "\(diaryArray[indexPath.row])"
-//        
-//        return cell
-//    }
-    
     /*
      編集ボタンが押された際に呼び出される
      */
@@ -173,18 +150,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
      */
     func addCell(sender: AnyObject) {
         print("追加")
-        
+        let someObjects: [AnyObject]
 //        // セルを設定、型変換
 //        let dateText = DateFormatter()
 //        dateText.dateFormat = "yyyy/MM/dd"
 //        var dateTextdate:Date = dateText.date(from: imageDates[indexPath.row])!
-//        
-        // セルを設定、型変換
-        let imageNames = DateFormatter()
-        imageNames.dateFormat = "yyyy/MM/dd"
-        var imageNamesDate:Date = imageNames.date(from: imageNames.add("add Cell"))!
+//     
+        for movie in someObjects as! [Array<Any>] {
+            let movie = object as! Array
+        }
         // myItemsに追加.
-        imageNamesDate.add("add Cell")
+        movie.add("add Cell")
+        
+        // myItemsに追加.
+        myItems.add("add Cell")
+        
+//        // セルを設定、型変換
+//        let imageNames = DateFormatter()
+//        imageNames.dateFormat = "add Cell"
+//        var imageNamesDate:Date = imageNames.date(from: imageNames.add("add Cell"))!
+//        // myItemsに追加.
+//        imageNamesDate.add("add Cell")
         
         // TableViewを再読み込み.
         diary.reloadData()
@@ -204,15 +190,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             //        dateText.dateFormat = "yyyy/MM/dd"
             //        var dateTextdate:Date = dateText.date(from: imageDates[indexPath.row])!
             //        
-
-                    // セルを設定、型変換
-                    let imageNames = DateFormatter()
-                    imageNames.dateFormat = "yyyy/MM/dd"
-                    var imageNamesDates:Date = imageNames.date(from: indexPath.row)!
-                    
-
-            // 指定されたセルのオブジェクトをmyItemsから削除する.
-            imageNames.removeObject(at: imageNamesDates)
+            
+            
+//
+//                    // セルを設定、型変換
+//                    let imageNames = DateFormatter()
+//                    imageNames.dateFormat = "yyyy/MM/dd"
+//                    var imageNamesDates:Date = imageNames.date(from: indexPath.row)!
+//                    
+//
+//            // 指定されたセルのオブジェクトをmyItemsから削除する.
+//            imageNames.removeObject(at: imageNamesDates)
             
             // TableViewを再読み込み.
             diary.reloadData()
