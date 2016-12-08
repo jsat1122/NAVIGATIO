@@ -36,9 +36,13 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+    
+    
         //NavigationBarを表示させ始める
         self.navigationController?.isNavigationBarHidden = false
 
+        
         // Do any additional setup after loading the view.
         
         // NavigationBarにボタン作成

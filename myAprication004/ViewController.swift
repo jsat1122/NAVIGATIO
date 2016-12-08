@@ -47,6 +47,38 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        // ナビゲーションバーの右側に編集ボタンを追加.
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        // Status Barの高さを取得.
+        let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
+        
+        // Viewの高さと幅を取得.
+        let displayWidth: CGFloat = self.view.frame.width
+        let displayHeight: CGFloat = self.view.frame.height
+        
+        // TableViewの生成( status barの高さ分ずらして表示 ).
+        diary = UITableView(frame: CGRect(x: 0, y: barHeight, width: displayWidth, height: displayHeight - barHeight))
+        
+        // Cellの登録.
+        diary.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
+        
+        // DataSourceの設定.
+        diary.dataSource = self
+        
+        // Delegateを設定.
+        diary.delegate = self
+        
+        // 罫線を青色に設定.
+        diary.separatorColor = UIColor.blue
+        
+        // 編集中のセル選択を許可.
+        diary.allowsSelectionDuringEditing = true
+        
+        // TableViewをViewに追加する.
+        self.view.addSubview(diary)
+        
+        
         
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let viewContext = appDelegate.persistentContainer.viewContext
@@ -78,6 +110,117 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     }
     
+    /*
+     Cellが選択された際に呼び出される.
+     */
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // 選択中のセルが何番目か.
+        print("Num: \(indexPath.row)")
+        
+        // 選択中のセルのvalue.
+        print("Value: \(diaryArray[indexPath.row])")
+        
+        // 選択中のセルを編集できるか.
+        print("Edeintg: \(tableView.isEditing)")
+    }
+    
+    
+//    /*
+//     Cellの総数を返す
+//     (実装必須)
+//     */
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return diaryArray.count
+//    }
+//    
+//    /*
+//     Cellに値を設定する
+//     (実装必須)
+//     */
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath as IndexPath)
+//        
+//        // Cellに値を設定.
+//        cell.textLabel?.text = "\(diaryArray[indexPath.row])"
+//        
+//        return cell
+//    }
+    
+    /*
+     編集ボタンが押された際に呼び出される
+     */
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        // TableViewを編集可能にする
+        diary.setEditing(editing, animated: true)
+        
+        // 編集中のときのみaddButtonをナビゲーションバーの左に表示する
+        if editing {
+            print("編集中")
+            let addButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(ViewController.addCell(sender:)))
+            self.navigationItem.setLeftBarButton(addButton, animated: true)
+        } else {
+            print("通常モード")
+            self.navigationItem.setLeftBarButton(nil, animated: true)
+        }
+    }
+    
+    /*
+     addButtonが押された際呼び出される
+     */
+    func addCell(sender: AnyObject) {
+        print("追加")
+        
+//        // セルを設定、型変換
+//        let dateText = DateFormatter()
+//        dateText.dateFormat = "yyyy/MM/dd"
+//        var dateTextdate:Date = dateText.date(from: imageDates[indexPath.row])!
+//        
+        // セルを設定、型変換
+        let imageNames = DateFormatter()
+        imageNames.dateFormat = "yyyy/MM/dd"
+        var imageNamesDate:Date = imageNames.date(from: imageNames.add("add Cell"))!
+        // myItemsに追加.
+        imageNamesDate.add("add Cell")
+        
+        // TableViewを再読み込み.
+        diary.reloadData()
+    }
+    
+    /*
+     Cellを挿入または削除しようとした際に呼び出される
+     */
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        // 削除のとき.
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            print("削除")
+            
+            //        // セルを設定、型変換
+            //        let dateText = DateFormatter()
+            //        dateText.dateFormat = "yyyy/MM/dd"
+            //        var dateTextdate:Date = dateText.date(from: imageDates[indexPath.row])!
+            //        
+
+                    // セルを設定、型変換
+                    let imageNames = DateFormatter()
+                    imageNames.dateFormat = "yyyy/MM/dd"
+                    var imageNamesDates:Date = imageNames.date(from: indexPath.row)!
+                    
+
+            // 指定されたセルのオブジェクトをmyItemsから削除する.
+            imageNames.removeObject(at: imageNamesDates)
+            
+            // TableViewを再読み込み.
+            diary.reloadData()
+        }
+    }
+
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -94,30 +237,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // セルを取得
         cell = tableView.dequeueReusableCell(withIdentifier: "MyCell") as! ListTableViewCell
         
-        // セルを設定
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "yyyy/MM/dd"
-        
-        //myDateLabel.text = formatter.string(from: dateText)
-        //dateTxt.text = formatter.string(from: sender.date)
-        
-//        var stringNumber:String = "1234"
-//        var numberFromString = stringNumber.toInt()
-        
-//        var stringImageDates:String = "yyyy/MM/dd"
-//        var imageDates = stringImageDates.toInt!()
-        
-//        let x : Int = 123
-//        var str = String(x)
-        
-//        var stringNumb: String = "1357"
-//        var someNumb: Int = Int(stringNumb)
-//        var someNumbAlt: Int = myString.integerValue
-        
-//        var dateText: String = "yyyy/MM/dd"
-//        var imageDates: Date = Date(dateText)!
-//        var someNumbAlt: Date = myString.integerValue
-
+        // セルを設定、型変換
         let dateText = DateFormatter()
         dateText.dateFormat = "yyyy/MM/dd"
         var dateTextdate:Date = dateText.date(from: imageDates[indexPath.row])!

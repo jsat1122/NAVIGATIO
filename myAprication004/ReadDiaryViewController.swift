@@ -13,7 +13,6 @@ import FontAwesome_swift //追加
 import CoreData //追加
 
 
-
 class ReadDiaryViewController: UIViewController {
 //    @IBOutlet weak var myWebView: UIWebView!
 //    @IBOutlet weak var myReloadBtn: UIToolbar!
@@ -27,12 +26,11 @@ class ReadDiaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
         //タイトルをつける
         self.title = "日記詳細"
-        //表示データを配列で用意する
+//        //表示データを配列で用意する
 //        objects = [""]
-        
-        
         
         
         //fontAwesome
@@ -48,27 +46,21 @@ class ReadDiaryViewController: UIViewController {
         likeDiaryBtn.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
         likeDiaryBtn.setTitle(String.fontAwesomeIcon(name: .starO), for: .normal)
         
-        // string -> NSURL -> NSURLRequest -> webView.loadRequest
-//        let startUrl = "http://dotinstall.com"
-//        if let url = NSURL(string: startUrl){
-//            let urlRequest = NSURLRequest(url:url as URL)
-//            self.myWebView.loadRequest(urlRequest as URLRequest)
-//        }
     }
     
     @IBAction func deleteDiaryBtn(_ sender: UIButton) {
         //アラートを作る
-        var alertController = UIAlertController(title:"削除しますか？", message:"保存されていない日記は削除されます", preferredStyle: .alert)
+        var alertController = UIAlertController(title:"削除しますか？", message:"", preferredStyle: .alert)
         
         //キャンセルボタンを追加
         alertController.addAction(UIAlertAction(
-            title: "キャンセル",
+            title: "いいえ",
             style: .default,
             handler: {action in self.myCancel()}))
         
         //削除ボタンを追加
         alertController.addAction(UIAlertAction(
-            title: "削除",
+            title: "はい",
             style: .destructive,
             handler: {action in self.myDelete()}))
         

@@ -13,6 +13,27 @@ import MobileCoreServices //追加
 import Photos //追加
 import Foundation //追加
 
+extension UIImage{
+    
+    // Resizeのクラスメソッドを作る.
+    class func ResizeÜIImage(image : UIImage,width : CGFloat, height : CGFloat)-> UIImage!{
+        
+        // 指定された画像の大きさのコンテキストを用意.
+        UIGraphicsBeginImageContext(CGSize(width: width, height: height))
+        
+        // コンテキストに画像を描画する.
+        image.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
+        
+        // コンテキストからUIImageを作る.
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        
+        // コンテキストを閉じる.
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+}
+
 class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UITextFieldDelegate{
     @IBOutlet weak var deleteBtn: UIButton!
     @IBOutlet weak var nyCreateBtn: UIButton!
@@ -34,6 +55,19 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // 画像の設定.
+        let myImage:UIImage = UIImage(named:"japan.png")!
+        
+        // リサイズされたUIImageを指定して、UIImageViewを作る.
+        let myImageView = UIImageView(image: UIImage.ResizeÜIImage(image: myImage, width: self.view.frame.maxX, height: self.view.frame.maxY))
+        
+        // 透過する.
+        myImageView.alpha = 0.05
+        
+        // viewにUIImageViewを追加.
+        self.view.addSubview(myImageView)
+        
         
         //入力のヒントになる、プレースホルダーを設定
         titleTxt.placeholder = "タイトルを入力してください"
@@ -180,34 +214,7 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
             self.showAlert(message: "Please enter diary")
         }
 
-//        //アラートを作る
-//        let alertNothing = UIAlertController()
-//        var titleString = self.titleTxt.text
-//        var dateString = self.dateTxt.text
-//        var categoryString = self.categoryTxt.text
-//        var diaryString = self.diaryTxt.text
-//        
-//        
-//        titleString = titleString?.trimmingCharacters(in: NSCharacterSet.whitespaces)
-//        if titleString == ""{
-//            //alert title
-//            self.showAlert(message: "Please enter title")
-//        }
-//        if dateString == ""{
-//            //alert date
-//            self.showAlert(message: "Please enter date")
-//        }
-//        if categoryString == ""{
-//            //alert category
-//            self.showAlert(message: "Please enter category")
-//        }
-//        if diaryString == ""{
-//            //alert diary
-//            self.showAlert(message: "Please enter diary")
-//        }
-//        
-//        //アラートを表示する（重要）
-//        present(alertNothing, animated: true, completion: nil)
+
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let viewContext = appDelegate.persistentContainer.viewContext
         let diary = NSEntityDescription.entity(forEntityName: "Diary", in: viewContext) //全ての日記を取得
@@ -219,11 +226,11 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
         dateFormatter.dateFormat = "yyyy/MM/dd"
         let dateTextDate:Date = dateFormatter.date(from: dateTxt.text!)!
         
-        newRecord.setValue("", forKey: "title") //値を代入
+        newRecord.setValue(titleTxt.text, forKey: "title") //値を代入
         newRecord.setValue(dateTextDate, forKey: "date")//値を代入
-        newRecord.setValue("", forKey: "category")//値を代入
-        newRecord.setValue("", forKey: "diary")//値を代入
-        newRecord.setValue("", forKey: "image")//値を代入
+        newRecord.setValue(categoryTxt.text, forKey: "category")//値を代入
+        newRecord.setValue(diaryTxt.text, forKey: "diary")//値を代入
+        newRecord.setValue(ImagView.image, forKey: "image")//値を代入
         
         do {
             try viewContext.save()
@@ -243,20 +250,11 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
         
     
 
-//    navigationController?.viewControllers.removeLast() //views to pop
+    navigationController?.viewControllers.removeLast() //views to pop
     
     
     }
     
-
-////アラート表示
-//func showAlert(message:String){
-//    let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-//    let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-//    alertController.addAction(defaultAction)
-//    self.present(alertController, animated: true, completion: nil)
-//}
-
     override func viewWillAppear(_ animated: Bool) {
         titleTxt.text = ""
         dateTxt.text = ""

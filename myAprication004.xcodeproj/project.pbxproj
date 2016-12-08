@@ -307,6 +307,7 @@
 				TargetAttributes = {
 					1856D6771DDEACA400CA1B8B = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 9WFN5LVMP3;
 						ProvisioningStyle = Automatic;
 					};
 					1856D68D1DDEACA400CA1B8B = {
@@ -684,6 +685,7 @@
 			baseConfigurationReference = 7528761EFABBA2798D143C4C /* Pods-myAprication004.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9WFN5LVMP3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/FontAwesome.swift",
@@ -701,6 +703,7 @@
 			baseConfigurationReference = B3EAB1E5CF07B21675CE8356 /* Pods-myAprication004.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9WFN5LVMP3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/FontAwesome.swift",
