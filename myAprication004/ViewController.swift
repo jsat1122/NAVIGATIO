@@ -134,47 +134,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // TableViewを編集可能にする
         diary.setEditing(editing, animated: true)
         
-        // 編集中のときのみaddButtonをナビゲーションバーの左に表示する
-        if editing {
-            print("編集中")
-            let addButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(ViewController.addCell(sender:)))
-            self.navigationItem.setLeftBarButton(addButton, animated: true)
-        } else {
-            print("通常モード")
-            self.navigationItem.setLeftBarButton(nil, animated: true)
         }
-    }
     
-    /*
-     addButtonが押された際呼び出される
-     */
-    func addCell(sender: AnyObject) {
-        print("追加")
-        let someObjects: [AnyObject]
-//        // セルを設定、型変換
-//        let dateText = DateFormatter()
-//        dateText.dateFormat = "yyyy/MM/dd"
-//        var dateTextdate:Date = dateText.date(from: imageDates[indexPath.row])!
-//     
-        for movie in someObjects as! [Array<Any>] {
-            let movie = object as! Array
-        }
-        // myItemsに追加.
-        movie.add("add Cell")
-        
-        // myItemsに追加.
-        myItems.add("add Cell")
-        
-//        // セルを設定、型変換
-//        let imageNames = DateFormatter()
-//        imageNames.dateFormat = "add Cell"
-//        var imageNamesDate:Date = imageNames.date(from: imageNames.add("add Cell"))!
-//        // myItemsに追加.
-//        imageNamesDate.add("add Cell")
-        
-        // TableViewを再読み込み.
-        diary.reloadData()
-    }
     
     /*
      Cellを挿入または削除しようとした際に呼び出される
@@ -184,23 +145,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // 削除のとき.
         if editingStyle == UITableViewCellEditingStyle.delete {
             print("削除")
-            
-            //        // セルを設定、型変換
-            //        let dateText = DateFormatter()
-            //        dateText.dateFormat = "yyyy/MM/dd"
-            //        var dateTextdate:Date = dateText.date(from: imageDates[indexPath.row])!
-            //        
-            
-            
-//
-//                    // セルを設定、型変換
-//                    let imageNames = DateFormatter()
-//                    imageNames.dateFormat = "yyyy/MM/dd"
-//                    var imageNamesDates:Date = imageNames.date(from: indexPath.row)!
-//                    
-//
-//            // 指定されたセルのオブジェクトをmyItemsから削除する.
-//            imageNames.removeObject(at: imageNamesDates)
             
             // TableViewを再読み込み.
             diary.reloadData()

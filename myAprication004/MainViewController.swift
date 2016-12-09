@@ -12,11 +12,13 @@ import FontAwesome_swift //追加
 import CoreData //追加
 
 
-class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelegate , UIApplicationDelegate{
+class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelegate , UIApplicationDelegate , CLLocationManagerDelegate{
     
     let annotation1 = TestMKPointAnnotation()
     let annotation2 = TestMKPointAnnotation()
     var line = MKPolyline() //直線
+    
+    var testManager:CLLocationManager = CLLocationManager() //現在地
     
     
     //配列の定義
@@ -37,7 +39,15 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         super.viewDidLoad()
         
         
-    
+        //デリゲート先に自分を設定する。
+        testManager.delegate = self
+        
+        //位置情報の取得を開始する。
+        testManager.startUpdatingLocation()
+        
+        //位置情報の利用許可を変更する画面をポップアップ表示する。
+        testManager.requestWhenInUseAuthorization()
+        
     
         //NavigationBarを表示させ始める
         self.navigationController?.isNavigationBarHidden = false
@@ -211,6 +221,29 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         
         
         }
+    
+    //位置情報取得時の呼び出しメソッド
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        for location in locations {
+            
+            //中心座標
+            let center = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
+            
+            //表示範囲
+            let span = MKCoordinateSpanMake(0.01, 0.01)
+            
+            //中心座標と表示範囲をマップに登録する。
+            let region = MKCoordinateRegionMake(center, span)
+            myMapView.setRegion(region, animated:true)
+            
+            //ピンを作成してマップビューに登録する。
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
+            myMapView.addAnnotation(annotation)
+            
+        }
+    }
     
     func clickComposeButton(){
         //composeButtonを押した際の処理を記述
