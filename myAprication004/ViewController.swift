@@ -7,7 +7,9 @@
 //
 import UIKit
 import CoreData //追加
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+import Photos //追加
+import MobileCoreServices //追加
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource ,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     
     //配列の定義
     var diaryArray :[NSDictionary] = []
@@ -82,6 +84,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        
 //        // TableViewをViewに追加する.
 //        self.view.addSubview(diary)
+        
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let viewContext = appDelegate.persistentContainer.viewContext
         let query: NSFetchRequest<Diary> = Diary.fetchRequest()
@@ -166,7 +169,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     /// セルの個数を指定するデリゲートメソッド（必須）
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return imageNames.count
+        //diaryArrayの数の分だけ表示する
+        return diaryArray.count
     }
     
     /// セルに値を設定するデータソースメソッド（必須）
@@ -188,7 +192,30 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.myCategoryLabel.text = tmpDic["category"] as? String
         cell.myDiaryLabel.text = tmpDic["diary"] as? String
         
+        //UserDefaultから取り出す
+        // ユーザーデフォルトを用意する
+        let myDefault = UserDefaults.standard
         
+        // データを取り出す
+        let strURL = myDefault.string(forKey: "selectedPhotoURL")
+        
+        if strURL != nil{
+            
+            let url = URL(string: strURL as String!)
+            let fetchResult: PHFetchResult = PHAsset.fetchAssets(withALAssetURLs: [url!], options: nil)
+            let asset: PHAsset = (fetchResult.firstObject! as PHAsset)
+            let manager: PHImageManager = PHImageManager()
+            // 画像の設定.
+            let i:UIImage = UIImage(named:"No image.png")!
+            if i == nil{
+                let i = "No image.png"
+            }else{
+
+            manager.requestImage(for: asset,targetSize: CGSize(width: 5, height: 500),contentMode: .aspectFill,options: nil) { (image, info) -> Void in
+                self.cell.myImageView.image = image
+            }
+            }
+        }
         
         
         
