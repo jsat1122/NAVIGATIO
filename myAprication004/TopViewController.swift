@@ -56,10 +56,10 @@ class TopViewController: UIViewController {
         
         // UIImage 各要素を追加、ちょっと冗長的ですが...
         imageListArray.append(image1)
-        imageListArray.append(image2)
-        imageListArray.append(image3)
-        imageListArray.append(image4)
         imageListArray.append(image5)
+        imageListArray.append(image4)
+        imageListArray.append(image3)
+        imageListArray.append(image2)
         
         // view に追加する
         //self.view.addSubview(topImage)

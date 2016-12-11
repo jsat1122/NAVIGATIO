@@ -58,6 +58,10 @@
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="9b4-t8-SLF" appends="YES" id="wRH-TY-0lk"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="日記作成画面" id="4bp-IA-Kud">
                         <rightBarButtonItems>
@@ -100,6 +104,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
                 <exit id="vHn-D3-QXo" userLabel="Exit" sceneMemberID="exit"/>
+                <swipeGestureRecognizer direction="down" id="9b4-t8-SLF"/>
             </objects>
             <point key="canvasLocation" x="2538" y="1094"/>
         </scene>
@@ -278,7 +283,7 @@
         <!--日記一覧リスト-->
         <scene sceneID="5go-OO-3Bv">
             <objects>
-                <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ftE-6W-PyW" customClass="ViewController" customModule="myAprication004" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ftE-6W-PyW" customClass="ViewController" customModule="myAprication004" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FNm-gu-kRe"/>
                         <viewControllerLayoutGuide type="bottom" id="wM0-hf-8yt"/>
@@ -295,7 +300,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BSn-83-HO6" id="vcq-d6-inx">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="119.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dF1-te-bUT">
@@ -363,6 +368,9 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="1000"/>
+                    <connections>
+                        <outlet property="diaryTableView" destination="68q-Le-YYt" id="agA-2Y-mj4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BFP-lK-ngZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -499,6 +507,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xhb-xp-thS"/>
+        <segue reference="Bd5-U0-tJH"/>
     </inferredMetricsTieBreakers>
 </document>

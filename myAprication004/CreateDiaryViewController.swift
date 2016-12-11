@@ -271,14 +271,15 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
 //        // テーブル情報を更新する
 //        self.cell.reloadData()
         
-        titleTxt.endEditing(true);
-        categoryTxt.endEditing(true);
-        diaryTxt.resignFirstResponder();
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        titleTxt.endEditing(true);
+        categoryTxt.endEditing(true);
+        diaryTxt.resignFirstResponder();
     }
     
     
@@ -327,4 +328,14 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
         //dateTxtを入力したらdatePickerを閉じる
         dateTxt.endEditing(true);
     }
+    
+    //GestureRecognizerのdelegateをselfに設定して使用する
+    func gestureRecognizer(
+        _ gestureRecognizer: UIGestureRecognizer,
+        shouldRecognizeSimultaneouslyWithGestureRecognizer
+        otherGestureRecognizer: UIGestureRecognizer
+        ) -> Bool {
+        return true
+    }
+    
 }

@@ -7,7 +7,6 @@
 //
 import UIKit
 import CoreData //追加
-
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     //配列の定義
@@ -21,8 +20,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // ナビバーの右上ボタンを用意
     var addBtn: UIBarButtonItem!
     
-    // テーブルを用意
-    var diary: UITableView!
+    @IBOutlet weak var diaryTableView: UITableView!
+//    // テーブルを用意
+//    var diary: UITableView!
     
     /// 画像のファイル名
     let imageNames = ["cat1.jpg", "cat2.jpg", "dog1.jpg", "dog2.jpg"]
@@ -44,9 +44,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         "お散歩中のワンちゃん"
     ]
     
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
         // ナビゲーションバーの右側に編集ボタンを追加.
         self.navigationItem.rightBarButtonItem = self.editButtonItem
         
@@ -57,29 +62,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let displayWidth: CGFloat = self.view.frame.width
         let displayHeight: CGFloat = self.view.frame.height
         
-        // TableViewの生成( status barの高さ分ずらして表示 ).
-        diary = UITableView(frame: CGRect(x: 0, y: barHeight, width: displayWidth, height: displayHeight - barHeight))
-        
-        // Cellの登録.
-        diary.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
-        
-        // DataSourceの設定.
-        diary.dataSource = self
-        
-        // Delegateを設定.
-        diary.delegate = self
-        
-        // 罫線を青色に設定.
-        diary.separatorColor = UIColor.blue
-        
-        // 編集中のセル選択を許可.
-        diary.allowsSelectionDuringEditing = true
-        
-        // TableViewをViewに追加する.
-        self.view.addSubview(diary)
-        
-        
-        
+//        // TableViewの生成( status barの高さ分ずらして表示 ).
+//        diaryTableView = UITableView(frame: CGRect(x: 0, y: barHeight, width: displayWidth, height: displayHeight - barHeight))
+//        
+//        // Cellの登録.
+//        diaryTableView.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
+//        
+//        // DataSourceの設定.
+//        diaryTableView.dataSource = self
+//        
+//        // Delegateを設定.
+//        diaryTableView.delegate = self
+//        
+//        // 罫線を青色に設定.
+//        diaryTableView.separatorColor = UIColor.blue
+//        
+//        // 編集中のセル選択を許可.
+//        diary.allowsSelectionDuringEditing = true
+//        
+//        // TableViewをViewに追加する.
+//        self.view.addSubview(diary)
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let viewContext = appDelegate.persistentContainer.viewContext
         let query: NSFetchRequest<Diary> = Diary.fetchRequest()
@@ -107,7 +109,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         } catch {
             fatalError("Failed to fetch diary: \(error)")
         }
-
+        
     }
     
     /*
@@ -132,9 +134,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.setEditing(editing, animated: animated)
         
         // TableViewを編集可能にする
-        diary.setEditing(editing, animated: true)
+        diaryTableView.setEditing(editing, animated: true)
         
-        }
+    }
     
     
     /*
@@ -146,12 +148,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if editingStyle == UITableViewCellEditingStyle.delete {
             print("削除")
             
+            // 指定されたセルのオブジェクトをmyItemsから削除する.
+            diaryArray.remove(at: indexPath.row)
+            print(indexPath.row)
+            print(diaryArray)
+            
             // TableViewを再読み込み.
-            diary.reloadData()
+            diaryTableView.reloadData()
         }
     }
-
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -169,14 +174,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // セルを取得
         cell = tableView.dequeueReusableCell(withIdentifier: "MyCell") as! ListTableViewCell
         
-        // セルを設定、型変換
+        var tmpDic = diaryArray[(indexPath as NSIndexPath).row]
+        print(tmpDic["date"] )
+        
         let dateText = DateFormatter()
         dateText.dateFormat = "yyyy/MM/dd"
-        var dateTextdate:Date = dateText.date(from: imageDates[indexPath.row])!
+        var dateTextdate:String = dateText.string(from: (tmpDic["date"] as! Date))
+        
         
         //imageDates.text = formatter.string(from: dateText)
+        cell.myDateLabel.text = dateTextdate
+        cell.myTitleLabel.text = tmpDic["title"] as? String
+        cell.myCategoryLabel.text = tmpDic["category"] as? String
+        cell.myDiaryLabel.text = tmpDic["diary"] as? String
         
-        cell.setCell(imageName: imageNames[indexPath.row], titleText: imageTitles[indexPath.row], dateText: dateTextdate, categoryText: imageCategorys[indexPath.row], diaryText: imageDairys[indexPath.row])
+        
+        
+        
+        
+        
+        
+        
+//        cell.setCell(imageName: imageNames[indexPath.row], titleText: imageTitles[indexPath.row], dateText: dateTextdate, categoryText: imageCategorys[indexPath.row], diaryText: imageDairys[indexPath.row])
         
         return cell
     }
