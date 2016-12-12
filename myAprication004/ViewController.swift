@@ -15,6 +15,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var diaryArray :[NSDictionary] = []
     var dairyDic :NSDictionary! = [:]
     
+    var lunchMenu:NSArray = [[:]]
     
     //customCell(ListTableViewCell)にアクセスできるようにした
     var cell = ListTableViewCell()
@@ -53,6 +54,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+   
+
         
         // ナビゲーションバーの右側に編集ボタンを追加.
         self.navigationItem.rightBarButtonItem = self.editButtonItem
@@ -113,6 +117,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             fatalError("Failed to fetch diary: \(error)")
         }
         
+        //日付の最新順に並べる
+        let sortDescription = NSSortDescriptor(key: "date", ascending: false)
+        let sortDescAry = [sortDescription]
+        diaryArray = ((diaryArray as NSArray).sortedArray(using: sortDescAry) as NSArray) as! [NSDictionary]
+        
+        
+        print(diaryArray)
+        
     }
     
     /*
@@ -143,7 +155,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     /*
-     Cellを挿入または削除しようとした際に呼び出される
+     Cellを削除しようとした際に呼び出される
      */
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
@@ -156,11 +168,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             print(indexPath.row)
             print(diaryArray)
             
+            
+            
+            
             // TableViewを再読み込み.
             diaryTableView.reloadData()
         }
     }
     
+//    // (6) 移動時の処理
+//    func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+//        
+//        // データの順番を整える
+//        let targetTitle = diaryArray[sourceIndexPath.row]
+//        if let index = diaryArray.index(of: targetTitle) {
+//            diaryArray.remove(at: index)
+//            diaryArray.insert(targetTitle, at: destinationIndexPath.row)
+//            print(diaryArray)
+//        }
+//    }
+//    
+//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+//        print(diaryArray[indexPath.row])
+//    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

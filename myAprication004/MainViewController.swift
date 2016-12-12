@@ -10,6 +10,7 @@ import UIKit
 import MapKit //追加
 import FontAwesome_swift //追加
 import CoreData //追加
+import Foundation //追加
 
 
 class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelegate , UIApplicationDelegate , CLLocationManagerDelegate{
@@ -145,6 +146,7 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         // MapViewにregionを追加.
         dispMap.region = myRegion
 
+        //直線を引くコード
 //        // 直線を引く座標を作成.
 //        let coordinate_1 = CLLocationCoordinate2D(latitude: 37.301741, longitude: -122.050333)
 //        let coordinate_2 = CLLocationCoordinate2D(latitude: 37.351951, longitude: -122.020314)
@@ -164,62 +166,63 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
 //        dispMap.add(myPolyLine_2)
         
         
-        // PlaceMarkを生成して出発点、目的地の座標をセット.
-        let fromPlace: MKPlacemark = MKPlacemark(coordinate: fromCoordinate, addressDictionary: nil)
-        let toPlace: MKPlacemark = MKPlacemark(coordinate: requestCoordinate, addressDictionary: nil)
-        
-        
-        // Itemを生成してPlaceMarkをセット.
-        let fromItem: MKMapItem = MKMapItem(placemark: fromPlace)
-        let toItem: MKMapItem = MKMapItem(placemark: toPlace)
-        
-        // MKDirectionsRequestを生成.
-        let myRequest: MKDirectionsRequest = MKDirectionsRequest()
-        
-        // 出発地のItemをセット.
-        myRequest.source = fromItem
-        
-        // 目的地のItemをセット.
-        myRequest.destination = toItem
-        
-        // 複数経路の検索を有効.
-        myRequest.requestsAlternateRoutes = true
-        
-        // 移動手段を自由に設定.
-        myRequest.transportType = MKDirectionsTransportType.any
-        
-        // MKDirectionsを生成してRequestをセット.
-        let myDirections: MKDirections = MKDirections(request: myRequest)
-        
-        // 経路探索.
-        myDirections.calculate { (response, error) in
-            
-            // NSErrorを受け取ったか、ルートがない場合.
-            if error != nil || response!.routes.isEmpty {
-                return
-            }
-            
-            let route: MKRoute = response!.routes[0] as MKRoute
-            print("目的地まで \(route.distance)km")
-            print("所要時間 \(Int(route.expectedTravelTime/60))分")
-            
-            // mapViewにルートを描画.
-            self.dispMap.add(route.polyline)
-        }
-        
-        // ピンを生成.
-        let fromPin: MKPointAnnotation = MKPointAnnotation()
-        let toPin: MKPointAnnotation = MKPointAnnotation()
-        
-        // 座標をセット.
-        fromPin.coordinate = fromCoordinate
-        toPin.coordinate = requestCoordinate
-        
-        // titleをセット.
-        fromPin.title = "出発地点"
-        toPin.title = "目的地"
-        
-        
+        //検索するコード
+//        // PlaceMarkを生成して出発点、目的地の座標をセット.
+//        let fromPlace: MKPlacemark = MKPlacemark(coordinate: fromCoordinate, addressDictionary: nil)
+//        let toPlace: MKPlacemark = MKPlacemark(coordinate: requestCoordinate, addressDictionary: nil)
+//        
+//        
+//        // Itemを生成してPlaceMarkをセット.
+//        let fromItem: MKMapItem = MKMapItem(placemark: fromPlace)
+//        let toItem: MKMapItem = MKMapItem(placemark: toPlace)
+//        
+//        // MKDirectionsRequestを生成.
+//        let myRequest: MKDirectionsRequest = MKDirectionsRequest()
+//        
+//        // 出発地のItemをセット.
+//        myRequest.source = fromItem
+//        
+//        // 目的地のItemをセット.
+//        myRequest.destination = toItem
+//        
+//        // 複数経路の検索を有効.
+//        myRequest.requestsAlternateRoutes = true
+//        
+//        // 移動手段を自由に設定.
+//        myRequest.transportType = MKDirectionsTransportType.any
+//        
+//        // MKDirectionsを生成してRequestをセット.
+//        let myDirections: MKDirections = MKDirections(request: myRequest)
+//        
+//        // 経路探索.
+//        myDirections.calculate { (response, error) in
+//            
+//            // NSErrorを受け取ったか、ルートがない場合.
+//            if error != nil || response!.routes.isEmpty {
+//                return
+//            }
+//            
+//            let route: MKRoute = response!.routes[0] as MKRoute
+//            print("目的地まで \(route.distance)km")
+//            print("所要時間 \(Int(route.expectedTravelTime/60))分")
+//            
+//            // mapViewにルートを描画.
+//            self.dispMap.add(route.polyline)
+//        }
+//        
+//        // ピンを生成.
+//        let fromPin: MKPointAnnotation = MKPointAnnotation()
+//        let toPin: MKPointAnnotation = MKPointAnnotation()
+//        
+//        // 座標をセット.
+//        fromPin.coordinate = fromCoordinate
+//        toPin.coordinate = requestCoordinate
+//        
+//        // titleをセット.
+//        fromPin.title = "出発地点"
+//        toPin.title = "目的地"
+//        
+//        
         }
     
     //位置情報取得時の呼び出しメソッド

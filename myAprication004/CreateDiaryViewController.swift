@@ -56,6 +56,7 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        
         // 画像の設定.
         let myImage:UIImage = UIImage(named:"japan.png")!
         
