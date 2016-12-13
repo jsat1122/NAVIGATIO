@@ -19,7 +19,7 @@ class ReadDiaryViewController: UIViewController {
     @IBOutlet weak var shareDiaryBtn: UIButton!
     @IBOutlet weak var likeDiaryBtn: UIButton!
     
-    var myName: String = ""
+//    var myName: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,9 +123,14 @@ class ReadDiaryViewController: UIViewController {
 //        
 //    }
     
-    @IBAction func editBtn(_ sender: UIBarButtonItem) {
-//        myCount
-        
-    }
+//    @IBAction func editBtn(_ sender: UIBarButtonItem) {
+//        //DateFormatterを宣言
+//        let myCount = DateFormatter()
+//        //dateのformatを指定
+//        myCount.dateFormat = "yyyy/MM/dd hh:mm:ss"
+//        //nowからtext型で持ってくる
+//        myOneDiary.text = myCount.string(from: )
+//        
+//    }
 }
 

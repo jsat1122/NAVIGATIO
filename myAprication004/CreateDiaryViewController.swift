@@ -214,8 +214,15 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
             //alert diary
             self.showAlert(message: "Please enter diary")
         }
+        
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone.current
+        formatter.dateFormat = "yyyy/MM/dd/hh/mm/ss"
+        var tmpDateStr = formatter.string(from: date)
+        var changeDate = formatter.date(from: tmpDateStr)
 
-
+        //sampleCoreDateのcreate
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let viewContext = appDelegate.persistentContainer.viewContext
         let diary = NSEntityDescription.entity(forEntityName: "Diary", in: viewContext) //全ての日記を取得
@@ -232,6 +239,8 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
         newRecord.setValue(categoryTxt.text, forKey: "category")//値を代入
         newRecord.setValue(diaryTxt.text, forKey: "diary")//値を代入
         newRecord.setValue(ImagView.image, forKey: "image")//値を代入
+        newRecord.setValue(changeDate, forKey: "created_at")//値を代入
+        
         
         do {
             try viewContext.save()
@@ -293,6 +302,8 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
         
         var strDateTmp = created2.string(from: Date())
         var changeDate = created2.date(from: strDateTmp)
+        
+        
         
 //        //coreDataに設定
 //        created2.setValue(changeDate, forKey: "created2")

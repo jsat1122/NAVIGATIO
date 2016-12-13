@@ -37,6 +37,7 @@
 		188915161DE07FD0007C7745 /* Diary+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188915141DE07FD0007C7745 /* Diary+CoreDataProperties.swift */; };
 		18B68CEB1DF67821003C3704 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B68CEA1DF67821003C3704 /* MapKit.framework */; };
 		18FD3C241DE07E5300F6E03E /* NavigadioModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18FD3C221DE07E5300F6E03E /* NavigadioModel.xcdatamodeld */; };
+		18FEE1261DFFEDDF00A0EC22 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18FEE1251DFFEDDF00A0EC22 /* CoreLocation.framework */; };
 		4A8F35B980B5D2466F019A17 /* Pods_myAprication004UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 884A7B297012F41B971E4A5D /* Pods_myAprication004UITests.framework */; };
 		54061871BF1DE4A0E4102F76 /* Pods_myAprication004.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 736D533AD524D8A4F0F29DF9 /* Pods_myAprication004.framework */; };
 /* End PBXBuildFile section */
@@ -94,6 +95,7 @@
 		188915141DE07FD0007C7745 /* Diary+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Diary+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		18B68CEA1DF67821003C3704 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		18FD3C231DE07E5300F6E03E /* NavigadioModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NavigadioModel.xcdatamodel; sourceTree = "<group>"; };
+		18FEE1251DFFEDDF00A0EC22 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1FB080E5DF8E4785214A7F90 /* Pods-myAprication004UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myAprication004UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-myAprication004UITests/Pods-myAprication004UITests.release.xcconfig"; sourceTree = "<group>"; };
 		274FC480438F56AA7A92B7DC /* Pods_myAprication004Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myAprication004Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		736D533AD524D8A4F0F29DF9 /* Pods_myAprication004.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myAprication004.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18FEE1261DFFEDDF00A0EC22 /* CoreLocation.framework in Frameworks */,
 				18B68CEB1DF67821003C3704 /* MapKit.framework in Frameworks */,
 				1885117B1DEBC9390005CF5E /* FontAwesome_swift.framework in Frameworks */,
 				54061871BF1DE4A0E4102F76 /* Pods_myAprication004.framework in Frameworks */,
@@ -211,6 +214,7 @@
 		188511791DEBC9390005CF5E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18FEE1251DFFEDDF00A0EC22 /* CoreLocation.framework */,
 				18B68CEA1DF67821003C3704 /* MapKit.framework */,
 				1885117A1DEBC9390005CF5E /* FontAwesome_swift.framework */,
 				736D533AD524D8A4F0F29DF9 /* Pods_myAprication004.framework */,

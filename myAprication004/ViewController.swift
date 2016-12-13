@@ -11,6 +11,8 @@ import Photos //追加
 import MobileCoreServices //追加
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource ,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     
+    var deleteDiary: Date! = nil //空のメンバ変数
+    
     //配列の定義
     var diaryArray :[NSDictionary] = []
     var dairyDic :NSDictionary! = [:]
@@ -80,9 +82,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 let category: String? = result.value(forKey: "category") as? String
                 let diary: String? = result.value(forKey: "diary") as? String
                 let image: String? = result.value(forKey: "image") as? String
+                let created_at: Date = result.value(forKey: "created_at") as! Date
                 
                 //[辞書のkey:辞書のvalue(値)]
-                dairyDic = ["title":title,"date":date,"category":category,"diary":diary,"image":image]
+                dairyDic = ["title":title,"date":date,"category":category,"diary":diary,"image":image,"created_at":created_at]
                 //配列の一番最後にdiaryDic
                 diaryArray.append(dairyDic)
                 
@@ -152,7 +155,37 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
             let viewContext = appDelegate.persistentContainer.viewContext
             // 読み込むエンティティを指定
-            let fetchReq = NSFetchRequest<NSFetchRequestResult>(entityName: "Diary")
+//            let fetchReq = NSFetchRequest<NSFetchRequestResult>(entityName: "Diary")
+            
+            let diary = NSEntityDescription.entity(forEntityName: "Diary", in: viewContext)
+            var selectedDate = deleteDiary
+            
+            let date = Date()
+            let formatter = DateFormatter()
+            formatter.timeZone = TimeZone.current
+            formatter.dateFormat = "yyyy/MM/dd/hh/mm/ss"
+            var tmpDateStr = formatter.string(from: date)
+            var changeDate = formatter.date(from: tmpDateStr)
+            let request: NSFetchRequest<Diary> = Diary.fetchRequest()
+            let strSavedDate: String = formatter.string(from: selectedDate!)
+            var savedDate :Date = formatter.date(from: strSavedDate)!
+            do {
+                let namePredicte = NSPredicate(format: "created_at = %@", savedDate as CVarArg)
+                request.predicate = namePredicte
+                //1件削除
+                
+                do {
+                    let fetchResults = try viewContext.fetch(request)
+                    for result: AnyObject in fetchResults {
+                        let record = result as! NSManagedObject
+                        viewContext.delete(record)
+                    }
+                    try viewContext.save()
+                } catch {
+                }
+            }
+            
+           
 //            // 更新するデータを指定する。この場合ショップ名が市場のレコード。
 //            let title: String? = results.value(format: "title") as? String
 //            let date: Date = results.value(format: "date") as! Date
@@ -160,8 +193,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //            let diary: String? = results.value(format: "diary") as? String
 //            let image: String? = results.value(format: "image") as? String
             
-            let predict = NSPredicate(format: "title", "date", "category", "diary", "image")
-            fetchReq.predicate = predict
+//            let predict = NSPredicate(format: "title", "date", "category", "diary", "image")
+//            fetchReq.predicate = predict
 //            // データを格納する空の配列を用意
 //            var result = []
 //            // 読み込み実行
@@ -210,6 +243,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
+    //背景と同じ色にして見えなくする
+    @IBOutlet weak var labelDiary: UILabel!
+    
+    
     /// セルの個数を指定するデリゲートメソッド（必須）
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //diaryArrayの数の分だけ表示する
@@ -223,6 +260,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         var tmpDic = diaryArray[(indexPath as NSIndexPath).row]
         print(tmpDic["date"] )
+        
+        deleteDiary = tmpDic["created_at"]as! Date
         
         let dateText = DateFormatter()
         dateText.dateFormat = "yyyy/MM/dd"

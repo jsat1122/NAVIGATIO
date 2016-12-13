@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var myCount = ""
+//    var myCount = ""
     
 
     /*以下１行追加*/

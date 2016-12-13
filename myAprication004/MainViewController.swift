@@ -11,6 +11,7 @@ import MapKit //追加
 import FontAwesome_swift //追加
 import CoreData //追加
 import Foundation //追加
+import CoreLocation //追加
 
 
 class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelegate , UIApplicationDelegate , CLLocationManagerDelegate{
@@ -39,7 +40,8 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        if CLLocationManager.locationServicesEnabled() {
+            testManager = CLLocationManager()
         //デリゲート先に自分を設定する。
         testManager.delegate = self
         
@@ -225,6 +227,42 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
 //        
         }
     
+        func viewDidDisappear(_ animated: Bool) {
+            super.viewDidDisappear(animated)
+            
+            if CLLocationManager.locationServicesEnabled() {
+                testManager.stopUpdatingLocation()
+            }
+        }
+        
+        func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+            switch status {
+            case .notDetermined:
+                testManager.requestWhenInUseAuthorization()
+            case .restricted, .denied:
+                break
+            case .authorizedAlways, .authorizedWhenInUse:
+                break
+            }
+        }
+        
+        
+//        var latTextField: UITextView!
+//        var lngTextField: UITextView!
+//        
+//        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//            guard let newLocation = locations.last,
+//                CLLocationCoordinate2DIsValid(newLocation.coordinate) else {
+//                    self.latTextField.text = "Error"
+//                    self.lngTextField.text = "Error"
+//                    return
+//            }
+//            
+//            self.latTextField.text = "".appendingFormat("%.4f", newLocation.coordinate.latitude)
+//            self.lngTextField.text = "".appendingFormat("%.4f", newLocation.coordinate.longitude)
+//        }
+    }
+    
     //位置情報取得時の呼び出しメソッド
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -343,7 +381,7 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
             let myPinIdentifier = "PinAnnotationIdentifier"
             
             // ピンを生成.
-            let myPinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: myPinIdentifier)
+            let myPinView = MKPinAnnotationView(annotation: annotation1, reuseIdentifier: myPinIdentifier)
             
             // アニメーションをつける.
             myPinView.animatesDrop = true
@@ -352,7 +390,7 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
             myPinView.canShowCallout = true
             
             // annotationを設定.
-            myPinView.annotation = annotation
+            myPinView.annotation = annotation1
             
             return myPinView
         }
