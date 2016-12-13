@@ -14,8 +14,6 @@ import CoreData //追加
 
 
 class ReadDiaryViewController: UIViewController {
-//    @IBOutlet weak var myWebView: UIWebView!
-//    @IBOutlet weak var myReloadBtn: UIToolbar!
     @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var deleateDiaryBtn: UIButton!
     @IBOutlet weak var shareDiaryBtn: UIButton!
@@ -50,7 +48,7 @@ class ReadDiaryViewController: UIViewController {
     
     @IBAction func deleteDiaryBtn(_ sender: UIButton) {
         //アラートを作る
-        var alertController = UIAlertController(title:"削除しますか？", message:"", preferredStyle: .alert)
+        let alertController = UIAlertController(title:"削除しますか？", message:"", preferredStyle: .alert)
         
         //キャンセルボタンを追加
         alertController.addAction(UIAlertAction(
@@ -97,7 +95,7 @@ class ReadDiaryViewController: UIViewController {
         
         //共有する項目を配列に指定
         //let activityItems = [shareText,shareWebsite]
-        let activityItems = [shareText,shareWebsite,shareImage] as [Any]
+        let activityItems = [shareText,shareWebsite,shareImage!] as [Any]
         
         //ActivityViewの作成、初期化
         let activityVC = UIActivityViewController(activityItems:activityItems, applicationActivities:nil)
@@ -126,6 +124,7 @@ class ReadDiaryViewController: UIViewController {
 //    }
     
     @IBAction func editBtn(_ sender: UIBarButtonItem) {
+//        myCount
         
     }
 }

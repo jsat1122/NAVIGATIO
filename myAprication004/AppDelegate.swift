@@ -13,9 +13,14 @@ import CoreData //追加
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    var myCount = ""
+    
 
     /*以下１行追加*/
     var myNavigationController: UINavigationController?
+    
+//    let savedDateTime: NSDate
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

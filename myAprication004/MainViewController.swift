@@ -331,13 +331,14 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
 //        pinView?.canShowCallout = true
 //        let rightButton: AnyObject! = UIButton(type: UIButtonType.detailDisclosure)
 //        pinView?.rightCalloutAccessoryView = rightButton as? UIView
+        
     }
     
         
         /*
          addAnnotationした際に呼ばれるデリゲートメソッド.
          */
-        func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        func mapView(mapView: MKMapView, viewForannotation: MKAnnotation) -> MKAnnotationView? {
             
             let myPinIdentifier = "PinAnnotationIdentifier"
             
@@ -355,13 +356,32 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
             
             return myPinView
         }
+    
     //アノテーションビューを返すメソッド
+    
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
         let testView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
         
         //吹き出しを表示可能にする。
         testView.canShowCallout = true
+        
+        //左ボタンをアノテーションビューに追加する。
+        let button = UIButton()
+        button.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        button.setTitle("色", for: .normal)
+        button.setTitleColor(UIColor.black, for:.normal)
+        button.backgroundColor = UIColor.yellow
+        testView.leftCalloutAccessoryView = button
+        
+        
+        //右ボタンをアノテーションビューに追加する。
+        let button2 = UIButton()
+        button2.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        button2.setTitle("削除", for: .normal)
+        button2.backgroundColor = UIColor.red
+        button2.setTitleColor(UIColor.white, for:.normal)
+        testView.rightCalloutAccessoryView = button2
         
         //ドラッグ可能にする。
         testView.isDraggable = true
@@ -372,6 +392,7 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         }
         
         return testView
+
     }
     
     //ドラッグ＆ドロップ時の呼び出しメソッド
@@ -426,6 +447,29 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         
         return myPolyLineRendere
     }
+    
+    
+    
+    
+    //吹き出しアクササリー押下時の呼び出しメソッド
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        if(control == view.leftCalloutAccessoryView) {
+            
+            //左のボタンが押された場合はピンの色をランダムに変更する。
+            if let pinView = view as? MKPinAnnotationView {
+                pinView.pinTintColor = UIColor(red: CGFloat(drand48()),
+                                               green: CGFloat(drand48()),
+                                               blue: CGFloat(drand48()),
+                                               alpha: 1.0)
+            }
+        } else {
+            
+            //右のボタンが押された場合はピンを消す。
+            mapView.removeAnnotation(view.annotation!)
+        }
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

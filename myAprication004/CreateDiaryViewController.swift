@@ -288,7 +288,7 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
     internal func onDidChangeDate(sender: UIDatePicker){
         
         let created2 = DateFormatter()
-        created2.dateFormat = "yyyy/MM/dd" //"yyyy/MM/dd hh:mm:ss"
+        created2.dateFormat = "yyyy/MM/dd hh:mm:ss"
         created2.timeZone = TimeZone.current
         
         var strDateTmp = created2.string(from: Date())
@@ -339,4 +339,17 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
         return true
     }
     
+////            //一件取得
+////            var df = DateFormatter()
+////            df.dateFormat = "yyyy/MM/dd hh:mm:ss +0000"
+////            df.timeZone = TimeZone.current
+////            //保存していた日付を文字列からDate型に変換
+////            var savedDateTime:NSDate = df.date(from: "\(myAp.myCount)") as! NSDate
+////            print(savedDateTime)
+////            //検索条件として指定
+////            let predicate = NSPredicate(format: "SELF.created_at = %@", savedDateTime )
+////            query.predicate = predicate
+//    
+//    do {
+//    let fetchResults = try viewContext.fetch(query)
 }

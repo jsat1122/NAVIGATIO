@@ -68,27 +68,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let displayWidth: CGFloat = self.view.frame.width
         let displayHeight: CGFloat = self.view.frame.height
         
-//        // TableViewの生成( status barの高さ分ずらして表示 ).
-//        diaryTableView = UITableView(frame: CGRect(x: 0, y: barHeight, width: displayWidth, height: displayHeight - barHeight))
-//        
-//        // Cellの登録.
-//        diaryTableView.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
-//        
-//        // DataSourceの設定.
-//        diaryTableView.dataSource = self
-//        
-//        // Delegateを設定.
-//        diaryTableView.delegate = self
-//        
-//        // 罫線を青色に設定.
-//        diaryTableView.separatorColor = UIColor.blue
-//        
-//        // 編集中のセル選択を許可.
-//        diary.allowsSelectionDuringEditing = true
-//        
-//        // TableViewをViewに追加する.
-//        self.view.addSubview(diary)
-        
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let viewContext = appDelegate.persistentContainer.viewContext
         let query: NSFetchRequest<Diary> = Diary.fetchRequest()
@@ -169,6 +148,38 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             print(diaryArray)
             
             
+            // CoreDataに指令を出すviewContextを生成
+            let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+            let viewContext = appDelegate.persistentContainer.viewContext
+            // 読み込むエンティティを指定
+            let fetchReq = NSFetchRequest<NSFetchRequestResult>(entityName: "Diary")
+//            // 更新するデータを指定する。この場合ショップ名が市場のレコード。
+//            let title: String? = results.value(format: "title") as? String
+//            let date: Date = results.value(format: "date") as! Date
+//            let category: String? = results.value(format: "category") as? String
+//            let diary: String? = results.value(format: "diary") as? String
+//            let image: String? = results.value(format: "image") as? String
+            
+            let predict = NSPredicate(format: "title", "date", "category", "diary", "image")
+            fetchReq.predicate = predict
+//            // データを格納する空の配列を用意
+//            var result = []
+//            // 読み込み実行
+//            do {
+//                result = try viewContext.fetch(fetchReq)
+//            }catch{
+//                
+//            }
+//            // Diaryインスタンスを生成
+//            let diary = result[0] as! Diary
+//            // 削除
+//            viewContext.delete(diary)
+//            // 保存
+//            do{
+//                try viewContext.save()
+//            }catch{
+//                
+//            }
             
             
             // TableViewを再読み込み.
@@ -248,11 +259,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
             }
         }
-        
-        
-        
-        
-        
         
 //        cell.setCell(imageName: imageNames[indexPath.row], titleText: imageTitles[indexPath.row], dateText: dateTextdate, categoryText: imageCategorys[indexPath.row], diaryText: imageDairys[indexPath.row])
         
