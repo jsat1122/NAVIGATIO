@@ -429,29 +429,6 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         let myPinIdentifier = "PinAnnotationIdentifier"
         
         // ピンを生成.
-        let myPinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: myPinIdentifier)
-        //        //let fetchResults = try viewContext.fetch(query)
-        //        for annotation1 in fetchResults {
-        //
-        //            return diaryArray.count
-        //            }
-        
-        
-        // アニメーションをつける.
-        myPinView.animatesDrop = true
-        
-        // コールアウトを表示する.
-        myPinView.canShowCallout = true
-        
-        // annotationを設定.
-        myPinView.annotation = annotation1
-        
-        
-        return myPinView
-
-        
-        
-        // ピンを生成.
         var testView = self.myMapView.dequeueReusableAnnotationView(withIdentifier: myPinIdentifier) as? MKPinAnnotationView
         
         //アノテーションを作成
