@@ -243,8 +243,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
-    //背景と同じ色にして見えなくする
-    @IBOutlet weak var labelDiary: UILabel!
+//    //背景と同じ色にして見えなくする
+//    @IBOutlet weak var labelDiary: UILabel!
     
     
     /// セルの個数を指定するデリゲートメソッド（必須）

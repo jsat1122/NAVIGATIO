@@ -396,13 +396,18 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
     /*
      addAnnotationした際に呼ばれるデリゲートメソッド.
      */
-    func mapView(mapView: MKMapView, viewFor
-        annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         let myPinIdentifier = "PinAnnotationIdentifier"
         
         // ピンを生成.
-        let myPinView = MKPinAnnotationView(annotation: annotation1, reuseIdentifier: myPinIdentifier)
+        let myPinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: myPinIdentifier)
+//        //let fetchResults = try viewContext.fetch(query)
+//        for annotation1 in fetchResults {
+//            
+//            return diaryArray.count
+//            }
+        
         
         // アニメーションをつける.
         myPinView.animatesDrop = true
@@ -424,8 +429,32 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         let myPinIdentifier = "PinAnnotationIdentifier"
         
         // ピンを生成.
+        let myPinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: myPinIdentifier)
+        //        //let fetchResults = try viewContext.fetch(query)
+        //        for annotation1 in fetchResults {
+        //
+        //            return diaryArray.count
+        //            }
+        
+        
+        // アニメーションをつける.
+        myPinView.animatesDrop = true
+        
+        // コールアウトを表示する.
+        myPinView.canShowCallout = true
+        
+        // annotationを設定.
+        myPinView.annotation = annotation1
+        
+        
+        return myPinView
+
+        
+        
+        // ピンを生成.
         var testView = self.myMapView.dequeueReusableAnnotationView(withIdentifier: myPinIdentifier) as? MKPinAnnotationView
         
+        //アノテーションを作成
         if testView != nil {
             testView!.annotation = annotation
         } else {
@@ -460,103 +489,106 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         testView?.rightCalloutAccessoryView = infoBtn
         
         
-        //ドラッグ可能にする。
-        testView?.isDraggable = true
-        
-        //ピンの色を設定する。
-        if let test = annotation as? TestMKPointAnnotation {
-            testView?.pinTintColor = test.pinColor
-        }
-        
+//        //ドラッグ可能にする。
+//        testView?.isDraggable = true
+//        
+//        //ピンの色を設定する。
+//        if let test = annotation as? TestMKPointAnnotation {
+//            testView?.pinTintColor = test.pinColor
+//        }
+//        
         return testView
         
     }
     
     func tapBtn(){
-        
+        let storyboard: UIStoryboard = self.storyboard!
+        let nextView = storyboard.instantiateViewController(withIdentifier: "CreateDiaryViewController") as! CreateDiaryViewController
+        self.navigationController?.pushViewController(nextView, animated: true)
         print("ピンの中のボタンタップしました")
     }
     
-    //ドラッグ＆ドロップ時の呼び出しメソッド
-    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, didChangeDragState newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
-        
-        //ピンを離した場合
-        if(newState == .ending){
-            
-            if let test = view.annotation as? MKPointAnnotation {
-                //ピンのサブタイトルを最新の座標にする。
-                test.subtitle = "\(Double(test.coordinate.latitude)), \(Double(test.coordinate.longitude))"
-            }
-            
-            //前回の描画を削除する。
-            mapView.remove(line)
-            
-            //始点と終点の座標
-            var location:[CLLocationCoordinate2D] = [CLLocationCoordinate2D(latitude: annotation1.coordinate.latitude, longitude: annotation1.coordinate.longitude),
-                                                     CLLocationCoordinate2D(latitude: annotation2.coordinate.latitude, longitude: annotation2.coordinate.longitude)]
-            
-            //2点間に直線を描画する。
-            line = MKPolyline(coordinates: &location, count: 2)
-            mapView.add(line)
-        }
-    }
-    //描画メソッド実行時の呼び出しメソッド
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-        let testRender = MKPolylineRenderer(overlay: overlay)
-        
-        //直線の幅を設定する。
-        testRender.lineWidth = 3
-        
-        //直線の色を設定する。
-        testRender.strokeColor = UIColor.red
-        
-        return testRender
-    }
     
-    /*
-     addOverlayした際に呼ばれるデリゲートメソッド.
-     */
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        
-        // rendererを生成.
-        let myPolyLineRendere: MKPolylineRenderer = MKPolylineRenderer(overlay: overlay)
-        
-        // 線の太さを指定.
-        myPolyLineRendere.lineWidth = 3
-        
-        // 線の色を指定.
-        myPolyLineRendere.strokeColor = UIColor.red
-        
-        return myPolyLineRendere
-    }
+//    //ドラッグ＆ドロップ時の呼び出しメソッド
+//    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, didChangeDragState newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
+//        
+//        //ピンを離した場合
+//        if(newState == .ending){
+//            
+//            if let test = view.annotation as? MKPointAnnotation {
+//                //ピンのサブタイトルを最新の座標にする。
+//                test.subtitle = "\(Double(test.coordinate.latitude)), \(Double(test.coordinate.longitude))"
+//            }
+//            
+//            //前回の描画を削除する。
+//            mapView.remove(line)
+//            
+//            //始点と終点の座標
+//            var location:[CLLocationCoordinate2D] = [CLLocationCoordinate2D(latitude: annotation1.coordinate.latitude, longitude: annotation1.coordinate.longitude),
+//                                                     CLLocationCoordinate2D(latitude: annotation2.coordinate.latitude, longitude: annotation2.coordinate.longitude)]
+//            
+//            //2点間に直線を描画する。
+//            line = MKPolyline(coordinates: &location, count: 2)
+//            mapView.add(line)
+//        }
+//    }
+//    //描画メソッド実行時の呼び出しメソッド
+//    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+//        let testRender = MKPolylineRenderer(overlay: overlay)
+//        
+//        //直線の幅を設定する。
+//        testRender.lineWidth = 3
+//        
+//        //直線の色を設定する。
+//        testRender.strokeColor = UIColor.red
+//        
+//        return testRender
+//    }
+//    
+//    /*
+//     addOverlayした際に呼ばれるデリゲートメソッド.
+//     */
+//    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+//        
+//        // rendererを生成.
+//        let myPolyLineRendere: MKPolylineRenderer = MKPolylineRenderer(overlay: overlay)
+//        
+//        // 線の太さを指定.
+//        myPolyLineRendere.lineWidth = 3
+//        
+//        // 線の色を指定.
+//        myPolyLineRendere.strokeColor = UIColor.red
+//        
+//        return myPolyLineRendere
+//    }
     
     
     
     
-    //吹き出しアクササリー押下時の呼び出しメソッド
-    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        
-        if(control == view.leftCalloutAccessoryView) {
-            
-            //左のボタンが押された場合はピンの色をランダムに変更する。
-            if let pinView = view as? MKPinAnnotationView {
-                pinView.pinTintColor = UIColor(red: CGFloat(drand48()),
-                                               green: CGFloat(drand48()),
-                                               blue: CGFloat(drand48()),
-                                               alpha: 1.0)
-            }
-        } else {
-            
-            //右のボタンが押された場合はピンを消す。
-            mapView.removeAnnotation(view.annotation!)
-        }
-    }
-    
-    func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
-        for view in views {
-            view.rightCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure)
-        }
-    }
+////    //吹き出しアクササリー押下時の呼び出しメソッド
+////    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+////        
+////        if(control == view.leftCalloutAccessoryView) {
+////            
+////            //左のボタンが押された場合はピンの色をランダムに変更する。
+////            if let pinView = view as? MKPinAnnotationView {
+////                pinView.pinTintColor = UIColor(red: CGFloat(drand48()),
+////                                               green: CGFloat(drand48()),
+////                                               blue: CGFloat(drand48()),
+////                                               alpha: 1.0)
+////            }
+////        } else {
+////            
+////            //右のボタンが押された場合はピンを消す。
+////            mapView.removeAnnotation(view.annotation!)
+////        }
+////    }
+////    
+////    func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
+////        for view in views {
+////            view.rightCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure)
+////        }
+//    }
     
     
     override func didReceiveMemoryWarning() {
