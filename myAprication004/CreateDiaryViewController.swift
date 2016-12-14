@@ -262,7 +262,7 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
 
     navigationController?.viewControllers.removeLast() //views to pop
     
-    
+    appDelegate.saveContext() //重要
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "myAprication004/MainViewController.swift"
-            timestampString = "503331865.518419"
+            filePath = "myAprication004/ReadDiaryViewController.swift"
+            timestampString = "503374615.78491"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "407"
-            endingLineNumber = "407"
-            landmarkName = "mapView(mapView:viewForAnnotation:)"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "tapBtnTwiter(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,14 +25,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "myAprication004/MainViewController.swift"
-            timestampString = "503331865.518419"
+            filePath = "myAprication004/ReadDiaryViewController.swift"
+            timestampString = "503374623.636536"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "416"
-            endingLineNumber = "416"
-            landmarkName = "mapView(mapView:viewForAnnotation:)"
-            landmarkType = "7">
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "ReadDiaryViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

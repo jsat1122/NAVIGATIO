@@ -19,6 +19,8 @@ class ReadDiaryViewController: UIViewController {
     @IBOutlet weak var shareDiaryBtn: UIButton!
     @IBOutlet weak var likeDiaryBtn: UIButton!
     
+    var editDiary: Date! = nil //空のメンバ変数
+    
 //    var myName: String = ""
     
     override func viewDidLoad() {
@@ -43,6 +45,9 @@ class ReadDiaryViewController: UIViewController {
         
         likeDiaryBtn.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
         likeDiaryBtn.setTitle(String.fontAwesomeIcon(name: .starO), for: .normal)
+        
+//        //データの読み込み
+//        read()
         
     }
     
@@ -123,14 +128,43 @@ class ReadDiaryViewController: UIViewController {
 //        
 //    }
     
-//    @IBAction func editBtn(_ sender: UIBarButtonItem) {
-//        //DateFormatterを宣言
-//        let myCount = DateFormatter()
-//        //dateのformatを指定
-//        myCount.dateFormat = "yyyy/MM/dd hh:mm:ss"
-//        //nowからtext型で持ってくる
-//        myOneDiary.text = myCount.string(from: )
-//        
-//    }
+    @IBAction func editBtn(_ sender: UIBarButtonItem) {
+        // CoreDataに指令を出すviewContextを生成
+        //AppDelegateをコードで読み込む
+        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        //Entityの操作を制御するviewContextをappDelegateから作成
+        let viewContext = appDelegate.persistentContainer.viewContext
+        // 読み込むエンティティを指定
+        let fetchReq = NSFetchRequest<NSFetchRequestResult>(entityName: "Diary")
+        
+        let diary = NSEntityDescription.entity(forEntityName: "Diary", in: viewContext)
+        var selectedDate = editDiary
+        
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone.current
+        formatter.dateFormat = "yyyy/MM/dd/hh/mm/ss"
+        var tmpDateStr = formatter.string(from: date)
+        var changeDate = formatter.date(from: tmpDateStr)
+        let request: NSFetchRequest<Diary> = Diary.fetchRequest()
+        let strSavedDate: String = formatter.string(from: selectedDate!)
+        var savedDate :Date = formatter.date(from: strSavedDate)!
+        do {
+            let namePredicte = NSPredicate(format: "created_at = %@", savedDate as CVarArg)
+            request.predicate = namePredicte
+            //1件削除
+            
+            do {
+                let fetchResults = try viewContext.fetch(request)
+                for result: AnyObject in fetchResults {
+                    let record = result as! NSManagedObject
+                    viewContext.delete(record)
+                }
+                try viewContext.save()
+            } catch {
+            }
+        }
+        
+    }
 }
 
