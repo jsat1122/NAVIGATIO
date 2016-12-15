@@ -39,6 +39,10 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
     
     var composeButton: UIBarButtonItem!
     
+    // 経度、緯度を生成.
+    var lat = CLLocationDegrees()
+    var long = CLLocationDegrees()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,26 +74,7 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
             self.navigationItem.setRightBarButtonItems([composeButton, organizeButton], animated: true)
             
             
-            
-            //        // 経度緯度を設定.
-            //        let myLan: CLLocationDegrees = 37.331741
-            //        let myLon: CLLocationDegrees = -122.030333
-            //
-            //        let x = 140.000000 //経度
-            //        let y = 35.000000  //緯度
-            //
-            //        //中心座標
-            //        let center = CLLocationCoordinate2DMake(y, x)
-            
-            //        //表示範囲
-            //        let span = MKCoordinateSpanMake(1.0, 1.0)
-            //
-            //        //中心座標と表示範囲をマップに登録する。
-            //        let region = MKCoordinateRegionMake(center, span)
-            //        myMapView.setRegion(region, animated:true)
-            
-            //        // MapViewのサイズを画面全体に.
-            //        myMapView.frame = self.view.bounds
+
             
             // Delegateを設定.
             myMapView.delegate = self
@@ -124,9 +109,7 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
             // デリゲートを設定.
             dispMap.delegate = self
             
-            // 経度、緯度を生成.
-            let myLatitude: CLLocationDegrees = 37.331741
-            let myLongitude: CLLocationDegrees = -122.030333
+            
             
             //        // MapViewに中心点を設定.
             //        dispMap.setCenter(center, animated: true)
@@ -138,37 +121,18 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
             
             // 目的地の座標を指定.
             let requestCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2DMake(requestLatitude, requestLongitude)
-            let fromCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2DMake(myLatitude, myLongitude)
+            let fromCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat, long)
             
             // 地図の中心を出発点と目的地の中間に設定する.
-            let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake((myLatitude + requestLatitude)/2, (myLongitude + requestLongitude)/2)
-            //
+            let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake((lat + requestLatitude)/2, (long + requestLongitude)/2)
+            
             // 縮尺(表示領域)を指定.
             let mySpan: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
             let myRegion: MKCoordinateRegion = MKCoordinateRegionMake(center, mySpan)
             
             // MapViewにregionを追加.
             dispMap.region = myRegion
-            
-            //直線を引くコード
-            //        // 直線を引く座標を作成.
-            //        let coordinate_1 = CLLocationCoordinate2D(latitude: 37.301741, longitude: -122.050333)
-            //        let coordinate_2 = CLLocationCoordinate2D(latitude: 37.351951, longitude: -122.020314)
-            //        let coordinate_3 = CLLocationCoordinate2D(latitude: 37.301741, longitude: -122.020314)
-            //        let coordinate_4 = CLLocationCoordinate2D(latitude: 37.351951, longitude: -122.050333)
-            //
-            //        // 座標を配列に格納.
-            //        var coordinates_1 = [coordinate_1, coordinate_2]
-            //        var coordinates_2 = [coordinate_3, coordinate_4]
-            //
-            //        // polyline作成.
-            //        let myPolyLine_1: MKPolyline = MKPolyline(coordinates: &coordinates_1, count: coordinates_1.count)
-            //        let myPolyLine_2: MKPolyline = MKPolyline(coordinates: &coordinates_2, count: coordinates_2.count)
-            //
-            //        // mapViewにcircleを追加.
-            //        dispMap.add(myPolyLine_1)
-            //        dispMap.add(myPolyLine_2)
-            
+
             
             //検索するコード
             //        // PlaceMarkを生成して出発点、目的地の座標をセット.
@@ -340,20 +304,63 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         
         print("LongPress")
         
-        // 長押しの最中に何度もピンを生成しないようにする.
-        if sender.state != UIGestureRecognizerState.began {
-            return
-        }
+//        // 長押しの最中に何度もピンを生成しないようにする.
+//        if sender.state != UIGestureRecognizerState.began {
+//            return
+//        }
         
-        // 長押しした地点の座標を取得.
-        let location = sender.location(in: dispMap)
+        //マップビュー内のタップした位置を取得する。
+        let location:CGPoint = sender.location(in: dispMap)
+        
+        if (sender.state == UIGestureRecognizerState.ended){
+            
+            //タップした位置を緯度、経度の座標に変換する。
+            let mapPoint:CLLocationCoordinate2D = dispMap.convert(location, toCoordinateFrom: dispMap)
+            
+            //ピンを作成してマップビューに登録する。
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = CLLocationCoordinate2DMake(mapPoint.latitude, mapPoint.longitude)
+            annotation.title = "ピン"
+            annotation.subtitle = "\(annotation.coordinate.latitude), \(annotation.coordinate.longitude)"
+            dispMap.addAnnotation(annotation)
+            lat = annotation.coordinate.latitude
+            long = annotation.coordinate.longitude
+            
+            
+            if diaryArray.count > 0 {
+                for i in diaryArray{
+                    print("key=\(i)")
+                    //var torihada = settitle3[i] as! AnyObject
+                    print(i["lat"])
+                    let lat = i["lat"] as! Double
+                    let long = i["long"] as! Double
+                    let center = CLLocationCoordinate2DMake(lat,long)
+                    //ピンを生成
+                    let Pin:MKPointAnnotation = MKPointAnnotation()
+                    //座標を設定
+                    Pin.coordinate = center
+                    //タイトルを設定
+                    Pin.title = "\(i["title"] as! String)"
+                    
+                    //13　ピンを地図に置く
+                    self.dispMap.addAnnotation(Pin)
+                    
+                    //14　緯度経度を中心にして半径2000mの範囲を表示
+                    self.dispMap.region = MKCoordinateRegionMakeWithDistance(center, 2000000.0, 2000000.0)
+                    
+                }
+            }
+            
+    }
+        
+        
         
         //locationをCLLocationCoordinate2Dに変換.
         let myCoordinate: CLLocationCoordinate2D = dispMap.convert(location, toCoordinateFrom: dispMap)
         
        
         
-        // 座標を設定.
+         //座標を設定.
         myPin.coordinate = myCoordinate
         
         // タイトルを設定.　*国名
@@ -391,6 +398,8 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         //        pinView?.canShowCallout = true
         //        let rightButton: AnyObject! = UIButton(type: UIButtonType.detailDisclosure)
         //        pinView?.rightCalloutAccessoryView = rightButton as? UIView
+        
+        
         
     }
     
@@ -658,6 +667,8 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let viewContext = appDelegate.persistentContainer.viewContext
         let query: NSFetchRequest<Diary> = Diary.fetchRequest()
+        
+        
         
         do {
             

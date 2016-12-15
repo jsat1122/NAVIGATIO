@@ -186,67 +186,47 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 } catch {
                 }
             }
-            
-           
-//            // 更新するデータを指定する。この場合ショップ名が市場のレコード。
-//            let title: String? = results.value(format: "title") as? String
-//            let date: Date = results.value(format: "date") as! Date
-//            let category: String? = results.value(format: "category") as? String
-//            let diary: String? = results.value(format: "diary") as? String
-//            let image: String? = results.value(format: "image") as? String
-            
-//            let predict = NSPredicate(format: "title", "date", "category", "diary", "image")
-//            fetchReq.predicate = predict
-//            // データを格納する空の配列を用意
-//            var result = []
-//            // 読み込み実行
-//            do {
-//                result = try viewContext.fetch(fetchReq)
-//            }catch{
-//                
-//            }
-//            // Diaryインスタンスを生成
-//            let diary = result[0] as! Diary
-//            // 削除
-//            viewContext.delete(diary)
-//            // 保存
-//            do{
-//                try viewContext.save()
-//            }catch{
-//                
-//            }
-            
+        
             
             // TableViewを再読み込み.
             diaryTableView.reloadData()
         
     }
     
-//    // (6) 移動時の処理
-//    func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
-//        
-//        // データの順番を整える
-//        let targetTitle = diaryArray[sourceIndexPath.row]
-//        if let index = diaryArray.index(of: targetTitle) {
-//            diaryArray.remove(at: index)
-//            diaryArray.insert(targetTitle, at: destinationIndexPath.row)
-//            print(diaryArray)
-//        }
-//    }
-//    
-//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
-//        print(diaryArray[indexPath.row])
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        
+        //他ページから戻った時に更新されるようにする（reloadと同じ処理）
+        diaryArray.removeAll()
+        dairyDic = nil
+        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        let viewContext = appDelegate.persistentContainer.viewContext
+        let diaryInfo = NSEntityDescription.entity(forEntityName: "Diary", in: viewContext)
+        let query: NSFetchRequest<Diary> = Diary.fetchRequest()
+        //エラー回避
+        do{
+            let fetchResults = try viewContext.fetch(query)
+            for result: AnyObject in fetchResults {
+                let title: String? = result.value(forKey: "title") as? String
+                let date: Date = result.value(forKey: "date") as! Date
+                let category: String? = result.value(forKey: "category") as? String
+                let diary: String? = result.value(forKey: "diary") as? String
+                let image: String? = result.value(forKey: "image") as? String
+                let created_at: Date = result.value(forKey: "created_at") as! Date
+                //[辞書のkey:辞書のvalue(値)]
+                dairyDic = ["title":title,"date":date,"category":category,"diary":diary,"image":image,"created_at":created_at]
+                //配列の一番最後にdiaryDic
+                diaryArray.append(dairyDic)
+            }
+        } catch {
+        }
+        self.diaryTableView.reloadData()
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-//    //背景と同じ色にして見えなくする
-//    @IBOutlet weak var labelDiary: UILabel!
     
     
     /// セルの個数を指定するデリゲートメソッド（必須）
@@ -285,20 +265,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if strURL != nil{
             
-            let url = URL(string: strURL as String!)
-            let fetchResult: PHFetchResult = PHAsset.fetchAssets(withALAssetURLs: [url!], options: nil)
-            let asset: PHAsset = (fetchResult.firstObject! as PHAsset)
-            let manager: PHImageManager = PHImageManager()
+            //let url = URL(string: strURL as String!)
+            //let fetchResult: PHFetchResult = PHAsset.fetchAssets(withALAssetURLs: [url!], options: nil)
+            //let asset: PHAsset = (fetchResult.firstObject! as PHAsset)
+            //let manager: PHImageManager = PHImageManager()
             // 画像の設定.
-            let i:UIImage = UIImage(named:"No image.png")!
-            if i == nil{
-                let i = "No image.png"
+            var AImage: UIImage!
+            let url = URL(string: tmpDic["image"] as! String!)!
+            let fetchResult: PHFetchResult = PHAsset.fetchAssets(withALAssetURLs: [url], options: nil)
+            if fetchResult.firstObject == nil{
+                self.cell.myImageView.image = UIImage(named: "No image.png")
             }else{
-
-            manager.requestImage(for: asset,targetSize: CGSize(width: 5, height: 500),contentMode: .aspectFill,options: nil) { (image, info) -> Void in
-                self.cell.myImageView.image = image
+                let asset: PHAsset = (fetchResult.firstObject! as PHAsset)
+                let manager: PHImageManager = PHImageManager()
+                manager.requestImage(for: asset,targetSize: CGSize(width: 500, height: 500),contentMode: .aspectFill,options: nil) { (image, info) -> Void in
+                    AImage = image
+                }
+                self.cell.myImageView.image = AImage
             }
-            }
+            self.cell.backgroundColor = UIColor.white
+            return cell
+            
         }
         
 //        cell.setCell(imageName: imageNames[indexPath.row], titleText: imageTitles[indexPath.row], dateText: dateTextdate, categoryText: imageCategorys[indexPath.row], diaryText: imageDairys[indexPath.row])
