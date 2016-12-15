@@ -357,6 +357,8 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         myPin.coordinate = myCoordinate
         
         // タイトルを設定.　*国名
+//        let title = DateFormatter()
+//        formatter.dateFormat = "yyyy/MM/dd"
         myPin.title = "タイトル"
         
         // サブタイトルを設定.　*町名
@@ -594,7 +596,7 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         self.dispMap.addAnnotation(annotation)
         
         
-        //        //緯度・経度を設定
+        //緯度・経度を設定
         let location:CLLocationCoordinate2D
             = CLLocationCoordinate2DMake(9.56304, 123.415926)
         
@@ -656,17 +658,6 @@ class MainViewController: UIViewController ,UISearchBarDelegate ,MKMapViewDelega
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let viewContext = appDelegate.persistentContainer.viewContext
         let query: NSFetchRequest<Diary> = Diary.fetchRequest()
-        
-        //        //一件取得
-        //        var df = DateFormatter()
-        //        df.dateFormat = "yyyy/MM/dd" //"yyyy/MM/dd hh:mm:ss +0000"
-        //        df.timeZone = TimeZone.current
-        //        //保存していた日付を文字列からDate型に変換
-        //        var savedDateTime:NSDate = df.date(from: "\(myAp.myCount)") as! NSDate
-        //        print(savedDateTime)
-        //        //検索条件として指定
-        //        let predicate = NSPredicate(format: "SELF.created_at = %@", savedDateTime )
-        //        query.predicate = predicate
         
         do {
             

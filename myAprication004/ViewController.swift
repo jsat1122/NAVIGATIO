@@ -146,9 +146,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             print("削除")
             
             // 指定されたセルのオブジェクトをmyItemsから削除する.
+            
             diaryArray.remove(at: indexPath.row)
             print(indexPath.row)
             print(diaryArray)
+        }
             
             
             // CoreDataに指令を出すviewContextを生成
@@ -217,7 +219,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             // TableViewを再読み込み.
             diaryTableView.reloadData()
-        }
+        
     }
     
 //    // (6) 移動時の処理
