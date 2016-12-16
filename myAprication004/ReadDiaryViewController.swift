@@ -18,10 +18,20 @@ class ReadDiaryViewController: UIViewController {
     @IBOutlet weak var deleateDiaryBtn: UIButton!
     @IBOutlet weak var shareDiaryBtn: UIButton!
     @IBOutlet weak var likeDiaryBtn: UIButton!
+    @IBOutlet weak var myTitleLabel: UILabel!
+    @IBOutlet weak var myDateLabel: UILabel!
+    @IBOutlet weak var myCategoryLabel: UILabel!
+    @IBOutlet weak var myDiaryLabel: UITextView!
+    @IBOutlet weak var myImageLabel: UIImageView!
     
     var editDiary: Date! = nil //空のメンバ変数
+    var createdDiary: Date! = nil //空のメンバ変数
+    
+    var dairyDic :NSDictionary! = [:] 
     
 //    var myName: String = ""
+    var diaryArray :[NSDictionary] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,8 +56,55 @@ class ReadDiaryViewController: UIViewController {
         likeDiaryBtn.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
         likeDiaryBtn.setTitle(String.fontAwesomeIcon(name: .starO), for: .normal)
         
-//        //データの読み込み
-//        read()
+        if createdDiary != nil {
+        // CoreDataに指令を出すviewContextを生成
+        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        let viewContext = appDelegate.persistentContainer.viewContext
+
+        // 読み込むエンティティを指定
+        //            let fetchReq = NSFetchRequest<NSFetchRequestResult>(entityName: "Diary")
+        
+        let diary = NSEntityDescription.entity(forEntityName: "Diary", in: viewContext)
+//        var selectedDate = createdDiary
+//        
+//        let date = Date()
+//        let formatter = DateFormatter()
+//        formatter.timeZone = TimeZone.current
+//        formatter.dateFormat = "yyyy/MM/dd/hh/mm/ss"
+//        var tmpDateStr = formatter.string(from: date)
+//        var changeDate = formatter.date(from: tmpDateStr)
+        let request: NSFetchRequest<Diary> = Diary.fetchRequest()
+//        let strSavedDate: String = formatter.string(from: selectedDate!)
+//        var savedDate :Date = formatter.date(from: strSavedDate)!
+        do {
+            let namePredicte = NSPredicate(format: "created_at = %@", createdDiary as CVarArg)
+            request.predicate = namePredicte
+            //1件削除
+            
+            do {
+                let fetchResults = try viewContext.fetch(request)
+                for result: AnyObject in fetchResults {
+                    let record = result as! NSManagedObject
+                    myTitleLabel.text = record.value(forKey: "title") as! String?
+                    myCategoryLabel.text = record.value(forKey: "category") as! String?
+                    myDiaryLabel.text = record.value(forKey: "diary") as! String?
+                    myImageLabel.image = record.value(forKey: "image") as! UIImage?
+                    
+                    let dateText = DateFormatter()
+                    dateText.dateFormat = "yyyy/MM/dd"
+                    var dateTextdate:String = dateText.string(from: (record.value(forKey: "date") as! Date?)!)
+                    myDateLabel.text = dateTextdate
+                    
+                    
+                    
+                    
+                    print(title)
+                }
+                try viewContext.save()
+            } catch {
+            }
+        }
+        }
         
     }
     
@@ -94,13 +151,12 @@ class ReadDiaryViewController: UIViewController {
         //URL
         let shareWebsite = "https://www.apple.com/jp/watch/"
         
-        //画像(sample.pngがプロジェクト上に存在していることが前提)
-        let shareImage = UIImage(named: "sample.png")
-        
+//        //画像(※japan.pngがプロジェクト上に存在していることが前提)
+//        let shareImage = UIImage(named: "japan.png")
         
         //共有する項目を配列に指定
-        //let activityItems = [shareText,shareWebsite]
-        let activityItems = [shareText,shareWebsite,shareImage!] as [Any]
+        let activityItems = [shareText,shareWebsite]
+//        let activityItems = [shareText,shareWebsite,shareImage!] as [Any]
         
         //ActivityViewの作成、初期化
         let activityVC = UIActivityViewController(activityItems:activityItems, applicationActivities:nil)
@@ -129,6 +185,13 @@ class ReadDiaryViewController: UIViewController {
 //    }
     
     @IBAction func editBtn(_ sender: UIBarButtonItem) {
+//        createdDiary = tmpDic["created_at"]as! Date
+//        
+//        let storyboard: UIStoryboard = self.storyboard!
+//        let nextView = storyboard.instantiateViewController(withIdentifier: "ReadDiaryViewController") as! ReadDiaryViewController
+//        nextView.createdDiary = createdDiary
+//        self.navigationController?.pushViewController(nextView, animated: true)
+        
         // CoreDataに指令を出すviewContextを生成
         //AppDelegateをコードで読み込む
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate

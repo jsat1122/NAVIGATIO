@@ -21,8 +21,7 @@ class ListTableViewCell: UITableViewCell {
     /// 説明を表示するLabel
     @IBOutlet weak var myDiaryLabel: UILabel!
     
-    
-    
+    var dairyDic :NSDictionary! = [:]
     
     override func awakeFromNib() {
         super.awakeFromNib()

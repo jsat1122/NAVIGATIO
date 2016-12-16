@@ -25,6 +25,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // ナビバーの右上ボタンを用意
     var addBtn: UIBarButtonItem!
     
+    var createdDiary:Date? = nil
+    
     @IBOutlet weak var diaryTableView: UITableView!
 //    // テーブルを用意
 //    var diary: UITableView!
@@ -109,10 +111,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
+   // func segueToSecondViewController() {
+        
+    //}
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        //もしもセグエの名前がtoReadDiaryViewControllerだったら
+//        if(segue.identifier == "toReadDiaryViewController") {
+//            var sendDiary = segue.destination as! ReadDiaryViewController
+//            
+//            sendDiary.createdDiary = createdDiary
+//        }
+//    }
+    
+    
+
     /*
      Cellが選択された際に呼び出される.
      */
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        
         
         // 選択中のセルが何番目か.
         print("Num: \(indexPath.row)")
@@ -122,6 +142,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         // 選択中のセルを編集できるか.
         print("Edeintg: \(tableView.isEditing)")
+        
+        var tmpDic = diaryArray[indexPath.row]
+        print(tmpDic["date"] )
+        
+        
+        //created_atを元にcreatedDiaryに画面遷移
+        createdDiary = tmpDic["created_at"]as! Date
+        
+        let storyboard: UIStoryboard = self.storyboard!
+        let nextView = storyboard.instantiateViewController(withIdentifier: "ReadDiaryViewController") as! ReadDiaryViewController
+        nextView.createdDiary = createdDiary
+        self.navigationController?.pushViewController(nextView, animated: true)
+        
+//        self.performSegue(withIdentifier: "toReadDiaryViewController", sender: indexPath)
     }
     
     /*
@@ -146,7 +180,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             print("削除")
             
             // 指定されたセルのオブジェクトをmyItemsから削除する.
+            var tmpDic = diaryArray[(indexPath as NSIndexPath).row]
+            print(tmpDic["date"] )
             
+            deleteDiary = tmpDic["created_at"]as! Date
+
             diaryArray.remove(at: indexPath.row)
             print(indexPath.row)
             print(diaryArray)
@@ -186,7 +224,33 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 } catch {
                 }
             }
+        //            // 更新するデータを指定する。この場合ショップ名が市場のレコード。
+        //            let title: String? = results.value(format: "title") as? String
+        //            let date: Date = results.value(format: "date") as! Date
+        //            let category: String? = results.value(format: "category") as? String
+        //            let diary: String? = results.value(format: "diary") as? String
+        //            let image: String? = results.value(format: "image") as? String
         
+        //            let predict = NSPredicate(format: "title", "date", "category", "diary", "image")
+        //            fetchReq.predicate = predict
+        //            // データを格納する空の配列を用意
+        //            var result = []
+        //            // 読み込み実行
+        //            do {
+        //                result = try viewContext.fetch(fetchReq)
+        //            }catch{
+        //
+        //            }
+        //            // Diaryインスタンスを生成
+        //            let diary = result[0] as! Diary
+        //            // 削除
+        //            viewContext.delete(diary)
+        //            // 保存
+        //            do{
+        //                try viewContext.save()
+        //            }catch{
+        //                
+        //            }
             
             // TableViewを再読み込み.
             diaryTableView.reloadData()

@@ -12,6 +12,8 @@ import FontAwesome_swift //追加
 import MobileCoreServices //追加
 import Photos //追加
 import Foundation //追加
+import MobileCoreServices //追加
+
 
 extension UIImage{
     
@@ -42,6 +44,7 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
     @IBOutlet weak var categoryTxt: UITextField!
     @IBOutlet weak var diaryTxt: UITextView!
     @IBOutlet weak var ImagView: UIImageView!
+    @IBOutlet weak var camera: UIButton!
     
     var strURL: String = ""
     let datepicker: UIDatePicker = UIDatePicker()
@@ -51,6 +54,8 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
     let myBoundSize: CGSize = UIScreen.main.bounds.size
     private var closeButton: UIButton!
     private var nowButton: UIButton!
+    
+    var createdDiary: Date! = nil //空のメンバ変数
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +89,9 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
         
         deleteBtn.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
         deleteBtn.setTitle(String.fontAwesomeIcon(name: .trashO), for: .normal)
+        
+        camera.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
+        camera.setTitle(String.fontAwesomeIcon(name: .camera), for: .normal)
         
 //        closeButton.titleLabel?.font = UIFont.fontAwesome(ofSize: 15)
 //        closeButton.setTitle(String.fontAwesomeIcon(name: .times), for: .normal)
@@ -127,6 +135,23 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
 //        self.dateTxt.text = "現在時刻"
     }
     
+    @IBAction func cameraSave(_ sender: UIButton) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {    //追記
+            //写真ライブラリ(カメラロール)表示用のViewControllerを宣言
+            let controller = UIImagePickerController()
+            
+            controller.delegate = self
+            //新しく宣言したViewControllerでカメラとカメラロールのどちらを表示するかを指定
+            controller.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            //トリミング
+            controller.allowsEditing = true
+            //新たに追加したカメラロール表示ViewControllerをpresentViewControllerにする
+            self.present(controller, animated: true, completion: nil)
+            
+        }
+
+        
+    }
     @IBAction func deleteAction(_ sender: UIButton) {
         //アラートを作る
         let alertController = UIAlertController(title:"削除しますか？", message:"保存されていない日記は削除されます", preferredStyle: .alert)
@@ -339,6 +364,84 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
         print(now.description(with: jaLocale))
         //dateTxtを入力したらdatePickerを閉じる
         dateTxt.endEditing(true);
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if createdDiary != nil {
+            // CoreDataに指令を出すviewContextを生成
+            let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+            let viewContext = appDelegate.persistentContainer.viewContext
+            
+            // 読み込むエンティティを指定
+            //            let fetchReq = NSFetchRequest<NSFetchRequestResult>(entityName: "Diary")
+            
+            let diary = NSEntityDescription.entity(forEntityName: "Diary", in: viewContext)
+            //        var selectedDate = createdDiary
+            //
+            //        let date = Date()
+            //        let formatter = DateFormatter()
+            //        formatter.timeZone = TimeZone.current
+            //        formatter.dateFormat = "yyyy/MM/dd/hh/mm/ss"
+            //        var tmpDateStr = formatter.string(from: date)
+            //        var changeDate = formatter.date(from: tmpDateStr)
+            let request: NSFetchRequest<Diary> = Diary.fetchRequest()
+            //        let strSavedDate: String = formatter.string(from: selectedDate!)
+            //        var savedDate :Date = formatter.date(from: strSavedDate)!
+            do {
+                let namePredicte = NSPredicate(format: "created_at = %@", createdDiary as CVarArg)
+                request.predicate = namePredicte
+                //1件削除
+                
+                do {
+                    let fetchResults = try viewContext.fetch(request)
+                    for result: AnyObject in fetchResults {
+                        let record = result as! NSManagedObject
+                        titleTxt.text = record.value(forKey: "title") as! String?
+                        categoryTxt.text = record.value(forKey: "category") as! String?
+                        diaryTxt.text = record.value(forKey: "diary") as! String?
+                        ImagView.image = record.value(forKey: "image") as! UIImage?
+                        
+                        let dateText = DateFormatter()
+                        dateText.dateFormat = "yyyy/MM/dd"
+                        var dateTextdate:String = dateText.string(from: (record.value(forKey: "date") as! Date?)!)
+                        dateTxt.text = dateTextdate
+                    
+                        
+                        print(title)
+                    }
+                    try viewContext.save()
+                } catch {
+                }
+            }
+        }
+
+    }
+    
+    //カメラロールで写真を選んだ後
+    func imagePickerController(_ imagePicker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        
+        let assetURL:AnyObject = info[UIImagePickerControllerReferenceURL]! as AnyObject
+        
+        let strURL:String = assetURL.description
+        
+        print(strURL)
+        
+        
+        // ユーザーデフォルトを用意する
+        let myDefault = UserDefaults.standard
+        
+        // データを書き込んで
+        myDefault.set(strURL, forKey: "selectedPhotoURL")
+        
+        // 即反映させる
+        myDefault.synchronize()
+        
+        
+        
+        //閉じる処理
+        imagePicker.dismiss(animated: true, completion: nil)
+        
     }
     
     //GestureRecognizerのdelegateをselfに設定して使用する

@@ -67,7 +67,7 @@
                         <rightBarButtonItems>
                             <barButtonItem style="plain" id="1lc-Gh-zFE">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="n2a-xe-t4B">
-                                    <rect key="frame" x="316" y="7" width="43" height="30"/>
+                                    <rect key="frame" x="334" y="7" width="25" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" title="delete"/>
                                     <connections>
@@ -77,13 +77,22 @@
                             </barButtonItem>
                             <barButtonItem style="plain" id="Hjp-0P-UB5">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LI1-oR-wyO">
-                                    <rect key="frame" x="276" y="7" width="32" height="30"/>
+                                    <rect key="frame" x="301" y="7" width="25" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" title="save"/>
                                     <connections>
+                                        <action selector="cameraSave:" destination="9pv-A4-QxB" eventType="touchUpInside" id="0G9-8l-BEL"/>
                                         <action selector="diaryCreate:" destination="9pv-A4-QxB" eventType="touchUpInside" id="7PN-bG-5tc"/>
                                         <segue destination="vHn-D3-QXo" kind="unwind" unwindAction="returnMenueWithSague:" id="UoE-YQ-A9v"/>
                                     </connections>
+                                </button>
+                            </barButtonItem>
+                            <barButtonItem style="plain" id="e2d-PK-VZN">
+                                <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-1"/>
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8PV-aD-P45">
+                                    <rect key="frame" x="268" y="7" width="25" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="camera"/>
                                 </button>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -94,6 +103,7 @@
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
                         <outlet property="ImagView" destination="4rw-3j-7OA" id="ogS-n6-8a0"/>
+                        <outlet property="camera" destination="8PV-aD-P45" id="JM8-si-pNF"/>
                         <outlet property="categoryTxt" destination="Y6Z-ox-Lpi" id="3Wq-Mo-xpJ"/>
                         <outlet property="dateTxt" destination="aIq-Ot-2MP" id="PXM-Ln-HYU"/>
                         <outlet property="deleteBtn" destination="n2a-xe-t4B" id="lPE-Pa-YS1"/>
@@ -300,7 +310,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BSn-83-HO6" id="vcq-d6-inx">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="119.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dF1-te-bUT">
@@ -345,7 +355,6 @@
                                             <outlet property="myDiaryLabel" destination="yeU-cV-Km5" id="zDS-w5-MGF"/>
                                             <outlet property="myImageView" destination="dF1-te-bUT" id="Hdg-ht-sKu"/>
                                             <outlet property="myTitleLabel" destination="lhz-K6-GDQ" id="e4l-b7-e8k"/>
-                                            <segue destination="zF5-6c-3Dn" kind="show" id="XGq-Ch-34N"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -480,6 +489,11 @@
                         <outlet property="deleateDiaryBtn" destination="LKX-Bp-8HL" id="1Ho-ER-Ojk"/>
                         <outlet property="editBtn" destination="dBg-CN-Fuy" id="Suk-iN-pI7"/>
                         <outlet property="likeDiaryBtn" destination="pJF-3d-akU" id="clq-X1-ofk"/>
+                        <outlet property="myCategoryLabel" destination="AuS-an-RwK" id="dqw-8L-YoZ"/>
+                        <outlet property="myDateLabel" destination="fWw-Ht-o9D" id="5UE-eI-g0a"/>
+                        <outlet property="myDiaryLabel" destination="2Sd-to-JKE" id="dJ8-Nd-bkQ"/>
+                        <outlet property="myImageLabel" destination="pH5-ea-8bF" id="74K-XF-v8F"/>
+                        <outlet property="myTitleLabel" destination="c6I-9r-V8g" id="24I-Rh-tUi"/>
                         <outlet property="shareDiaryBtn" destination="yAf-Aa-pbm" id="A3S-G1-3Is"/>
                     </connections>
                 </viewController>
@@ -492,7 +506,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8bb-6r-dBc" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DfB-Nr-p3R">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="DfB-Nr-p3R">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
