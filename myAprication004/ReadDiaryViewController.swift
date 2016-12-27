@@ -14,10 +14,10 @@ import CoreData //追加
 
 
 class ReadDiaryViewController: UIViewController {
-    @IBOutlet weak var editBtn: UIButton!
+//    @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var deleateDiaryBtn: UIButton!
     @IBOutlet weak var shareDiaryBtn: UIButton!
-    @IBOutlet weak var likeDiaryBtn: UIButton!
+//    @IBOutlet weak var likeDiaryBtn: UIButton!
     @IBOutlet weak var myTitleLabel: UILabel!
     @IBOutlet weak var myDateLabel: UILabel!
     @IBOutlet weak var myCategoryLabel: UILabel!
@@ -44,8 +44,8 @@ class ReadDiaryViewController: UIViewController {
         
         
         //fontAwesome
-        editBtn.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
-        editBtn.setTitle(String.fontAwesomeIcon(name: .pencil), for: .normal)
+//        editBtn.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
+//        editBtn.setTitle(String.fontAwesomeIcon(name: .pencil), for: .normal)
         
         deleateDiaryBtn.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
         deleateDiaryBtn.setTitle(String.fontAwesomeIcon(name: .trashO), for: .normal)
@@ -53,8 +53,8 @@ class ReadDiaryViewController: UIViewController {
         shareDiaryBtn.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
         shareDiaryBtn.setTitle(String.fontAwesomeIcon(name: .share), for: .normal)
         
-        likeDiaryBtn.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
-        likeDiaryBtn.setTitle(String.fontAwesomeIcon(name: .starO), for: .normal)
+//        likeDiaryBtn.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
+//        likeDiaryBtn.setTitle(String.fontAwesomeIcon(name: .starO), for: .normal)
         
         if createdDiary != nil {
         // CoreDataに指令を出すviewContextを生成
@@ -135,8 +135,27 @@ class ReadDiaryViewController: UIViewController {
     
     //削除ボタンが押された時に呼ばれるメソッド
     func myDelete(){
+        
         print("削除")
-        navigationController?.viewControllers.removeLast() //views to pop
+        
+        // 削除のとき.
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            print("削除")
+            
+            // 指定されたセルのオブジェクトをmyItemsから削除する.
+            var tmpDic = diaryArray[(indexPath as NSIndexPath).row]
+           
+            
+            deleteDiary = tmpDic["created_at"]as! Date
+            
+            diaryArray.remove(at: indexPath.row)
+            
+            
+            
+        let storyboard: UIStoryboard = self.storyboard!
+        let nextView = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+        self.navigationController?.pushViewController(nextView, animated: true)
+    }
     }
 
     override func didReceiveMemoryWarning() {

@@ -21,7 +21,7 @@ extension UIImage{
     class func ResizeÜIImage(image : UIImage,width : CGFloat, height : CGFloat)-> UIImage!{
         
         // 指定された画像の大きさのコンテキストを用意.
-        UIGraphicsBeginImageContext(CGSize(width: width, height: height))
+        UIGraphicsBeginImageContext(CGSize(width: 200, height: 200))
         
         // コンテキストに画像を描画する.
         image.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
@@ -128,14 +128,14 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
         self.subView.addSubview(datepicker)
         dateTxt.delegate = self
         
-//        //AccessoryView *今回は使わない
+        //AccessoryView *今回は使わない
 //        let customView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 50))
 //        customView.backgroundColor = UIColor.red
 //        dateTxt.inputAccessoryView = customView
 //        self.dateTxt.text = "現在時刻"
     }
-    
-    @IBAction func cameraSave(_ sender: UIButton) {
+    @IBAction func cameraSelect(_ sender: UIButton) {
+        
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {    //追記
             //写真ライブラリ(カメラロール)表示用のViewControllerを宣言
             let controller = UIImagePickerController()
@@ -147,8 +147,11 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
             controller.allowsEditing = true
             //新たに追加したカメラロール表示ViewControllerをpresentViewControllerにする
             self.present(controller, animated: true, completion: nil)
-            
-        }
+
+        
+    }
+    
+    
 
         
     }
@@ -211,7 +214,7 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
         
         
         //テキストが空の時にアラート表示
-        //        var alertController: UIAlertController = textFieldShouldReturn(_, textField: UITextField) -> Bool {
+        //var alertController: UIAlertController = textFieldShouldReturn(_, textField: UITextField) -> Bool {
         var titleString = self.titleTxt.text
         var dateString = self.dateTxt.text
         var categoryString = self.categoryTxt.text
@@ -330,9 +333,9 @@ class CreateDiaryViewController: UIViewController ,UIImagePickerControllerDelega
         
         
         
-//        //coreDataに設定
+        //coreDataに設定
 //        created2.setValue(changeDate, forKey: "created2")
-//        
+        
                 dateTxt.text = created2.string(from: sender.date)
                 selectedDate = sender.date as NSDate
         

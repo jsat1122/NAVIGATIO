@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationUsageDescription</key>
+	<string>端末の位置を常に地図に表示するために位置情報を利用します。</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>位置情報を常に許可します。</string>
 	<key>LSApplicationCategoryType</key>
@@ -26,8 +28,6 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>カメラにアクセスします。</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>端末の位置を常に地図に表示するために位置情報を利用します。</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>フォトライブラリーにアクセスします。</string>
 	<key>UILaunchStoryboardName</key>
